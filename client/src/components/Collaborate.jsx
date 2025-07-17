@@ -2,8 +2,10 @@ import React from 'react'
 
 function Collaborate() {
   return (
-    <div>Collaborate</div>
-  )
+		<div className="realtive shadow-2xl relative w-11/12 h-full items-center justify-center mx-auto bg-accent2">
+			Collaborate
+		</div>
+	);
 }
 
 export default Collaborate

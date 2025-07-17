@@ -4,10 +4,10 @@
 
 @layer utilities {
 	.gradient-bg {
-		background: radial-gradient(circle at top left, #3f567f 0%, transparent 70%),
-			radial-gradient(circle at top right, #d174d2 0%, transparent 70%),
-			radial-gradient(circle at bottom left, #e0563f 0%, transparent 70%),
-			radial-gradient(circle at bottom right, #412653 0%, transparent 70%);
+		background: radial-gradient(circle at top left, #3f567f 30%, transparent 70%),
+			radial-gradient(circle at top right, #d174d2 0%, transparent 50%),
+			radial-gradient(circle at bottom left, #e0563f 0%, transparent 50%),
+			radial-gradient(circle at bottom right, #412653 10%, transparent 90%);
 		background-color: #1e1e2f; /* fallback base color */
 		background-blend-mode: screen;
 	}
