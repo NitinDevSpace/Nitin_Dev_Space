@@ -17,10 +17,12 @@ function MyCreations() {
 					showcasing my skills in <br /> development and problem-solving.
 				</p>
 			</div>
-			<div className="h-[32rem] min-w-[400px] drop-shadow-2xl overflow-hidden gap-7 flex justify-center items-center  p-4 rounded-lg w-5/6 bg-gray-700">
+			<div className="h-[32rem] min-w-[400px] drop-shadow-2xl overflow-hidden gap-7 flex justify-center items-center rounded-lg w-5/6 bg-gray-700/80">
+				<button>{"<"}-</button>
 				<ProjectCard />
 				<ProjectCard />
 				<ProjectCard />
+				<button>-{">"}</button>
 			</div>
 		</div>
 	);
