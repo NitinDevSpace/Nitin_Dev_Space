@@ -6,6 +6,8 @@ import MyCreations from "../../components/MyCreations";
 import Footer from "../../components/Footer";
 import Collaborate from "../../components/Collaborate";
 import RotatingCubeScene from "../../components/RotatingCubeScene";
+import { easeIn, easeInOut, easeOut, motion } from "framer-motion";
+import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
 	return (
@@ -15,16 +17,35 @@ const Home = () => {
 					<RotatingCubeScene />
 				</div>
 				<NavBar />
-
-				<div className="absolute z-20 left-1/2 -translate-x-1/2 bottom-36 flex flex-col items-center text-white">
-					<h1 className="text-8xl font-extrabold text-center mb-4">
-						Nitin <span className="text-[#00FFFF] ">Dev Space</span>
-					</h1>
-					<p className="text-2xl  font-mono text-center">
-						Crafting interactive, performant experiences.
-					</p>
-				</div>
 			</div>
+
+			<motion.h1
+				className="absolute z-30 left-1/2 bottom-36 flex flex-col items-center text-white"
+				initial={{ opacity: 0, y: 80, x: "-50%" }}
+				animate={{ opacity: 1, y: 0, x: "-50%" }}
+				transition={{ duration: 1, ease: easeInOut }}
+			>
+				<span className="text-8xl font-extrabold text-center mb-4">
+					Nitin <span className="text-[#00FFFF] ">Dev Space</span>
+				</span>
+			</motion.h1>
+			<motion.p
+				className="absolute  z-30 left-1/2 bottom-28 flex flex-col items-center text-white"
+				initial={{ opacity: 0,  x: "-50%" }}
+				animate={{ opacity: 1,  x: "-50%" }}
+				transition={{ duration: 2, ease: easeInOut }}
+			>
+				<span className=" text-2xl font-mono text-center">
+					<Typewriter
+						words={["Crafting interactive, performant experiences"]}
+						loop={1}
+						deleteSpeed={0}
+						cursor
+						cursorStyle="."
+						typeSpeed={90}
+					/>
+				</span>
+			</motion.p>
 			<BioSection />
 			<AboutSection />
 			<MyCreations />

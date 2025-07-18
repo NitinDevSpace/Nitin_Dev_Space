@@ -5,7 +5,7 @@ import model from "../assets/model.png";
 
 function SceneContent() {
 	const texture = useTexture(model);
-	const NUM_ICONS = 7;
+	const NUM_ICONS = 10;
 	const icons = [
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
@@ -14,6 +14,9 @@ function SceneContent() {
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg",
 	];
 	return (
 		<>

@@ -20,7 +20,10 @@ const NavBar = () => {
 					<Link to={"/profile"}>Profile</Link>
 					<Link to={"/projects"}>Projects</Link>
 					<Link to={"/blogs"}>Blogs</Link>
-					<Link to={"/contact"} className="bg-secondary rounded px-4 py-2 ">
+					<Link
+						to={"/contact"}
+						className="bg-secondary animate-pulse rounded px-4 py-2 "
+					>
 						Contact
 					</Link>
 				</div>
