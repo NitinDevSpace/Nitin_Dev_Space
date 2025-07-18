@@ -1,7 +1,7 @@
 import React from "react";
 import { OrbitControls, useTexture } from "@react-three/drei";
 import OrbitingCard from "./OrbitingCard";
-import model from "../assets/model.png";
+import model from "../../assets/model.png";
 
 function SceneContent() {
 	const texture = useTexture(model);

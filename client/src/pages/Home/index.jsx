@@ -5,7 +5,7 @@ import AboutSection from "../../components/AboutSection";
 import MyCreations from "../../components/MyCreations";
 import Footer from "../../components/Footer";
 import Collaborate from "../../components/Collaborate";
-import RotatingCubeScene from "../../components/RotatingCubeScene";
+import RotatingCubeScene from "../../components/3D/RotatingCubeScene";
 import { easeIn, easeInOut, easeOut, motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 

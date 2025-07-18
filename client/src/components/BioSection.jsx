@@ -17,7 +17,7 @@ function BioSection() {
 				/>
 
 				{/* Glow div behind image, follows same size */}
-				<div className="absolute inset-0  z-10 rounded-xl bg-gradient-to-r to-[#f7ba2b] from-[#ea5358] shadow-[0_0_30px_rgba(160,60,207,0.6)]"></div>
+				<div className="absolute inset-0  z-10 rounded-xl bg-gradient-to-t to-accent2 from-primary shadow-[0_0_30px_rgba(160,60,207,0.6)]"></div>
 			</div>
 			<div className="flex flex-col w-full md:w-3/5 justify-center text-left pb-12 px-5 sm:px-16">
 				<h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-serif mb-6">
