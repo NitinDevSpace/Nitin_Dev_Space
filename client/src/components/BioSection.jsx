@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function BioSection() {
 	const navigate = useNavigate();
 	return (
-		<div className="realtive flex flex-col flex-wrap shadow-2xl relative w-11/12 h-[90vh] justify-center mx-auto ">
+		<div className="realtive flex flex-col flex-wrap shadow-2xl w-11/12 h-[97vh] justify-center mx-auto ">
 			<div className="absolute w-1/4 right-36 z-20">
 				<motion.img
 					src={me}
