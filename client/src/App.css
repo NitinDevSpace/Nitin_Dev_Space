@@ -19,6 +19,9 @@
 		background-color: #1e1e2f; /* fallback base color */
 		background-blend-mode: screen;
 	}
+	.hover-scale {
+		@apply transition-transform duration-300 ease-in-out hover:scale-105;
+	}
 }
 
 html,
@@ -28,7 +31,11 @@ body,
 }
 
 body {
-	@apply font-body h-full  text-white;
+	@apply font-heading h-full  text-white;
 	@apply gradient-bg2
+}
+
+p {
+	@apply font-sans
 }
 

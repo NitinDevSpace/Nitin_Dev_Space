@@ -7,11 +7,11 @@ export default {
 				primary: "#412653", // Deep purple background
 				secondary: "#3F567F", // Muted blue
 				accent1: "#D174D2", // Magenta
-				accent2: "#E0563F", // Coral
+				accent2: "#00FFFF", // Coral
 			},
 			fontFamily: {
-				heading: ["'Space Grotesk'", "sans-serif"],
-				body: ["'Inter'", "sans-serif"],
+				heading: ["Space Grotesk", "sans-serif"],
+				body: ["Inter", "sans-serif"],
 			},
 			maxWidth: {
 				content: "1200px",
