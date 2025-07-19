@@ -15,7 +15,7 @@ function SceneContent() {
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+		"https://cdn.worldvectorlogo.com/logos/spring-boot-1.svg",
 		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg",
 	];
 	return (
@@ -38,7 +38,6 @@ function SceneContent() {
 						imageUrl={icon}
 					/>
 				))}
-				<OrbitControls enableZoom={false} />
 			</group>
 		</>
 	);

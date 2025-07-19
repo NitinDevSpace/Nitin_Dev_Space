@@ -2,11 +2,12 @@ import React from "react";
 import me from "../assets/my.png";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { FolderGit2, User } from "lucide-react";
 
 function BioSection() {
 	const navigate = useNavigate();
 	return (
-		<div className="realtive rounded-lg my-4  overflow-hidden flex flex-col flex-wrap shadow-2xl sm:w-11/12 min-h-[75vh] sm:min-h-[95vh] justify-center mx-auto ">
+		<div className="realtive bg-black/90 rounded-lg my-4  overflow-hidden flex flex-col flex-wrap shadow-2xl sm:w-11/12 min-h-[75vh] sm:min-h-[95vh] justify-center mx-auto ">
 			<div className="absolute md:visible invisible w-1/4 right-36 z-20">
 				<motion.img
 					src={me}
@@ -39,16 +40,18 @@ function BioSection() {
 					onClick={() => {
 						navigate("/projects");
 					}}
-					className="bg-accent2 px-8 hover-scale text-black py-3 rounded-xl"
+					className="bg-accent2 flex gap-4 px-8 hover-scale text-black py-3 rounded-xl"
 				>
+					<FolderGit2 />
 					My Creations
 				</button>
 				<button
 					onClick={() => {
 						navigate("/profile");
 					}}
-					className="border-2 px-8 py-3 hover-scale rounded-xl border-accent2"
+					className="border-2 flex gap-4 px-8 py-3 hover-scale rounded-xl border-accent2"
 				>
+					<User />
 					About Me
 				</button>
 			</div>

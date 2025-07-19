@@ -1,3 +1,4 @@
+import { Mail } from 'lucide-react';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -17,9 +18,9 @@ function Collaborate() {
 				onClick={() => {
 					navigate("/contact");
 				}}
-				className="bg-accent2 p-2 hover-scale px-6 rounded-lg text-black m-4"
+				className="bg-accent2 flex gap-4 p-2 hover-scale px-6 rounded-lg text-black m-4"
 			>
-				Get In Touch
+				Get In Touch <Mail />
 			</button>
 		</div>
 	);

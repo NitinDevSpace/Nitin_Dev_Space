@@ -1,13 +1,75 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 function MyCreations() {
-	const [projects, setProjects] = useState([]);
-	useEffect(() => {
-		//fetch from server
-	}, []);
+	const scrollRef = useRef(null);
+	// const [projects, setProjects] = useState([]);
+	// useEffect(() => {
+	// 	//fetch from server
+	// }, []);
+	const projects = [
+		{
+			title: "Project Number 1",
+			image: "https://placehold.co/800x500",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
+			status: "Finished",
+			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+		},
+		{
+			title: "Project Number 2",
+			image: "https://placehold.co/800x500",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
+			status: "Finished",
+			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+		},
+		{
+			title: "Project Number 3",
+			image: "https://placehold.co/800x500",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
+			status: "Finished",
+			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+		},
+		{
+			title: "Project Number 4",
+			image: "https://placehold.co/800x500",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
+			status: "Finished",
+			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+		},
+		{
+			title: "Project Number 5",
+			image: "https://placehold.co/800x500",
+			description:
+				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
+			status: "Finished",
+			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+		},
+	];
+
+	const scrollLeft = () => {
+		if (scrollRef.current) {
+			scrollRef.current.scrollBy({
+				left: -450,
+				behavior: "smooth",
+			});
+		}
+	};
+	const scrollRight = () => {
+		if (scrollRef.current) {
+			scrollRef.current.scrollBy({
+				left: 450,
+				behavior: "smooth",
+			});
+		}
+	};
+
 	return (
-		<div className="realtive rounded-lg my-4 shadow-2xl overflow-hidden p-4 sm:w-11/12 h-full flex flex-col gap-2 items-center justify-center mx-auto ">
+		<div className="realtive bg-black/90 rounded-lg my-4 shadow-2xl overflow-hidden p-4 sm:w-11/12 h-full flex flex-col gap-2 items-center justify-center mx-auto ">
 			<div className="text-center mb-12">
 				<h1 className="text-5xl font-bold mb-6">
 					My <span className="text-[#A7DBDC]">Creations</span>
@@ -17,12 +79,29 @@ function MyCreations() {
 					showcasing my skills in <br /> development and problem-solving.
 				</p>
 			</div>
-			<div className="h-[32rem] min-w-[400px] drop-shadow-2xl overflow-hidden gap-7 flex justify-center items-center rounded-lg w-5/6 bg-gray-700/80">
-				<button>{"<"}-</button>
-				<ProjectCard />
-				<ProjectCard />
-				<ProjectCard />
-				<button>-{">"}</button>
+			<div className="h-[32rem]  min-w-[400px] overflow-hidden drop-shadow-2xl gap-7 flex justify-center items-center rounded-lg w-5/6 bg-gray-700/80">
+				<button
+					onClick={scrollLeft}
+					className="absolute left-0 z-20 opacity-20 py-60 px-6 hover-scale hover:bg-black/40 hover:opacity-100 shadow-2xl"
+				>
+					{" "}
+					<ArrowLeft className="scale-150" />{" "}
+				</button>
+				<div
+					ref={scrollRef}
+					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+					className="h-full  drop-shadow-2xl overflow-x-scroll gap-7 flex justify-start px-12 items-center rounded-lg w-full"
+				>
+					{projects.map((project, i) => {
+						return <ProjectCard className=" z-10" key={i} project={project} />;
+					})}
+				</div>
+				<button
+					onClick={scrollRight}
+					className="absolute right-0 z-20 opacity-20 py-60 px-6 hover-scale hover:bg-black/40 hover:opacity-100 shadow-2xl"
+				>
+					<ArrowRight className="scale-150" />
+				</button>
 			</div>
 		</div>
 	);

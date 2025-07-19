@@ -1,42 +1,44 @@
+import { Eye, Layers } from "lucide-react";
 import React from "react";
 
-function ProjectCard() {
+function ProjectCard({ project }) {
+	const { title, image, description, status, stack } = project;
 	return (
-		<div className="relative bg-white z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[400px] w-[420px]">
+		<div className="relative bg-white z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[400px] sm:min-w-[420px]">
 			<div className="relative overflow-hidden h-3/5">
 				<img
 					className="w-full h-full object-cover z-10"
-					src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-					alt=""
+					src={image}
+					alt="Project Image"
 				/>
 				<div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 to-transparent h-full "></div>
-				<h1 className="z-30 text-xl absolute py-4 px-6 bottom-0">
-					Project Name
-				</h1>
+				<h1 className="z-30 text-xl absolute py-4 px-6 bottom-0">{title}</h1>
 				<span className="absolute top-2 right-3 px-4 rounded-full bg-primary">
 					{" "}
-					Finished
+					{status}
 				</span>
 			</div>
 			<div className="bg-gray-500 flex gap-1 flex-col pt-2 px-4 h-2/5">
 				<div className="overflow-hidden h-1/3">
-					<h1 className="text-thin opacity-70 font-sans ">
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil
-						ducimus provident voluptatem itaque blanditiis molestias aliquid
-						molestiae ipsum natus aliquam?
-					</h1>
+					<h1 className="text-thin opacity-70 font-sans ">{description}</h1>
 				</div>
 				<div className="overflow-hidden h-1/3">
-					<h1>Tech Stack</h1>
+					<h1 className="flex pb-1 gap-2">
+						<Layers className="text-accent2"/>
+						Tech Stack
+					</h1>
 					<div className="flex gap-3 text-sm font-thin font-sans">
-						<p className="bg-accent2/40 px-1 rounded-lg" >React</p>
-						<p className="bg-accent2/40 px-1 rounded-lg" >NextJS</p>
-						<p className="bg-accent2/40 px-1 rounded-lg" >HTML</p>
-						<p className="bg-accent2/40 px-1 rounded-lg" >JS</p>
-						<p className="bg-accent2/40 px-1 rounded-lg" >Tailwind</p>
+						{stack.map((name, i) => {
+							return (
+								<p className="bg-accent1/40 px-1 rounded-lg" key={i}>
+									{name}
+								</p>
+							);
+						})}
 					</div>
 				</div>
-				<button className="overflow-hidden self-start h-1/3">
+				<button className="overflow-hidden text-accent2 flex gap-2 self-start h-1/4 pt-2">
+					<Eye />
 					View Details
 				</button>
 			</div>

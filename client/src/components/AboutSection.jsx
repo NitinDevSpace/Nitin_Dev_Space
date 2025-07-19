@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Code, Layers, Sparkles } from "lucide-react";
 
 function AboutSection() {
 	const navigate = useNavigate();
@@ -19,37 +20,48 @@ function AboutSection() {
 			</div>
 			<div className="flex flex-row flex-wrap justify-center p-6 gap-6 w-full  text-center space-out items-center">
 				<div className="w-[19rem] hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-gray-900/40 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
-					<i className="bg-black mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-						icon
+					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+						<Code className="scale-150" />
 					</i>
 					<h1 className="text-lg font-semibold">Frontend Development</h1>
 					<p className="text-sm font-light opacity-70">
 						Crafting responsive user interfaces with key technologies like{" "}
-						<strong>React</strong>, <strong>Next.js</strong>, and{" "}
-						<strong>JavaScript</strong>, focusing on performance and{" "}
-						<strong>Tailwind CSS</strong> to delight users.
+						<strong className="text-accent2 font-bold">React</strong>,{" "}
+						<strong className="text-accent2 font-bold">Next.js</strong>, and{" "}
+						<strong className="text-accent2 font-bold">JavaScript</strong>,
+						focusing on performance and{" "}
+						<strong className="text-accent2 font-bold">Tailwind CSS</strong> to
+						delight users.
 					</p>
 				</div>
 				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-gray-900/40 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
-					<i className="bg-black mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-						icon
+					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+						<Layers className="scale-150" />
 					</i>
 					<h1 className="text-lg font-semibold">Backend Architecture</h1>
 					<p className="text-sm font-light opacity-70">
 						Building secure, scalable server-side applications and APIs using
-						Node.js, Python (Django/Flask), and Firebase, with expertise in
-						databases like PostgreSQL & MongoDB.
+						<strong className="text-accent2 font-bold"> Node.js</strong>,
+						<strong className="text-accent2 font-bold"> Python </strong>
+						(Django/Flask), and{" "}
+						<strong className="text-accent2 font-bold">Firebase</strong> , with
+						expertise in databases like{" "}
+						<strong className="text-accent2 font-bold">PostgreSQL</strong>, &{" "}
+						<strong className="text-accent2 font-bold">MongoDB</strong> .
 					</p>
 				</div>
 				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-gray-900/40 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
-					<i className="bg-black mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-						icon
+					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+						<Sparkles className="scale-150" />
 					</i>
 					<h1 className="text-lg font-semibold">AI Integration</h1>
 					<p className="text-sm font-light opacity-70">
-						Exploring the exciting world of AI using Genkit and Python,
-						integrating intelligent features and LLMs to create smarter, more
-						intuitive applications.
+						Exploring the exciting world of AI using{" "}
+						<strong className="text-accent2 font-bold">Genkit </strong>
+						and <strong className="text-accent2 font-bold">Python</strong>,
+						integrating intelligent features and{" "}
+						<strong className="text-accent2 font-bold">LLMs</strong> to create
+						smarter, more intuitive applications.
 					</p>
 				</div>
 			</div>
