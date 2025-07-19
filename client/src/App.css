@@ -31,8 +31,8 @@ body,
 }
 
 body {
-	@apply font-heading h-full  text-white;
-	@apply gradient-bg2
+	@apply font-heading  text-white;
+	@apply bg-black/30
 }
 
 p {

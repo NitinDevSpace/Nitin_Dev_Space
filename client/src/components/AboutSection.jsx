@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function AboutSection() {
 	const navigate = useNavigate();
 	return (
-		<div className="realtive overflow-hidden shadow-2xl flex flex-col sm:w-11/12 sm:gap-16 sm:min-h-full  p-6 items-center justify-center mx-auto gradient-bg">
+		<div className="realtive rounded-lg my-4 overflow-hidden shadow-2xl flex flex-col sm:w-11/12 sm:gap-16 sm:min-h-full  p-6 items-center justify-center mx-auto gradient-bg">
 			<div className="flex flex-col lg:w-[45rem] text-center">
 				<span className="text-3xl pb-6 font-semibold">
 					A Little <span className="text-accent2">About Me </span>

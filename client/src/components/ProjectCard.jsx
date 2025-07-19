@@ -2,7 +2,7 @@ import React from "react";
 
 function ProjectCard() {
 	return (
-		<div className="relative bg-white z-10 flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[400px] w-[420px]">
+		<div className="relative bg-white z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[400px] w-[420px]">
 			<div className="relative overflow-hidden h-3/5">
 				<img
 					className="w-full h-full object-cover z-10"

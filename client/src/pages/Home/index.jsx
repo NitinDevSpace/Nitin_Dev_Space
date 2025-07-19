@@ -12,7 +12,7 @@ import { Typewriter } from "react-simple-typewriter";
 const Home = () => {
 	return (
 		<>
-			<div className="realtive overflow-hidden shadow-2xl relative sm:w-11/12 h-full items-center justify-center mx-auto sm:mt-4 gradient-bg2">
+			<div className="realtive rounded-lg overflow-hidden shadow-2xl relative sm:w-11/12 h-full items-center justify-center mx-auto gradient-bg2">
 				<div className="absolute inset-0 z-10 flex items-start justify-start pointer-events-none">
 					<RotatingCubeScene />
 				</div>
@@ -31,8 +31,8 @@ const Home = () => {
 			</motion.h1>
 			<motion.p
 				className="absolute w-full  z-30 left-1/2 bottom-28 flex flex-col items-center text-white"
-				initial={{ opacity: 0,  x: "-50%" }}
-				animate={{ opacity: 1,  x: "-50%" }}
+				initial={{ opacity: 0, x: "-50%" }}
+				animate={{ opacity: 1, x: "-50%" }}
 				transition={{ duration: 2, ease: easeInOut }}
 			>
 				<span className="text-sm md:text-lg lg:text-2xl font-mono text-center">
@@ -51,6 +51,7 @@ const Home = () => {
 			<MyCreations />
 			<Collaborate />
 			<Footer />
+			<div className="h-12"></div>
 		</>
 	);
 };
