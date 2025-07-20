@@ -18,8 +18,8 @@ function AboutSection() {
 					to new technologies.
 				</span>
 			</div>
-			<div className="flex flex-row flex-wrap justify-center p-6 gap-6 w-full text-black text-center space-out items-center">
-				<div className="w-[19rem] hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-white/80 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
+			<div className="flex flex-row flex-wrap justify-center p-6 gap-6 w-full text-center space-out items-center">
+				<div className="w-[19rem] hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
 						<Code className="scale-150" />
 					</i>
@@ -34,7 +34,7 @@ function AboutSection() {
 						delight users.
 					</p>
 				</div>
-				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-white/80 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
+				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
 						<Layers className="scale-150" />
 					</i>
@@ -50,7 +50,7 @@ function AboutSection() {
 						<strong className="text-accent2 font-bold">MongoDB</strong> .
 					</p>
 				</div>
-				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-white/80 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
+				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
 						<Sparkles className="scale-150" />
 					</i>

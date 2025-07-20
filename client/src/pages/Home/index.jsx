@@ -37,7 +37,7 @@ const Home = () => {
 		const handleScroll = (e) => {
 			e.preventDefault();
 			if (isThrottled.current) return;
-			if (Math.abs(e.deltaY) < 40) return;
+			if (Math.abs(e.deltaY) < 15) return;
 
 			const direction = e.deltaY > 0 ? 1 : -1;
 			const nextSection = Math.max(
@@ -91,7 +91,7 @@ const Home = () => {
 	}, []);
 
 	return (
-		<AnimatePresence mode="wait">
+		< >
 			<section ref={(el) => (sectionRefs.current[0] = el)}>
 				<div className="relative overflow-hidden h-screen gradient-bg items-center justify-center mx-auto ">
 					<motion.div
@@ -147,7 +147,7 @@ const Home = () => {
 			<section ref={(el) => (sectionRefs.current[5] = el)}>
 				<Footer />
 			</section>
-		</AnimatePresence>
+		</>
 	);
 };
 

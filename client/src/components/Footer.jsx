@@ -38,15 +38,15 @@ function Footer() {
 
 	return (
 		<div className="relative my-2 justify-self-center shadow-2xl py-12 flex flex-col justify-center w-11/12 h-screen items-center">
-			<div className="border flex  bg-white text-black my-12 py-3 sm:py-6 px-4 sm:px-12 rounded-lg shadow-2xl w-5/6  justify-center h-1/2 items-center">
+			<div className="border flex  bg-primary3 my-12 py-3 sm:py-6 px-4 sm:px-12 rounded-lg shadow-2xl w-5/6  justify-center h-1/2 items-center">
 				<div className="w-full">
 					<div className="border-b-2 justify-between flex flex-col xl:flex-row">
 						<div className="flex gap-4 mb-4 flex-col">
-							<div className="flex">
+							<div className="flex items-center">
 								<img
 									src={logo}
 									alt="logo"
-									className="w-12 h-12 bg-black rounded-lg p-2"
+									className="w-20 scale-150 h-20 rounded-lg p-2"
 								/>
 								<h1 className="p-2 text-bold text-2xl ">Nitin Dev Space</h1>
 							</div>

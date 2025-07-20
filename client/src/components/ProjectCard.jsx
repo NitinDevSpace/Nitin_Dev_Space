@@ -4,7 +4,7 @@ import React from "react";
 function ProjectCard({ project }) {
 	const { title, image, description, status, stack } = project;
 	return (
-		<div className="relative bg-white z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[400px] sm:min-w-[420px]">
+		<div className="relative animate-marquee bg-[#0f3c66] z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[400px] sm:min-w-[420px]">
 			<div className="relative overflow-hidden h-3/5">
 				<img
 					className="w-full h-full object-cover z-10"
@@ -13,7 +13,7 @@ function ProjectCard({ project }) {
 				/>
 				<div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 to-transparent h-full "></div>
 				<h1 className="z-30 text-xl absolute py-4 px-6 bottom-0">{title}</h1>
-				<span className="absolute top-2 right-3 px-4 rounded-full bg-primary">
+				<span className="absolute top-2 right-3 px-4 rounded-full bg-pink">
 					{" "}
 					{status}
 				</span>
@@ -24,7 +24,7 @@ function ProjectCard({ project }) {
 				</div>
 				<div className="overflow-hidden h-1/3">
 					<h1 className="flex pb-1 gap-2">
-						<Layers className="text-accent2"/>
+						<Layers className="text-accent2" />
 						Tech Stack
 					</h1>
 					<div className="flex gap-3 text-sm font-thin font-sans">
