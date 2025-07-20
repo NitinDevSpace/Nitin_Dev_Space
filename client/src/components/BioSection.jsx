@@ -7,7 +7,7 @@ import { FolderGit2, User } from "lucide-react";
 function BioSection() {
 	const navigate = useNavigate();
 	return (
-		<div className="realtive bg-black/90 rounded-lg my-4  overflow-hidden flex flex-col flex-wrap shadow-2xl sm:w-11/12 min-h-[75vh] sm:min-h-[95vh] justify-center mx-auto ">
+		<div className="relative my-4  overflow-hidden flex flex-col flex-wrap sm:w-11/12 min-h-[75vh] sm:min-h-[95vh] justify-center mx-auto ">
 			<div className="absolute md:visible invisible w-1/4 right-36 z-20">
 				<motion.img
 					src={me}

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function Collaborate() {
 	const navigate = useNavigate();
   return (
-		<div className="realtive rounded-lg my-4 overflow-hidden flex flex-col shadow-2xl gap-6 w-11/12 h-2/3 items-center justify-center mx-auto gradient-bg">
+		<div className="relative my-4 overflow-hidden flex flex-col gap-6 w-11/12 h-2/3 items-center justify-center mx-auto">
 			<h1 className=" text-3xl sm:text-5xl">
 				Ready to <span className="text-accent2 font-sans">Collaborate</span>?
 			</h1>

@@ -22,7 +22,7 @@ function SceneContent() {
 		<>
 			<ambientLight intensity={1.5} />
 			<directionalLight position={[2, 2, 5]} />
-			<mesh position={[2, 0, 2]} scale={[5, 8, 1]} rotation={[-0.1, 0.8, 0.1]}>
+			<mesh position={[2, -1, 2]} scale={[5, 8.3, 1]} rotation={[-0.1, 0.8, 0.1]}>
 				<planeGeometry args={[1, 1]} />
 				<meshStandardMaterial map={texture} transparent={true} />
 			</mesh>

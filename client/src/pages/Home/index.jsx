@@ -10,7 +10,7 @@ import { Typewriter } from "react-simple-typewriter";
 const Home = () => {
 	return (
 		<>
-			<div className="realtive rounded-lg overflow-hidden shadow-2xl relative sm:w-11/12 h-full items-center justify-center mx-auto gradient-bg2">
+			<div className="relative overflow-hidden h-screen gradient-bg items-center justify-center mx-auto ">
 				<motion.div
 					initial={{ opacity: 0, y: 80 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -28,11 +28,11 @@ const Home = () => {
 				transition={{ delay: 0.5, duration: 1, ease: easeOut }}
 			>
 				<span className="md:text-8xl text-5xl  font-extrabold text-center mb-4">
-					Nitin <span className="text-[#00FFFF] ">Dev Space</span>
+					Nitin <span className=" ">Dev Space</span>
 				</span>
 			</motion.h1>
 			<motion.p
-				className="absolute w-full  z-30 left-1/2 bottom-28 flex flex-col items-center text-white"
+				className="absolute w-full  z-30 left-1/2 bottom-28 flex flex-col items-center text-accent2"
 				initial={{ opacity: 0, x: "-50%" }}
 				animate={{ opacity: 1, x: "-50%" }}
 				transition={{ duration: 2, delay: 0.7, ease: easeInOut }}

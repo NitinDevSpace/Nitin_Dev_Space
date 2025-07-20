@@ -18,7 +18,7 @@ function ProjectCard({ project }) {
 					{status}
 				</span>
 			</div>
-			<div className="bg-gray-500 flex gap-1 flex-col pt-2 px-4 h-2/5">
+			<div className=" flex gap-1 flex-col pt-2 px-4 h-2/5">
 				<div className="overflow-hidden h-1/3">
 					<h1 className="text-thin opacity-70 font-sans ">{description}</h1>
 				</div>

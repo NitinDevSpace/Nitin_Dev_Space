@@ -69,7 +69,7 @@ function MyCreations() {
 	};
 
 	return (
-		<div className="realtive bg-black/90 rounded-lg my-4 shadow-2xl overflow-hidden p-4 sm:w-11/12 h-full flex flex-col gap-2 items-center justify-center mx-auto ">
+		<div className="relative my-4 overflow-hidden p-4 sm:w-11/12 h-full flex flex-col gap-2 items-center justify-center mx-auto ">
 			<div className="text-center mb-12">
 				<h1 className="text-5xl font-bold mb-6">
 					My <span className="text-[#A7DBDC]">Creations</span>
@@ -79,7 +79,7 @@ function MyCreations() {
 					showcasing my skills in <br /> development and problem-solving.
 				</p>
 			</div>
-			<div className="h-[32rem]  min-w-[400px] overflow-hidden drop-shadow-2xl gap-7 flex justify-center items-center rounded-lg w-5/6 bg-gray-700/80">
+			<div className="h-[32rem]  min-w-[400px] overflow-hidden drop-shadow-2xl gap-7 flex justify-center items-center rounded-lg w-5/6 bg-white/80">
 				<button
 					onClick={scrollLeft}
 					className="absolute left-0 z-20 opacity-20 py-60 px-6 hover-scale hover:bg-black/40 hover:opacity-100 shadow-2xl"

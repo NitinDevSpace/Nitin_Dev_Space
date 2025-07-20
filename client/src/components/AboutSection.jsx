@@ -6,7 +6,7 @@ import { Code, Layers, Sparkles } from "lucide-react";
 function AboutSection() {
 	const navigate = useNavigate();
 	return (
-		<div className="realtive rounded-lg my-4 overflow-hidden shadow-2xl flex flex-col sm:w-11/12 sm:gap-16 sm:min-h-full  p-6 items-center justify-center mx-auto gradient-bg">
+		<div className="relative  my-4 overflow-hidden  flex flex-col sm:w-11/12 sm:gap-16 sm:min-h-full  p-6 items-center justify-center mx-auto ">
 			<div className="flex flex-col lg:w-[45rem] text-center">
 				<span className="text-3xl pb-6 font-semibold">
 					A Little <span className="text-accent2">About Me </span>
@@ -18,8 +18,8 @@ function AboutSection() {
 					to new technologies.
 				</span>
 			</div>
-			<div className="flex flex-row flex-wrap justify-center p-6 gap-6 w-full  text-center space-out items-center">
-				<div className="w-[19rem] hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-gray-900/40 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
+			<div className="flex flex-row flex-wrap justify-center p-6 gap-6 w-full text-black text-center space-out items-center">
+				<div className="w-[19rem] hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-white/80 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
 						<Code className="scale-150" />
 					</i>
@@ -34,7 +34,7 @@ function AboutSection() {
 						delight users.
 					</p>
 				</div>
-				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-gray-900/40 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
+				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-white/80 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
 						<Layers className="scale-150" />
 					</i>
@@ -50,7 +50,7 @@ function AboutSection() {
 						<strong className="text-accent2 font-bold">MongoDB</strong> .
 					</p>
 				</div>
-				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-gray-900/40 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
+				<div className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden h-[20rem] border border-gray-400/30 bg-white/80 justify-start items-center flex flex-col gap-3 rounded-lg p-6">
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
 						<Sparkles className="scale-150" />
 					</i>
