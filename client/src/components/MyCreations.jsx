@@ -69,7 +69,7 @@ function MyCreations() {
 	};
 
 	return (
-		<div className="relative my-4 overflow-hidden p-4 sm:w-11/12 h-full flex flex-col gap-2 items-center justify-center mx-auto ">
+		<div className="relative my-4 overflow-hidden p-4 sm:w-11/12 h-screen flex flex-col gap-2 items-center justify-center mx-auto ">
 			<div className="text-center mb-12">
 				<h1 className="text-5xl font-bold mb-6">
 					My <span className="text-[#A7DBDC]">Creations</span>

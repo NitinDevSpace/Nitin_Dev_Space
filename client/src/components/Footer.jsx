@@ -37,8 +37,8 @@ function Footer() {
 	};
 
 	return (
-		<div className="relative my-2 justify-self-center shadow-2xl py-12 flex flex-col w-11/12 min-h-1/3 items-center">
-			<div className="border flex  bg-white text-black my-12 py-3 sm:py-6 px-4 sm:px-12 rounded-lg shadow-2xl w-5/6  justify-center h-full items-center">
+		<div className="relative my-2 justify-self-center shadow-2xl py-12 flex flex-col justify-center w-11/12 h-screen items-center">
+			<div className="border flex  bg-white text-black my-12 py-3 sm:py-6 px-4 sm:px-12 rounded-lg shadow-2xl w-5/6  justify-center h-1/2 items-center">
 				<div className="w-full">
 					<div className="border-b-2 justify-between flex flex-col xl:flex-row">
 						<div className="flex gap-4 mb-4 flex-col">

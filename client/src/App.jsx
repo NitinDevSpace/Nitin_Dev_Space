@@ -23,8 +23,6 @@ function App() {
 				<Route path="/feedback" element={<Feedback />} />
 				<Route path="/projects" element={<Projects />} />
 			</Routes>
-			<Footer />
-			<div className="h-12"></div>
 		</>
 	);
 }

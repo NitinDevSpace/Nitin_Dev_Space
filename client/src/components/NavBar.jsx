@@ -2,12 +2,18 @@ import React from "react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FolderGit2, House, Logs, Mail, UserPen } from "lucide-react";
+import { easeOut, motion } from "framer-motion";
 
 const NavBar = () => {
 	const navigate = useNavigate();
 	return (
-		<div className="flex w-5/6 text-accent1 justify-self-center pt-8 fixed top-0 z-50">
-			<div className="flex items-center justify-center justify-evenly w-full">
+		<div className="flex w-5/6 text-accent1 overflow-hidden justify-self-center pt-8 fixed top-0 z-50">
+			<motion.div
+				initial={{ y: 90 }}
+				animate={{ y: 0 }}
+				transition={{ delay: 0.5, duration: 1, ease: easeOut }}
+				className="flex items-center  justify-center sm:justify-evenly w-full"
+			>
 				<Link className="flex gap-2 px-4 py-2" to={"/profile"}>
 					<UserPen />
 					Profile
@@ -16,18 +22,24 @@ const NavBar = () => {
 					<FolderGit2 />
 					Projects
 				</Link>
-				<div className="h-fit scale-150 ">
+
+				<motion.div
+					initial={{ opacity: 0, y: 0, scaleX: 0, scale: 1.8 }}
+					animate={{ opacity: 1, y: 0, scaleX: 1 }}
+					transition={{ delay: 1, duration: 1, ease: easeOut }}
+					className="invisible sm:visible "
+				>
 					<img
 						src={logo}
 						alt="logo"
-						className="w-14"
+						className="w-14 drop-shadow-2xl"
 						onClick={() => {
 							navigate("/");
 						}}
 					/>
-				</div>
+				</motion.div>
 
-				<Link className="flex gap-2 px-4 py-2" to={"/blogs"}>
+				<Link className="flex hidden sm:flex gap-2 px-4 py-2" to={"/blogs"}>
 					<Logs />
 					Blogs
 				</Link>
@@ -35,7 +47,7 @@ const NavBar = () => {
 					<Mail />
 					Contact
 				</Link>
-			</div>
+			</motion.div>
 		</div>
 	);
 };
