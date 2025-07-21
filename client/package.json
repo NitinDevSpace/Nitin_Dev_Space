@@ -3,7 +3,6 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "https//nitindevspace.github.io/Nitin_Dev_Space/",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
