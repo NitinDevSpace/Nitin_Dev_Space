@@ -26,6 +26,9 @@
 	.hover-scale {
 		@apply transition-transform duration-300 ease-in-out hover:scale-105;
 	}
+	.dark-input{
+		@apply bg-black border border-white/20 rounded-lg p-2 mx-6 grow;
+	}
 	@keyframes marquee {
 		0% {
 			transform: translateX(100%);
