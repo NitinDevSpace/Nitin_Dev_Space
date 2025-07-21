@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import BioSection from "../../components/BioSection";
-import AboutSection from "../../components/AboutSection";
-import MyCreations from "../../components/MyCreations";
-import Collaborate from "../../components/Collaborate";
+import Intro from "../../components/HomePage/Intro";
+import ALittleAboutMe from "../../components/HomePage/ALittileAboutMe";
+import MyCreations from "../../components/HomePage/MyCreations";
+import Collaborate from "../../components/HomePage/Collaborate";
 import Footer from "../../components/Footer";
 import RotatingCubeScene from "../../components/3D/RotatingCubeScene";
 import { easeIn, easeInOut, easeOut, motion, AnimatePresence } from "framer-motion";
@@ -133,10 +133,10 @@ const Home = () => {
 				</motion.p>
 			</section>
 			<section ref={(el) => (sectionRefs.current[1] = el)}>
-				<BioSection />
+				<Intro />
 			</section>
 			<section ref={(el) => (sectionRefs.current[2] = el)}>
-				<AboutSection />
+				<ALittleAboutMe />
 			</section>
 			<section ref={(el) => (sectionRefs.current[3] = el)}>
 				<MyCreations />

@@ -1,5 +1,5 @@
 import React from "react";
-import me from "../assets/my.png";
+import me from "../../assets/my.png";
 import {
 	useInView,
 	easeIn,
