@@ -127,7 +127,7 @@ const Home = () => {
 							deleteSpeed={0}
 							cursor
 							cursorStyle="."
-							typeSpeed={90}
+							typeSpeed={60}
 						/>
 					</span>
 				</motion.p>

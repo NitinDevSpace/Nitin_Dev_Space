@@ -18,12 +18,12 @@ function BioSection() {
 	const textRef = useRef(null);
 	const buttonRef = useRef(null);
 	const buttonRef2 = useRef(null);
-	const isImageInView = useInView(imageRef, { once: false, threshold: 0.3 });
-	const isTextInView = useInView(textRef, { once: false, threshold: 0.3 });
-	const isButtonInView = useInView(buttonRef, { once: false, threshold: 0.1 });
+	const isImageInView = useInView(imageRef, { once: false, threshold: 0.5});
+	const isTextInView = useInView(textRef, { once: false, threshold: 0.5 });
+	const isButtonInView = useInView(buttonRef, { once: false, threshold: 0.3 });
 	const isButtonInView2 = useInView(buttonRef2, {
 		once: false,
-		threshold: 0.1,
+		threshold: 0.3,
 	});
 
 	return (
@@ -51,7 +51,7 @@ function BioSection() {
 				initial={false}
 				animate={isTextInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -150 }}
 				transition={{ duration: 1, ease: easeInOut }}
-				className="flex flex-col w-full md:w-3/5 justify-center text-left pb-12 px-5 sm:px-16"
+				className="flex flex-col w-full md:w-3/5 justify-start text-left pb-12 px-5 sm:px-16"
 			>
 				<h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-serif mb-6">
 					Hi, I'm <span className="text-accent2">Nitin Kumar</span>
@@ -67,7 +67,7 @@ function BioSection() {
 					exciting possibilities of AI integration.
 				</p>
 			</motion.div>
-			<div className="flex flex-col sm:flex-row px-12 lg:pl-32 gap-8 lg:gap-16">
+			<div className="flex flex-col justify-start sm:flex-row px-16  gap-8 lg:gap-16">
 				<motion.button
 					ref={buttonRef}
 					initial={{ opacity: 0, y: 0, visibility: "hidden" }}

@@ -47,7 +47,7 @@ body,
 }
 
 body {
-	@apply font-heading  text-white;
+	@apply font-heading overflow-x-hidden text-white;
 	@apply bg-primary;
 }
 
