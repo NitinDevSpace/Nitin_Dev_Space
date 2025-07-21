@@ -8,7 +8,6 @@ import Contact from "./pages/Contact";
 import Feedback from "./pages/Feedback";
 import Projects from "./pages/Projects";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -16,7 +15,10 @@ function App() {
 			<NavBar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/home" element={<Home />} />
+				<Route
+					path="/Nitin_Dev_Space"
+					element={<Home />}
+				/>
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/admin" element={<Admin />} />
 				<Route path="/blogs" element={<Blogs />} />
