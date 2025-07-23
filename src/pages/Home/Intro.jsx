@@ -30,24 +30,17 @@ function BioSection() {
 	const [data, setData] = useState(null);
 
 	const getData = async () => {
-		const getData = async () => {
-			try {
-				const res = await getIntro(); // now envelope = res.data
-				const envelope = res.data;
-				if (!envelope.success) {
-					console.error("API reported failure:", envelope);
-					return;
-				}
-				setData(envelope.data);
-			} catch (error) {
-				// Axios errors carry the full response in error.response
-				console.error(
-					"HTTP error fetching intro:",
-					error.response?.status,
-					error.message
-				);
-			}
-		};
+		try {
+			const res = await getIntro(); // now envelope = res.data
+			setData(res.data);
+		} catch (error) {
+			// Axios errors carry the full response in error.response
+			console.error(
+				"HTTP error fetching intro:",
+				error.response?.status,
+				error.message
+			);
+		}
 	};
 
 	useEffect(() => {

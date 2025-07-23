@@ -25,13 +25,11 @@ function Intro() {
 
 	const getData = async () => {
 		try {
-			const res = await getIntro(); // now envelope = res.data
-			const envelope = res.data;
-			if (!envelope.success) {
-				console.error("API reported failure:", envelope);
-				return;
+			const res = await getIntro();
+			if (!res) {
+				console.log("Error fetching");
 			}
-			setData(envelope.data);
+			setIntro(res.data);
 		} catch (error) {
 			// Axios errors carry the full response in error.response
 			console.error(
