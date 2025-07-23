@@ -1,18 +1,28 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useState } from "react";
+import { updateIntro } from "../../services/intro";
 
 function Intro() {
 	const [open, setOpen] = useState(false);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const data = new FormData(e.target);
-		const payload = {
-			imageUrl: data.get("imageUrl"),
-			bio: data.get("bio"),
-			// image: data.get("image"),
-		};
-		console.log("Form Submitted", payload);
+		try {
+			const data = new FormData(e.target);
+			const payload = {
+				method: "POST",
+				imageUrl: data.get("imageUrl"),
+				bio: data.get("bio"),
+				// image: data.get("image"),
+			};
+			const res = await updateIntro(payload);
+			console.log("Form Submitted", payload);
+			if (res) {
+				console.log("Form Submitted", res.data);
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -33,7 +43,7 @@ function Intro() {
 						<h1>Upload an Image</h1>
 						<div>Image Container</div>
 					</div>
-					<form onSubmit={handleSubmit} method="post" className="mt-6">
+					<form onSubmit={handleSubmit} className="mt-6">
 						<div className="mb-4 flex items-center">
 							<label htmlFor="imageUrl" className="text-xl">
 								Image Url:
