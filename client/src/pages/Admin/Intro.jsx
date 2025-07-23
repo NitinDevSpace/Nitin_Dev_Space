@@ -1,4 +1,4 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useState } from "react";
 
 function Intro() {
@@ -11,23 +11,20 @@ function Intro() {
 			imageUrl: data.get("imageUrl"),
 			bio: data.get("bio"),
 			// image: data.get("image"),
-		}
+		};
 		console.log("Form Submitted", payload);
-		
-	}
+	};
 
 	return (
-		<div className="bg-primary2 flex flex-col justify-center rounded-lg h-fit m-4 p-4">
+		<div className="bg-primary2 relative flex flex-col justify-center rounded-lg h-fit m-4 p-4">
 			{/* Heading Intro */}
-			<div className="flex">
-				<button
-					onClick={() => {
-						setOpen(!open);
-					}}
-				>
-					<ArrowDown />{" "}
-				</button>
-				<h1 className="p-6 text-2xl border-b-2">Intro</h1>
+			<div
+				onClick={() => {
+					setOpen(!open);
+				}}
+				className="flex"
+			>
+				<h1 className="pb-2 text-2xl border-b-2">Intro</h1>
 			</div>
 			{/* Form & para Collapsible */}
 			{open && (
@@ -65,10 +62,23 @@ function Intro() {
 								placeholder="Enter your bio"
 							/>
 						</div>
-						<button type="submit" className="p-2 bg-pink border rounded-lg mt-4 justify-self-center flex">Update</button>
+						<button
+							type="submit"
+							className="p-2 bg-orange rounded-lg mt-4 justify-self-center flex"
+						>
+							Update
+						</button>
 					</form>
 				</div>
 			)}
+			<button
+				onClick={() => {
+					setOpen(!open);
+				}}
+				className="absolute top-4 right-5"
+			>
+				{open ? <ArrowUp /> : <ArrowDown />}
+			</button>
 		</div>
 	);
 }

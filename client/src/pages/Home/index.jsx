@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import Intro from "../../components/HomePage/Intro";
-import ALittleAboutMe from "../../components/HomePage/ALittileAboutMe";
-import MyCreations from "../../components/HomePage/MyCreations";
-import Collaborate from "../../components/HomePage/Collaborate";
+import Intro from "./Intro";
+import ALittleAboutMe from "./ALittileAboutMe";
+import MyCreations from "./MyCreations";
+import Collaborate from "./Collaborate";
 import Footer from "../../components/Footer";
 import RotatingCubeScene from "../../components/3D/RotatingCubeScene";
 import { easeIn, easeInOut, easeOut, motion, AnimatePresence } from "framer-motion";

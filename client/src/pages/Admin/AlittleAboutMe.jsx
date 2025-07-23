@@ -1,8 +1,8 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useState } from "react";
 
 function AlittleAboutMe() {
-	const [open, setOpen] = useState(false); 
+	const [open, setOpen] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -18,23 +18,21 @@ function AlittleAboutMe() {
 	};
 
 	return (
-		<div className="bg-primary2 flex flex-col justify-center rounded-lg h-fit m-4 p-4">
+		<div className="bg-primary2 relative flex flex-col justify-center rounded-lg h-fit m-4 p-4">
 			{/* Heading Intro */}
-			<div className="flex">
-				<button
-					onClick={() => {
-						setOpen(!open);
-					}}
-				>
-					<ArrowDown />{" "}
-				</button>
-				<h1 className="p-6 text-2xl border-b-2">A Little About me</h1>
+			<div
+				onClick={() => {
+					setOpen(!open);
+				}}
+				className="flex"
+			>
+				<h1 className="pb-2 text-2xl border-b-2">A Little About me</h1>
 			</div>
 			{/* Form & para Collapsible */}
 			{open && (
 				<div className="flex m-6 flex-col">
 					<form onSubmit={handleSubmit} method="post" className="mt-6">
-						<div className="flex flex-col">
+						<div className="flex mt-4  flex-col gap-2">
 							<label htmlFor="para" className="text-xl">
 								Para:
 							</label>
@@ -50,7 +48,7 @@ function AlittleAboutMe() {
 								placeholder="Enter About Yourself"
 							/>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="flex mt-4  flex-col gap-2">
 							<label htmlFor="frontend" className="text-xl">
 								Frontend:
 							</label>
@@ -66,7 +64,7 @@ function AlittleAboutMe() {
 								placeholder="Enter Frontend Para"
 							/>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="flex mt-4  flex-col gap-2">
 							<label htmlFor="backend" className="text-xl">
 								Backend:
 							</label>
@@ -82,7 +80,7 @@ function AlittleAboutMe() {
 								placeholder="Enter Backend Para"
 							/>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="flex mt-4  flex-col gap-2">
 							<label htmlFor="ai" className="text-xl">
 								Ai:
 							</label>
@@ -100,13 +98,21 @@ function AlittleAboutMe() {
 						</div>
 						<button
 							type="submit"
-							className="p-2 bg-pink shadow-2xl rounded-lg mt-4 justify-self-center flex"
+							className="p-2 bg-orange shadow-2xl rounded-lg mt-4  justify-self-center flex"
 						>
 							Update
 						</button>
 					</form>
 				</div>
 			)}
+			<button
+				onClick={() => {
+					setOpen(!open);
+				}}
+				className="absolute top-4 right-5"
+			>
+				{open ? <ArrowUp /> : <ArrowDown />}
+			</button>
 		</div>
 	);
 }
