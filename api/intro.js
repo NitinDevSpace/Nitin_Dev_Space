@@ -12,8 +12,18 @@ module.exports = async function handler(req, res) {
 		}
 
 		if (req.method === "POST") {
-			const payload = req.body;
-			const result = await collection.insertOne(payload);
+			const buffers = [];
+			for await (const chunk of req) {
+				buffers.push(chunk);
+			}
+			const data = Buffer.concat(buffers).toString();
+			const payload = JSON.parse(data);
+
+			const result = await collection.updateOne(
+				{}, // match any (you assume there’s only 1 doc)
+				{ $set: payload },
+				{ upsert: true } // if no doc exists, create it
+			);
 			return res.status(201).json({ success: true, data: result });
 		}
 
