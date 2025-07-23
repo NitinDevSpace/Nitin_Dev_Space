@@ -27,14 +27,15 @@ function BioSection() {
 		threshold: 0.3,
 	});
 
-	const [data, setData] = useState(null);
+	const [intro, setIntro] = useState(null);
 
 	const getData = async () => {
 		try {
-			const res = await getIntro(); 
-			setData(res.data);
-			console.log(res.data);
-			
+			const res = await getIntro();
+			if (!res) {
+				console.log("Error fetching");
+			}
+			setIntro(res.data);
 		} catch (error) {
 			console.error(
 				"HTTP error fetching intro:",
@@ -87,10 +88,14 @@ function BioSection() {
 					Full Stack Developer <span className="text-accent2 text-2xl">//</span>{" "}
 					AI Enthusiast
 				</p>
-				<p
+				{/* <p
 					className="sm:text-sm font-thin opacity-70"
 					dangerouslySetInnerHTML={{ __html: data?.bio ?? "Nothing is coming" }}
-				></p>
+				></p> */}
+				<p className="sm:text-sm font-thin opacity-70">
+					{intro.bio}
+					{console.log(intro.bio)}
+				</p>
 			</motion.div>
 			<div className="flex flex-col justify-start sm:flex-row px-16  gap-8 lg:gap-16">
 				<motion.button
