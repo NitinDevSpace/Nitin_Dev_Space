@@ -1,16 +1,16 @@
 import clientPromise from "./db.js";
 
 export default async function handler(req, res) {
-	console.log("Function invoked:", {
-		method: req.method,
-		headers: req.headers,
-		body: req.body,
-	});
+	// console.log("Function invoked:", {
+	// 	method: req.method,
+	// 	headers: req.headers,
+	// 	body: req.body,
+	// });
 
 	try {
-		console.log("Attempting database connection...");
+		//console.log("Attempting database connection...");
 		const client = await clientPromise;
-		console.log("Database connected successfully");
+		//console.log("Database connected successfully");
 		const db = client.db("Nitin_Dev_Space");
 		const collection = db.collection("Intro");
 
