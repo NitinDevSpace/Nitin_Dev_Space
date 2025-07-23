@@ -32,11 +32,21 @@ function BioSection() {
 	const getData = async () => {
 		try {
 			const res = await getIntro();
+			// 1. HTTP-level check
 			if (res.status !== 200) {
-				console.error("Failed to fetch intro", res);
+				console.error("HTTP error fetching intro:", res.status);
 				return;
 			}
-			setData(res.data.data || res.data);
+
+			// 2. Application-level check
+			const envelope = res.data; // { success: boolean, data: {...} }
+			if (!envelope.success) {
+				console.error("API reported failure:", envelope);
+				return;
+			}
+
+			// 3. Unwrap and set the actual payload
+			setData(envelope.data);
 		} catch (error) {
 			console.log(error);
 		}
