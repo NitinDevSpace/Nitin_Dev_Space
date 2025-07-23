@@ -31,10 +31,11 @@ function BioSection() {
 
 	const getData = async () => {
 		try {
-			const res = await getIntro(); // now envelope = res.data
+			const res = await getIntro(); 
 			setData(res.data);
+			console.log(res.data);
+			
 		} catch (error) {
-			// Axios errors carry the full response in error.response
 			console.error(
 				"HTTP error fetching intro:",
 				error.response?.status,
@@ -88,7 +89,7 @@ function BioSection() {
 				</p>
 				<p
 					className="sm:text-sm font-thin opacity-70 whitespace-pre-line"
-					dangerouslySetInnerHTML={{ __html: data.bio }}
+					dangerouslySetInnerHTML={{ __html: data?.bio ?? "Nothing is coming" }}
 				></p>
 			</motion.div>
 			<div className="flex flex-col justify-start sm:flex-row px-16  gap-8 lg:gap-16">

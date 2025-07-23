@@ -31,7 +31,6 @@ function Intro() {
 			}
 			setIntro(res.data);
 		} catch (error) {
-			// Axios errors carry the full response in error.response
 			console.error(
 				"HTTP error fetching intro:",
 				error.response?.status,
