@@ -49,7 +49,7 @@ function BioSection() {
 		getData();
 	}, []);
 
-	if (!data) {
+	if (!intro) {
 		return <div className="text-center py-20">Loading…</div>;
 	}
 
