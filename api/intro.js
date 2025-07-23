@@ -1,9 +1,17 @@
-const clientPromise = require("./db"); 
+import clientPromise from "./db.js";
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
+	console.log("Function invoked:", {
+		method: req.method,
+		headers: req.headers,
+		body: req.body,
+	});
+
 	try {
+		console.log("Attempting database connection...");
 		const client = await clientPromise;
-		const db = client.db("Nitin_Dev_Space"); 
+		console.log("Database connected successfully");
+		const db = client.db("Nitin_Dev_Space");
 		const collection = db.collection("Intro");
 
 		if (req.method === "GET") {
@@ -12,26 +20,37 @@ module.exports = async function handler(req, res) {
 		}
 
 		if (req.method === "POST") {
-			const buffers = [];
-			for await (const chunk of req) {
-				buffers.push(chunk);
+			const payload = req.body;
+
+			if (!payload) {
+				return res.status(400).json({
+					success: false,
+					message: "No request body provided",
+				});
 			}
-			const data = Buffer.concat(buffers).toString();
-			const payload = JSON.parse(data);
 
 			const result = await collection.updateOne(
-				{}, // match any (you assume there’s only 1 doc)
+				{},
 				{ $set: payload },
-				{ upsert: true } // if no doc exists, create it
+				{ upsert: true }
 			);
+
 			return res.status(201).json({ success: true, data: result });
 		}
 
-		return res
-			.status(405)
-			.json({ success: false, message: "Method Not Allowed" });
+		return res.status(405).json({
+			success: false,
+			message: "Method Not Allowed",
+		});
 	} catch (error) {
-		console.error("Error in /api/intro.js:", error);
-		return res.status(500).json({ success: false, message: error.message });
+		console.error("Detailed error:", {
+			message: error.message,
+			stack: error.stack,
+			name: error.name,
+		});
+		return res.status(500).json({
+			success: false,
+			message: error.message,
+		});
 	}
-};
+}
