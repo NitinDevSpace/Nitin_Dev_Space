@@ -25,7 +25,8 @@ function Intro() {
 
 	const getData = async () => {
 		try {
-			const envelope = await getIntro(); // now envelope = res.data
+			const res = await getIntro(); // now envelope = res.data
+			const envelope = res.data;
 			if (!envelope.success) {
 				console.error("API reported failure:", envelope);
 				return;
