@@ -1,29 +1,44 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
-import React, { useState } from "react";
-import { updateIntro } from "../../services/intro";
+import React, { useEffect, useState } from "react";
+import { getIntro, updateIntro } from "../../services/intro";
 
 function Intro() {
 	const [open, setOpen] = useState(false);
+	const [intro, setIntro] = useState({});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const data = new FormData(e.target);
 			const payload = {
-				method: "POST",
 				imageUrl: data.get("imageUrl"),
 				bio: data.get("bio"),
-				// image: data.get("image"),
 			};
 			const res = await updateIntro(payload);
-			console.log("Form Submitted", payload);
 			if (res) {
-				console.log("Form Submitted", res.data);
+				console.log("Intro Updated", res.data);
 			}
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	const getData = async () => {
+		try {
+			const res = await getIntro();
+			if (res.status !== 200) {
+				console.error("Failed to fetch intro", res);
+				return;
+			}
+			setIntro(res.data.data || res.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
 
 	return (
 		<div className="bg-primary2 relative flex flex-col justify-center rounded-lg h-fit m-4 p-4">
@@ -54,6 +69,7 @@ function Intro() {
 								name="imageUrl"
 								id="imageUrl"
 								className="dark-input"
+								value={intro.imageUrl}
 							/>
 						</div>
 						<div className="flex flex-col gap-2">
@@ -70,6 +86,7 @@ function Intro() {
 								name="bio"
 								id="bio"
 								placeholder="Enter your bio"
+								value={intro.bio}
 							/>
 						</div>
 						<button

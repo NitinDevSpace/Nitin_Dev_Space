@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import me from "../../assets/my.png";
 import {
 	useInView,
@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { FolderGit2, User } from "lucide-react";
 import { useRef } from "react";
+import { getIntro } from "../../services/intro";
 
 function BioSection() {
 	const navigate = useNavigate();
@@ -18,13 +19,36 @@ function BioSection() {
 	const textRef = useRef(null);
 	const buttonRef = useRef(null);
 	const buttonRef2 = useRef(null);
-	const isImageInView = useInView(imageRef, { once: false, threshold: 0.5});
+	const isImageInView = useInView(imageRef, { once: false, threshold: 0.5 });
 	const isTextInView = useInView(textRef, { once: false, threshold: 0.5 });
 	const isButtonInView = useInView(buttonRef, { once: false, threshold: 0.3 });
 	const isButtonInView2 = useInView(buttonRef2, {
 		once: false,
 		threshold: 0.3,
 	});
+
+	const [data, setData] = useState(null);
+
+	const getData = async () => {
+		try {
+			const res = await getIntro();
+			if (res.status !== 200) {
+				console.error("Failed to fetch intro", res);
+				return;
+			}
+			setData(res.data.data || res.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
+
+	if (!data) {
+		return <div className="text-center py-20">Loading…</div>;
+	}
 
 	return (
 		<div className="relative my-4 overflow-hidden flex flex-col flex-wrap sm:w-11/12 min-h-[75vh] sm:min-h-screen justify-center mx-auto ">
@@ -61,11 +85,10 @@ function BioSection() {
 					Full Stack Developer <span className="text-accent2 text-2xl">//</span>{" "}
 					AI Enthusiast
 				</p>
-				<p className="sm:text-sm font-thin opacity-70">
-					I craft innovative and user-centric web applications, bringing ideas <br />
-					to life with clean code and elegant design. Currently exploring the <br />
-					exciting possibilities of AI integration.
-				</p>
+				<p
+					className="sm:text-sm font-thin opacity-70 whitespace-pre-line"
+					dangerouslySetInnerHTML={{ __html: data.bio }}
+				></p>
 			</motion.div>
 			<div className="flex flex-col justify-start sm:flex-row px-16  gap-8 lg:gap-16">
 				<motion.button

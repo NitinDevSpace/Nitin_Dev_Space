@@ -8,3 +8,12 @@ export const updateIntro = async (payload) => {
 		console.log("Error updating Intro", error);
 	}
 };
+
+export const getIntro = async () => {
+	try {
+		const res = await axiosInstance.get("/api/intro");
+		return res.data;
+	} catch (error) {
+		console.log("Error getting Intro", error);
+	}
+};
