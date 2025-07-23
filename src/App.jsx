@@ -15,12 +15,13 @@ function App() {
 			<NavBar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route
-					path="/Nitin_Dev_Space"
-					element={<Home />}
-				/>
-				<Route path="/profile" element={<Profile />} />
 				<Route path="/admin" element={<Admin />} />
+				<Route
+					path="https://nitin-dev-space.vercel.app/admin"
+					element={<Admin />}
+				/>
+				<Route path="/Nitin_Dev_Space" element={<Home />} />
+				<Route path="/profile" element={<Profile />} />
 				<Route path="/blogs" element={<Blogs />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/feedback" element={<Feedback />} />
