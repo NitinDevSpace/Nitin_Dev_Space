@@ -87,10 +87,13 @@ function BioSection() {
 					Full Stack Developer <span className="text-accent2 text-2xl">//</span>{" "}
 					AI Enthusiast
 				</p>
-				<p
+				{/* <p
 					className="sm:text-sm font-thin opacity-70 whitespace-pre-line"
 					dangerouslySetInnerHTML={{ __html: data?.bio ?? "Nothing is coming" }}
-				></p>
+				></p> */}
+				<p
+					className="sm:text-sm font-thin opacity-70 whitespace-pre-line"
+				>{data.bio} </p>
 			</motion.div>
 			<div className="flex flex-col justify-start sm:flex-row px-16  gap-8 lg:gap-16">
 				<motion.button

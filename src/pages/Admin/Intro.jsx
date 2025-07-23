@@ -73,6 +73,9 @@ function Intro() {
 								id="imageUrl"
 								className="dark-input"
 								value={intro.imageUrl}
+								onChange={(e) =>
+									setIntro((prev) => ({ ...prev, imageUrl: e.target.value }))
+								}
 							/>
 						</div>
 						<div className="flex flex-col gap-2">
@@ -90,6 +93,9 @@ function Intro() {
 								id="bio"
 								placeholder="Enter your bio"
 								value={intro.bio}
+								onChange={(e) =>
+									setIntro((prev) => ({ ...prev, bio: e.target.value }))
+								}
 							/>
 						</div>
 						<button
