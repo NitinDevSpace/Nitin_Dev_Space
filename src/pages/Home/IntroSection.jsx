@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { FolderGit2, User } from "lucide-react";
 import { useRef } from "react";
-import { getIntro } from "../../services/intro";
+import { getIntro } from "../../services/intro.service";
 
 function BioSection() {
 	const navigate = useNavigate();

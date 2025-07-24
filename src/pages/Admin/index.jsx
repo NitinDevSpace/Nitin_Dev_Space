@@ -1,7 +1,7 @@
 import React from "react";
-import Intro from "./Intro";
-import AlittleAboutMe from "./AlittleAboutMe";
-import Projects from "./Projects";
+import IntroAdmin from "./IntroAdmin";
+import AlittleAboutMeAdmin from "./AboutMeAdmin";
+import ProjectsAdmin from "./ProjectsAdmin";
 
 const Admin = () => {
 	return (
@@ -11,15 +11,15 @@ const Admin = () => {
 			<div className="w-11/12">
 				{/* Intro Container */}
 				<div>
-					<Intro />
+					<IntroAdmin />
 				</div>
 				{/* A Little About Me container */}
 				<div>
-					<AlittleAboutMe />
+					<AlittleAboutMeAdmin />
 				</div>
 				{/* My creations Container */}
 				<div>
-					<Projects />
+					<ProjectsAdmin />
 				</div>
 			</div>
 		</div>

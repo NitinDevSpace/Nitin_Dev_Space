@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { getIntro, updateIntro } from "../../services/intro";
+import { getIntro, updateIntro } from "../../services/intro.service";
 
 function Intro() {
 	const [open, setOpen] = useState(false);

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { easeInOut, motion, spring, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Code, Layers, Sparkles } from "lucide-react";
-import { getAboutme } from "../../services/aboutMe";
+import { getAboutme } from "../../services/aboutMe.service";
 
 function AboutSection() {
 	const navigate = useNavigate();

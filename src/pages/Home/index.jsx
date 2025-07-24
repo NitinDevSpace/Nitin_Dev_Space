@@ -1,11 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import Intro from "./Intro";
+import IntroSection from "./IntroSection";
 import ALittleAboutMe from "./ALittileAboutMe";
-import MyCreations from "./MyCreations";
-import Collaborate from "./Collaborate";
+import MyCreations from "./MyCreationsSection";
+import Collaborate from "./CollaborateSection";
 import Footer from "../../components/Footer";
 import RotatingCubeScene from "../../components/3D/RotatingCubeScene";
-import { easeIn, easeInOut, easeOut, motion, AnimatePresence } from "framer-motion";
+import {
+	easeIn,
+	easeInOut,
+	easeOut,
+	motion,
+	AnimatePresence,
+} from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
@@ -91,7 +97,7 @@ const Home = () => {
 	}, []);
 
 	return (
-		< >
+		<>
 			<section ref={(el) => (sectionRefs.current[0] = el)}>
 				<div className="relative overflow-hidden h-screen gradient-bg items-center justify-center mx-auto ">
 					<motion.div
@@ -133,7 +139,7 @@ const Home = () => {
 				</motion.p>
 			</section>
 			<section ref={(el) => (sectionRefs.current[1] = el)}>
-				<Intro />
+				<IntroSection />
 			</section>
 			<section ref={(el) => (sectionRefs.current[2] = el)}>
 				<ALittleAboutMe />

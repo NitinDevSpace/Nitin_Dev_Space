@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { getAboutme, updateAboutme } from "../../services/aboutMe";
+import { getAboutme, updateAboutme } from "../../services/aboutMe.service";
 
 function AlittleAboutMe() {
 	const [open, setOpen] = useState(false);

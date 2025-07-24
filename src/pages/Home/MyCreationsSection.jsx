@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-
 function MyCreations() {
 	const scrollRef = useRef(null);
 
@@ -17,7 +16,8 @@ function MyCreations() {
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
 			status: "Finished",
-			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			liveLink: "",
 		},
 		{
 			title: "Project Number 2",
@@ -25,7 +25,8 @@ function MyCreations() {
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
 			status: "Finished",
-			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			liveLink: "",
 		},
 		{
 			title: "Project Number 3",
@@ -33,7 +34,8 @@ function MyCreations() {
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
 			status: "Finished",
-			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			liveLink: "",
 		},
 		{
 			title: "Project Number 4",
@@ -41,7 +43,8 @@ function MyCreations() {
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
 			status: "Finished",
-			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			liveLink: "",
 		},
 		{
 			title: "Project Number 5",
@@ -49,7 +52,8 @@ function MyCreations() {
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
 			status: "Finished",
-			stack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
+			liveLink: "",
 		},
 	];
 

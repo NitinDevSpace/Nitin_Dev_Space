@@ -2,7 +2,7 @@ import { Eye, Layers } from "lucide-react";
 import React from "react";
 
 function ProjectCard({ project }) {
-	const { title, image, description, status, stack } = project;
+	const { title, image, description, status, techStack, liveLink } = project;
 	return (
 		<div className="relative animate-marquee bg-[#0f3c66] z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[400px] sm:min-w-[420px]">
 			<div className="relative overflow-hidden h-3/5">
@@ -28,7 +28,7 @@ function ProjectCard({ project }) {
 						Tech Stack
 					</h1>
 					<div className="flex gap-3 text-sm font-thin font-sans">
-						{stack.map((name, i) => {
+						{techStack.map((name, i) => {
 							return (
 								<p className="bg-accent1/40 px-1 rounded-lg" key={i}>
 									{name}
