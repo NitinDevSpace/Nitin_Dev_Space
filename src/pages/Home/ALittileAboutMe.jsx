@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { easeInOut, motion, spring, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Code, Layers, Sparkles } from "lucide-react";
+import { getAboutme } from "../../services/aboutme";
 
 function AboutSection() {
 	const navigate = useNavigate();
@@ -11,6 +12,28 @@ function AboutSection() {
 	const isTextInView = useInView(textRef, { once: false, threshold: 0.4 });
 	const isBoxInView = useInView(boxRef, { once: false, threshold: 0.9 });
 	const isButtontInView = useInView(buttonRef, { once: false, threshold: 0.4 });
+
+	const [about, setAbout] = useState({});
+
+	const getData = async () => {
+		try {
+			const res = await getAboutme();
+			if (!res) {
+				console.log("Erroe fetching About me");
+			}
+			setAbout(res.data);
+		} catch (error) {
+			console.error(
+				"HTTP error fetching intro:",
+				error.response?.status,
+				error.message
+			);
+		}
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
 
 	return (
 		<motion.div
@@ -28,17 +51,16 @@ function AboutSection() {
 				<span className="text-3xl pb-6 font-semibold">
 					A Little <span className="text-accent2">About Me </span>
 				</span>
+				{/* {Para} */}
 				<span className="font-light text-sm sm:text-lg opacity-70 ">
-					I'm a dedicated Software Engineer passionate about building robust,
-					scalable applications and creating seamless user experiences. I thrive
-					in collaborative environments and am always eager to learn and adapt
-					to new technologies.
+					{about.para}
 				</span>
 			</motion.div>
 			<motion.div
 				ref={boxRef}
 				className="flex flex-row flex-wrap justify-center p-6 gap-6 w-full text-center space-out items-center"
 			>
+				{/* Frontend */}
 				<motion.div
 					layout
 					animate={{
@@ -55,16 +77,12 @@ function AboutSection() {
 					<motion.h1 layout className="text-lg font-semibold">
 						Frontend Development
 					</motion.h1>
-					<motion.p layout className="text-sm font-light opacity-70">
-						Crafting responsive user interfaces with key technologies like{" "}
-						<strong className="text-accent2 font-bold">React</strong>,{" "}
-						<strong className="text-accent2 font-bold">Next.js</strong>, and{" "}
-						<strong className="text-accent2 font-bold">JavaScript</strong>,
-						focusing on performance and{" "}
-						<strong className="text-accent2 font-bold">Tailwind CSS</strong> to
-						delight users.
-					</motion.p>
+					<p
+						className="text-sm font-light opacity-70"
+						dangerouslySetInnerHTML={{ __html: about.frontend }}
+					/>
 				</motion.div>
+				{/* Backend */}
 				<motion.div
 					layout
 					animate={{
@@ -79,17 +97,12 @@ function AboutSection() {
 					</i>
 
 					<h1 className="text-lg font-semibold">Backend Architecture</h1>
-					<p className="text-sm font-light opacity-70">
-						Building secure, scalable server-side applications and APIs using
-						<strong className="text-accent2 font-bold"> Node.js</strong>,
-						<strong className="text-accent2 font-bold"> Python </strong>
-						(Django/Flask), and{" "}
-						<strong className="text-accent2 font-bold">Firebase</strong> , with
-						expertise in databases like{" "}
-						<strong className="text-accent2 font-bold">PostgreSQL</strong>, &{" "}
-						<strong className="text-accent2 font-bold">MongoDB</strong> .
-					</p>
+					<p
+						className="text-sm font-light opacity-70"
+						dangerouslySetInnerHTML={{ __html: about.backend }}
+					/>
 				</motion.div>
+				{/* AI */}
 				<motion.div
 					layout
 					animate={{
@@ -104,14 +117,10 @@ function AboutSection() {
 					</i>
 
 					<h1 className="text-lg font-semibold">AI Integration</h1>
-					<p className="text-sm font-light opacity-70">
-						Exploring the exciting world of AI using{" "}
-						<strong className="text-accent2 font-bold">Genkit </strong>
-						and <strong className="text-accent2 font-bold">Python</strong>,
-						integrating intelligent features and{" "}
-						<strong className="text-accent2 font-bold">LLMs</strong> to create
-						smarter, more intuitive applications.
-					</p>
+					<p
+						className="text-sm font-light opacity-70"
+						dangerouslySetInnerHTML={{ __html: about.ai }}
+					/>
 				</motion.div>
 			</motion.div>
 			<motion.button

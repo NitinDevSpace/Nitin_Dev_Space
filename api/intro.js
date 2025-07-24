@@ -29,13 +29,9 @@ export default async function handler(req, res) {
 				});
 			}
 
-			const result = await collection.updateOne(
-				{},
-				{ $set: payload },
-				{ upsert: true }
-			);
+			await collection.updateOne({}, { $set: payload }, { upsert: true });
 
-			return res.status(201).json({ success: true, data: result });
+			return res.status(201).json({ success: true, message: "Intro Updated" });
 		}
 
 		return res.status(405).json({

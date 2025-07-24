@@ -16,7 +16,7 @@ function Intro() {
 			};
 			const res = await updateIntro(payload);
 			if (res) {
-				console.log("Intro Updated", res.data);
+				console.log(res.message);
 			}
 		} catch (error) {
 			console.log(error);

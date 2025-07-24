@@ -1,10 +1,12 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getAboutme, updateAboutme } from "../../services/aboutme";
 
 function AlittleAboutMe() {
 	const [open, setOpen] = useState(false);
+	const [about, setAbout] = useState({});
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = new FormData(e.target);
 		const payload = {
@@ -12,10 +14,30 @@ function AlittleAboutMe() {
 			frontend: data.get("frontend"),
 			backend: data.get("backend"),
 			ai: data.get("ai"),
-			// image: data.get("image"),
 		};
-		console.log("Form Submitted", payload);
+		const res = await updateAboutme(payload);
+		console.log(res.message);
 	};
+
+	const getData = async () => {
+		try {
+			const res = await getAboutme();
+			if (!res) {
+				console.log("Error fetching");
+			}
+			setAbout(res.data);
+		} catch (error) {
+			console.error(
+				"HTTP error fetching intro:",
+				error.response?.status,
+				error.message
+			);
+		}
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
 
 	return (
 		<div className="bg-primary2 relative flex flex-col justify-center rounded-lg h-fit m-4 p-4">
@@ -46,6 +68,10 @@ function AlittleAboutMe() {
 								name="para"
 								id="para"
 								placeholder="Enter About Yourself"
+								value={about.para}
+								onChange={(e) => {
+									setAbout((prev) => ({ ...prev, para: e.target.value }));
+								}}
 							/>
 						</div>
 						<div className="flex mt-4  flex-col gap-2">
@@ -62,6 +88,10 @@ function AlittleAboutMe() {
 								name="frontend"
 								id="frontend"
 								placeholder="Enter Frontend Para"
+								value={about.frontend}
+								onChange={(e) => {
+									setAbout((prev) => ({ ...prev, frontend: e.target.value }));
+								}}
 							/>
 						</div>
 						<div className="flex mt-4  flex-col gap-2">
@@ -78,6 +108,10 @@ function AlittleAboutMe() {
 								name="backend"
 								id="backend"
 								placeholder="Enter Backend Para"
+								value={about.backend}
+								onChange={(e) => {
+									setAbout((prev) => ({ ...prev, backend: e.target.value }));
+								}}
 							/>
 						</div>
 						<div className="flex mt-4  flex-col gap-2">
@@ -87,6 +121,10 @@ function AlittleAboutMe() {
 							<textarea
 								className="dark-input"
 								rows="3"
+								value={about.ai}
+								onChange={(e) => {
+									setAbout((prev) => ({ ...prev, ai: e.target.value }));
+								}}
 								onInput={(e) => {
 									e.target.style.height = "auto"; // reset height
 									e.target.style.height = `${e.target.scrollHeight}px`; // set to full scroll height
