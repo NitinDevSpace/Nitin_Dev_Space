@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getAllProjects } from "../../services/projects.service";
+import { useNavigate } from "react-router-dom";
 
 function MyCreations() {
 	const scrollRef = useRef(null);
+	const navigate = useNavigate();
 
 	const [projects, setProjects] = useState([]);
 
@@ -73,6 +75,7 @@ function MyCreations() {
 					<ArrowRight className="scale-150" />
 				</button>
 			</div>
+			<button onClick={()=>{navigate("/projects")}} className="rounded-lg bg-accent2">See All My Projects <ArrowRight /></button>
 		</div>
 	);
 }
