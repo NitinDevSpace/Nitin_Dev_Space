@@ -12,16 +12,16 @@ function ProjectsModal({
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			const data = new FormData(e.target);
+			const payload = {
+				title: data.get("title"),
+				image: data.get("image"),
+				description: data.get("description"),
+				status: data.get("status"),
+				techStack: data.get("techStack").split(",").map((item) => item.trim()),
+				liveLink: data.get("liveLink"),
+			};
 			if (modalType === "new") {
-				const data = new FormData(e.target);
-				const payload = {
-					title: data.get("title"),
-					image: data.get("image"),
-					description: data.get("description"),
-					status: data.get("status"),
-					techStack: data.get("techStack"),
-					liveLink: data.get("liveLink"),
-				};
 				const res = await addProject(payload);
 				if (res) {
 					console.log(res.message);
@@ -30,16 +30,7 @@ function ProjectsModal({
 					onClose();
 				}
 			} else {
-				const data = new FormData(e.target);
-				const payload = {
-					title: data.get("title"),
-					image: data.get("image"),
-					description: data.get("description"),
-					status: data.get("status"),
-					techStack: data.get("techStack"),
-					liveLink: data.get("liveLink"),
-				};
-				const res = await updateProject(selectedProject, payload);
+				const res = await updateProject(selectedProject._id, payload);
 				if (res) {
 					console.log(res.message);
 					getData();
@@ -65,14 +56,14 @@ function ProjectsModal({
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 bg-white/90 text-black rounded-lg shadow-lg"
+				className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 p-4 bg-white/90 text-black rounded-lg shadow-lg"
 			>
-				<h1>
+				<h1 className="bg-blue p-2 text-white rounded-lg">
 					{modalType === "new" ? "Add New Proejct" : "Update Your Project"}
 				</h1>
 
 				<form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
-					<div>
+					<div className="flex flex-col gap-2">
 						<label htmlFor="title" className="text-xl">
 							Title:
 						</label>
@@ -80,7 +71,7 @@ function ProjectsModal({
 							type="text"
 							name="title"
 							id="title"
-							className="bg-primary text-white rounded m-2"
+							className="border border-black rounded m-2"
 							placeholder="Enter project title"
 							value={selectedProject?.title || ""}
 							onChange={(e) =>
@@ -92,7 +83,7 @@ function ProjectsModal({
 						/>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-2">
 						<label htmlFor="image" className="text-xl">
 							Image URL:
 						</label>
@@ -100,7 +91,7 @@ function ProjectsModal({
 							type="text"
 							name="image"
 							id="image"
-							className="bg-primary text-white rounded m-2"
+							className="border border-black rounded m-2"
 							placeholder="Enter image URL"
 							value={selectedProject?.image || ""}
 							onChange={(e) =>
@@ -112,7 +103,7 @@ function ProjectsModal({
 						/>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-2">
 						<label htmlFor="description" className="text-xl">
 							Description:
 						</label>
@@ -120,7 +111,7 @@ function ProjectsModal({
 							name="description"
 							id="description"
 							rows="4"
-							className="bg-primary text-white rounded m-2"
+							className="border border-black rounded m-2"
 							placeholder="Enter project description"
 							value={selectedProject?.description || ""}
 							onChange={(e) =>
@@ -132,14 +123,14 @@ function ProjectsModal({
 						/>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-2">
 						<label htmlFor="status" className="text-xl">
 							Status:
 						</label>
 						<select
 							name="status"
 							id="status"
-							className="bg-primary text-white rounded m-2"
+							className="border border-black rounded m-2"
 							value={selectedProject?.status || ""}
 							onChange={(e) =>
 								setSelectedProject((prev) => ({
@@ -155,7 +146,7 @@ function ProjectsModal({
 						</select>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-2">
 						<label htmlFor="techStack" className="text-xl">
 							Tech Stack (comma separated):
 						</label>
@@ -163,7 +154,7 @@ function ProjectsModal({
 							type="text"
 							name="techStack"
 							id="techStack"
-							className="bg-primary text-white rounded m-2"
+							className="border border-black rounded m-2"
 							placeholder="e.g. React, Node.js"
 							value={selectedProject?.techStack?.join(", ") || ""}
 							onChange={(e) =>
@@ -177,7 +168,7 @@ function ProjectsModal({
 						/>
 					</div>
 
-					<div>
+					<div className="flex flex-col gap-2">
 						<label htmlFor="liveLink" className="text-xl">
 							Live Link:
 						</label>
@@ -185,7 +176,7 @@ function ProjectsModal({
 							type="text"
 							name="liveLink"
 							id="liveLink"
-							className="bg-primary text-white rounded m-2"
+							className="border border-black rounded m-2"
 							placeholder="Enter live project URL"
 							value={selectedProject?.liveLink || ""}
 							onChange={(e) =>
@@ -199,7 +190,7 @@ function ProjectsModal({
 
 					<button
 						type="submit"
-						className="p-2 bg-orange rounded-lg mt-4 justify-self-center flex"
+						className="p-2 bg-blue text-white rounded-lg mt-4 justify-center justify-self-center flex"
 					>
 						{modalType === "new" ? "Add Project" : "Update Project"}
 					</button>

@@ -1,61 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { getAllProjects } from "../../services/projects.service";
 
 function MyCreations() {
 	const scrollRef = useRef(null);
 
-	// const [projects, setProjects] = useState([]);
-	// useEffect(() => {
-	// 	//fetch from server
-	// }, []);
-	const projects = [
-		{
-			title: "Project Number 1",
-			image: "https://placehold.co/800x500",
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
-			status: "Finished",
-			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
-			liveLink: "",
-		},
-		{
-			title: "Project Number 2",
-			image: "https://placehold.co/800x500",
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
-			status: "Finished",
-			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
-			liveLink: "",
-		},
-		{
-			title: "Project Number 3",
-			image: "https://placehold.co/800x500",
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
-			status: "Finished",
-			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
-			liveLink: "",
-		},
-		{
-			title: "Project Number 4",
-			image: "https://placehold.co/800x500",
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
-			status: "Finished",
-			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
-			liveLink: "",
-		},
-		{
-			title: "Project Number 5",
-			image: "https://placehold.co/800x500",
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem accusamus officiis temporibus voluptatibus odio repellendus quibusdam saepe obcaecati architecto enim!",
-			status: "Finished",
-			techStack: ["React", "NextJS", "HTML", "JS", "Tailwind"],
-			liveLink: "",
-		},
-	];
+	const [projects, setProjects] = useState([]);
+
+	const getData = async () => {
+		const allProjects = await getAllProjects();
+		setProjects(allProjects.data);
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
 
 	const scrollLeft = () => {
 		if (scrollRef.current) {

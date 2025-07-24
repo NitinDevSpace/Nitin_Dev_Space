@@ -46,7 +46,7 @@ function Projects() {
 										onClick={() => {
 											setEditModal(!editModal);
 											setModalType("edit");
-											setSelectedProject(project._id);
+											setSelectedProject(project);
 										}}
 									>
 										<Edit />
@@ -54,7 +54,7 @@ function Projects() {
 									<button
 										onClick={() => {
 											setDeleteModal(!deleteModal);
-											setSelectedProject(project._id);
+											setSelectedProject(project);
 										}}
 									>
 										<Trash2 className="text-red-400" />
