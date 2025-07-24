@@ -49,10 +49,6 @@ function BioSection() {
 		getData();
 	}, []);
 
-	if (!intro) {
-		return <div className="text-center py-20">Loading…</div>;
-	}
-
 	return (
 		<div className="relative my-4 overflow-hidden flex flex-col flex-wrap sm:w-11/12 min-h-[75vh] sm:min-h-screen justify-center mx-auto ">
 			<motion.div
@@ -88,15 +84,14 @@ function BioSection() {
 					Full Stack Developer <span className="text-accent2 text-2xl">//</span>{" "}
 					AI Enthusiast
 				</p>
-				{/* <p
-					className="sm:text-sm font-thin opacity-70"
-					dangerouslySetInnerHTML={{ __html: data?.bio ?? "Nothing is coming" }}
-				></p> */}
-				<p className="sm:text-sm font-thin opacity-70">
-					{intro.bio}
-					{console.log(intro.bio)}
-				</p>
+				{intro?.bio && (
+					<div
+						className="text-base text-gray-200"
+						dangerouslySetInnerHTML={{ __html: intro.bio }}
+					/>
+				)}
 			</motion.div>
+
 			<div className="flex flex-col justify-start sm:flex-row px-16  gap-8 lg:gap-16">
 				<motion.button
 					ref={buttonRef}
