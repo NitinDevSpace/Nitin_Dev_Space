@@ -27,6 +27,7 @@ function ProjectsModal({
 					console.log(res.message);
 					getData();
 					setModalType("");
+					setSelectedProject(null);
 					onClose();
 				}
 			} else {
@@ -35,6 +36,7 @@ function ProjectsModal({
 					console.log(res.message);
 					getData();
 					setModalType("");
+					setSelectedProject(null);
 					onClose();
 				}
 			}
@@ -143,6 +145,7 @@ function ProjectsModal({
 							<option value="In Progress">In Progress</option>
 							<option value="Finished">Finished</option>
 							<option value="Planned">Planned</option>
+							<option value="On Hold">On Hold</option>
 						</select>
 					</div>
 
