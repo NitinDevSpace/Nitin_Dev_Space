@@ -27,14 +27,20 @@ function ProjectCard({ project }) {
 						<Layers className="text-accent2" />
 						Tech Stack
 					</h1>
-					<div className="flex gap-3 text-sm font-thin font-sans">
-						{techStack.map((name, i) => {
-							return (
-								<p className="bg-accent1/40 px-1 rounded-lg" key={i}>
-									{name}
-								</p>
-							);
-						})}
+					<div className="flex flex-wrap gap-3 text-sm font-thin font-sans">
+						{techStack.slice(0, 4).map((tech, index) => (
+							<span
+								key={index}
+								className="px-2 py-1 bg-accent1/40 rounded text-sm"
+							>
+								{tech}
+							</span>
+						))}
+						{project.techStack.length > 4 && (
+							<span className="px-2 py-1 bg-accent1/40 rounded text-sm">
+								+{project.techStack.length - 4}
+							</span>
+						)}
 					</div>
 				</div>
 				<button className="overflow-hidden text-accent2 flex gap-2 self-start h-1/4 pt-2">
