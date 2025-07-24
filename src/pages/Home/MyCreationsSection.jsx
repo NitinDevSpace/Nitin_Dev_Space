@@ -75,7 +75,14 @@ function MyCreations() {
 					<ArrowRight className="scale-150" />
 				</button>
 			</div>
-			<button onClick={()=>{navigate("/projects")}} className="rounded-lg bg-accent2">See All My Projects <ArrowRight /></button>
+			<button
+				onClick={() => {
+					navigate("/projects");
+				}}
+				className="rounded-lg flex p-4 text-black mt-5 bg-accent2"
+			>
+				See All My Projects <ArrowRight className="animate-bounce-x" />
+			</button>
 		</div>
 	);
 }
