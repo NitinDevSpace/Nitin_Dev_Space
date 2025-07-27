@@ -14,12 +14,13 @@ function ProjectDetails({ selectedProject, setSelectedProject }) {
 				onClick={() => setSelectedProject(null)}
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
+				exit={{ opacity: 0, transition: { duration: 0.2, ease: "easeInOut" } }}
 			>
 				<motion.div
 					layoutId={`card-${selectedProject._id}`}
 					onClick={(e) => e.stopPropagation()}
 					className="bg-white text-black p-6 rounded-lg w-[90%] max-w-xl"
+					exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2, ease: "easeInOut" } }}
 				>
 					<img
 						src={selectedProject.image}
