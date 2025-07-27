@@ -3,12 +3,14 @@ import ProjectCard from "./ProjectCard";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getAllProjects } from "../../services/projects.service";
 import { useNavigate } from "react-router-dom";
+import ProjectDetails from "../../components/Modals/ProjectDetails";
 
 function MyCreations() {
 	const scrollRef = useRef(null);
 	const navigate = useNavigate();
 
 	const [projects, setProjects] = useState([]);
+	const [selectedProject, setSelectedProject] = useState(null);
 
 	const getData = async () => {
 		const allProjects = await getAllProjects();
@@ -18,6 +20,7 @@ function MyCreations() {
 	useEffect(() => {
 		getData();
 	}, []);
+
 
 	const scrollLeft = () => {
 		if (scrollRef.current) {
@@ -63,7 +66,13 @@ function MyCreations() {
 					{projects.map((project, i) => {
 						return (
 							<div className={`transition-transform duration-300`} key={i}>
-								<ProjectCard className="z-10" project={project} />
+								<ProjectCard
+									className="z-10"
+									project={project}
+									onClick={() => {
+										setSelectedProject(project);
+									}}
+								/>
 							</div>
 						);
 					})}
@@ -83,6 +92,12 @@ function MyCreations() {
 			>
 				See All My Projects <ArrowRight className="animate-bounce-x" />
 			</button>
+			{selectedProject && (
+				<ProjectDetails
+					selectedProject={selectedProject}
+					setSelectedProject={setSelectedProject}
+				/>
+			)}
 		</div>
 	);
 }

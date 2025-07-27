@@ -41,6 +41,12 @@ const Home = () => {
 		});
 
 		const handleScroll = (e) => {
+			const isInsideScrollable =
+				e.target.closest(".allow-scroll") ||
+				e.target.classList.contains("allow-scroll");
+
+			if (isInsideScrollable) return;
+			
 			e.preventDefault();
 			if (isThrottled.current) return;
 			if (Math.abs(e.deltaY) < 15) return;

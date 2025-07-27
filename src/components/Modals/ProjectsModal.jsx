@@ -53,7 +53,7 @@ function ProjectsModal({
 
 	return (
 		<div
-			className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
+			className="fixed inset-0 overflow-y-auto bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
 			onClick={handleCancel}
 		>
 			<div

@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import Feedback from "./pages/Feedback";
 import Projects from "./pages/Projects";
 import NavBar from "./components/NavBar";
+import NotFound from "./components/404NotFound";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/feedback" element={<Feedback />} />
 				<Route path="/projects" element={<Projects />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</>
 	);
