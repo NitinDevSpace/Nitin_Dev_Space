@@ -143,7 +143,7 @@ function AboutSection() {
 					className="absolute top-0 left-0 h-full bg-accent2 z-0"
 				/>
 				<span className="relative z-10">
-					Explore My Resume <span className="font-mono">-&gt;</span>
+					Explore My Resume 
 				</span>
 			</motion.button>
 		</motion.div>

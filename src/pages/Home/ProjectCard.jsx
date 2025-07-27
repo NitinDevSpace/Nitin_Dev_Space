@@ -1,10 +1,17 @@
 import { Eye, Layers } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 function ProjectCard({ project }) {
-	const { title, image, description, status, techStack, liveLink } = project;
+	const { title, image, description, status, techStack } = project;
+	const [open, setOpen] = useState(false);
+
 	return (
-		<div className="relative bg-[#0f3c66] z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[440px] sm:min-w-[435px]">
+		<div
+			onClick={() => {
+				setOpen(!open);
+			}}
+			className="relative bg-[#0f3c66] z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[440px] sm:min-w-[435px] hover:cursor-pointer"
+		>
 			<div className="relative overflow-hidden h-3/5">
 				<img
 					className="w-full h-full object-cover z-10"
@@ -43,11 +50,14 @@ function ProjectCard({ project }) {
 						)}
 					</div>
 				</div>
-				<button className="overflow-hidden text-accent2 flex gap-2 self-start h-1/4 pt-2">
+				<button className="overflow-hidden text-accent2 flex gap-2 self-start h-1/4 pt-2 hover:underline underline-offset-4">
 					<Eye />
 					View Details
 				</button>
 			</div>
+			{open && <div className="fixed h-80 bg-black w-80">
+			
+			</div>}
 		</div>
 	);
 }

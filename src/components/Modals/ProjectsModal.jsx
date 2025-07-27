@@ -58,7 +58,7 @@ function ProjectsModal({
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 p-4 bg-white/90 text-black rounded-lg shadow-lg"
+				className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 py-6 px-12 bg-white/90 text-black rounded-lg shadow-lg"
 			>
 				<h1 className="bg-blue p-2 text-white rounded-lg">
 					{modalType === "new" ? "Add New Proejct" : "Update Your Project"}
@@ -73,7 +73,7 @@ function ProjectsModal({
 							type="text"
 							name="title"
 							id="title"
-							className="border border-black rounded m-2"
+							className="p-2 rounded m-2"
 							placeholder="Enter project title"
 							value={selectedProject?.title || ""}
 							onChange={(e) =>
@@ -93,7 +93,7 @@ function ProjectsModal({
 							type="text"
 							name="image"
 							id="image"
-							className="border border-black rounded m-2"
+							className="p-2 rounded m-2"
 							placeholder="Enter image URL"
 							value={selectedProject?.image || ""}
 							onChange={(e) =>
@@ -113,7 +113,7 @@ function ProjectsModal({
 							name="description"
 							id="description"
 							rows="4"
-							className="border border-black rounded m-2"
+							className="p-2 rounded m-2"
 							placeholder="Enter project description"
 							value={selectedProject?.description || ""}
 							onChange={(e) =>
@@ -132,7 +132,7 @@ function ProjectsModal({
 						<select
 							name="status"
 							id="status"
-							className="border border-black rounded m-2"
+							className="p-2 rounded m-2"
 							value={selectedProject?.status || ""}
 							onChange={(e) =>
 								setSelectedProject((prev) => ({
@@ -157,7 +157,7 @@ function ProjectsModal({
 							type="text"
 							name="techStack"
 							id="techStack"
-							className="border border-black rounded m-2"
+							className="p-2 rounded m-2"
 							placeholder="e.g. React, Node.js"
 							value={selectedProject?.techStack?.join(", ") || ""}
 							onChange={(e) =>
@@ -179,7 +179,7 @@ function ProjectsModal({
 							type="text"
 							name="liveLink"
 							id="liveLink"
-							className="border border-black rounded m-2"
+							className="p-2 rounded m-2"
 							placeholder="Enter live project URL"
 							value={selectedProject?.liveLink || ""}
 							onChange={(e) =>
