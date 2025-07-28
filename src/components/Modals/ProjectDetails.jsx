@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CompassIcon, Github, X } from "lucide-react";
 
 function ProjectDetails({ selectedProject, setSelectedProject }) {
+	const [currentImage, setCurrentImage] = useState(0);
+
+	useEffect(() => {
+		if (!selectedProject?.crousel?.length) return;
+
+		const interval = setInterval(() => {
+			setCurrentImage(
+				(prevIndex) => (prevIndex + 1) % selectedProject.crousel.length
+			);
+		}, 5000);
+		return () => clearInterval(interval);
+	}, [selectedProject]);
+
 	const openNewWindow = (url) => {
 		const newWindow = window.open(url, "_blank", "noopener, noreferrer");
 		if (newWindow) newWindow.focus();
@@ -31,16 +44,29 @@ function ProjectDetails({ selectedProject, setSelectedProject }) {
 					}}
 				>
 					{/* Status */}
-					<span className="absolute top-2 right-3 px-4 text-white rounded-full bg-pink/90">
+					<span className="absolute top-2 right-3 px-4 text-white rounded-full bg-pink/90 z-50">
 						{selectedProject.status}
 					</span>
-					{/* Images */}
-					<img
-						src={selectedProject.image}
-						loading="lazy"
-						alt="Project"
-						className="mb-4 w-full rounded"
-					/>
+					{/* Crousel Images */}
+
+					<div className="relative mb-4 w-full overflow-hidden rounded">
+						<img
+							src={selectedProject.crousel[currentImage]}
+							alt={`Slide ${currentImage + 1}`}
+							className="w-full h-64 object-cover transition duration-700 ease-in-out"
+						/>
+						{/* Dots */}
+						<div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+							{selectedProject.crousel.map((_, index) => (
+								<span
+									key={index}
+									className={`w-2 h-2 rounded-full ${
+										index === currentImage ? "bg-white" : "bg-white/40"
+									}`}
+								/>
+							))}
+						</div>
+					</div>
 					{/* Links */}
 					<div className="absolute right-5 flex gap-4 justify-end">
 						<div className="relative group">
@@ -99,7 +125,9 @@ function ProjectDetails({ selectedProject, setSelectedProject }) {
 						>
 							<X />
 						</button>
-						<span className="opacity-0 px-1 m-3 group-hover:opacity-80 bg-black text-white rounded absolute transition duration-200 pointer-events-none z-50" >Close</span>
+						<span className="opacity-0 px-1 m-3 group-hover:opacity-80 bg-black text-white rounded absolute transition duration-200 pointer-events-none z-50">
+							Close
+						</span>
 					</div>
 				</motion.div>
 			</motion.div>
