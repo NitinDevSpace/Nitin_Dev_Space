@@ -51,7 +51,7 @@ function IntroSection() {
 				className="absolute md:visible invisible mt-36 w-1/4 right-36 z-20"
 			>
 				<motion.img
-					src={intro.imageUrl ? intro.imageUrl : null}
+					src={intro ? intro.imageUrl : null}
 					alt="Developer Image"
 					className="w-full h-auto rounded-xl right-6  bottom-6 relative z-20"
 					animate={{ y: [0, -10, 0] }}
