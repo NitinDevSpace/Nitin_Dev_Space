@@ -67,7 +67,9 @@ function Footer() {
 								impactful.
 							</p>
 						</div>
+						{/* Right Section */}
 						<div className="flex flex-col">
+						{/* Internal Pages Links */}
 							<ul className="flex flex-wrap text-2xl text-accent1 items-center gap-4 p-6 pb-12">
 								<li className="hover-scale hover:text-accent2">
 									<Link to={"/"}>Home </Link>
@@ -90,84 +92,123 @@ function Footer() {
 								</li>
 							</ul>
 							<div className=" items-center flex flex-col justify-center flex-wrap gap-6 left-1/2 ">
+								{/* External Links */}
 								<div className=" items-center flex justify-center flex-wrap gap-4 left-1/2">
-									<button
-										onClick={() =>
-											openNewWindow("https://github.com/NitinDevSpace")
-										}
-										className="bg-primary hover-scale text-accent2 rounded-full scale-125 p-2"
-									>
-										<Github />{" "}
-									</button>
-									<button
-										onClick={() =>
-											openNewWindow(
-												"https://www.linkedin.com/in/nitindevspace/"
-											)
-										}
-										className="bg-primary hover-scale text-accent2 rounded-full scale-125 p-2"
-									>
-										<Linkedin />{" "}
-									</button>
-									<button
-										onClick={() =>
-											openNewWindow("https://leetcode.com/u/NitinDevSpace/")
-										}
-										className="bg-primary hover-scale text-accent2 rounded-full scale-125 p-2"
-									>
-										<Code />{" "}
-									</button>
-									<button
-										onClick={() =>
-											openNewWindow(
-												"https://www.hackerrank.com/profile/nitindevspace"
-											)
-										}
-										className="bg-primary hover-scale text-accent2 rounded-full scale-125 p-2"
-									>
-										<Braces />{" "}
-									</button>
-									<button
-										onClick={() =>
-											openNewWindow(
-												"https://www.instagram.com/creative_core_23/"
-											)
-										}
-										className="bg-primary hover-scale text-accent2 rounded-full scale-125 p-2"
-									>
-										{" "}
-										<Instagram />{" "}
-									</button>
-									<button
-										onClick={openEmailClient}
-										className="bg-primary hover-scale text-accent2 rounded-full scale-125 p-2"
-									>
-										{" "}
-										<Mail />{" "}
-									</button>
+									<div className="relative group">
+										<button
+											onClick={() =>
+												openNewWindow("https://github.com/NitinDevSpace")
+											}
+											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+										>
+											<Github />{" "}
+										</button>
+
+										<span className="opacity-0 mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
+											Github
+										</span>
+									</div>
+									<div className="relative group">
+										<button
+											onClick={() =>
+												openNewWindow(
+													"https://www.linkedin.com/in/nitindevspace/"
+												)
+											}
+											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+										>
+											<Linkedin />{" "}
+										</button>
+										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
+											LinkedIn
+										</span>
+									</div>
+									<div className="relative group">
+										<button
+											onClick={() =>
+												openNewWindow("https://leetcode.com/u/NitinDevSpace/")
+											}
+											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+										>
+											<Code />{" "}
+										</button>
+										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
+											LeetCode
+										</span>
+									</div>
+									<div className="relative group">
+										<button
+											onClick={() =>
+												openNewWindow(
+													"https://www.hackerrank.com/profile/nitindevspace"
+												)
+											}
+											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+										>
+											<Braces />{" "}
+										</button>
+										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
+											HackerRank
+										</span>
+									</div>
+									<div className="relative group">
+										<button
+											onClick={() =>
+												openNewWindow(
+													"https://www.instagram.com/creative_core_23/"
+												)
+											}
+											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+										>
+											<Instagram />{" "}
+										</button>
+										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
+											Instagram
+										</span>
+									</div>
+									<div className="relative group">
+										<button
+											onClick={openEmailClient}
+											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+										>
+											{" "}
+											<Mail />{" "}
+										</button>
+										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
+											Email
+										</span>
+									</div>
 								</div>
 							</div>
 						</div>
+						{/* Top Button */}
+						<button
+							onClick={scrollTop}
+							className="flex absolute hover-scale text-primary bottom-0 bg-white rounded-lg py-2 px-2 sm:bottom-36 lg:bottom-24 sm:right-14"
+						>
+							Top <ArrowUp className="animate-bounce ml-2" />
+						</button>
 					</div>
+					{/* Copyright & Policies Section */}
 					<div className="flex relative mt-6 font-thin opacity-60 text-sm justify-between">
 						<span>© 2025 Nitin Kumar. All Rights Reserved.</span>
 						<span>Built with Vite + React, Tailwind CSS, and ❤️.</span>
 						<div className="flex  flex-col sm:flex-row gap-4">
 							<Link
 								to={"/privacy"}
-								className="underline hover-scale hover:text-blue-500 underline-offset-2 "
+								className="underline hover-scale hover:text-accent1 underline-offset-2 "
 							>
 								Privacy Policies
 							</Link>
 							<Link
 								to={"/termsConditions"}
-								className="underline hover-scale hover:text-blue-500 underline-offset-2 "
+								className="underline hover-scale hover:text-accent1 underline-offset-2 "
 							>
 								Terms of Service
 							</Link>
 							<Link
 								to={"/cookies"}
-								className="underline hover-scale hover:text-blue-500 underline-offset-2 "
+								className="underline hover-scale hover:text-accent1 underline-offset-2 "
 							>
 								{" "}
 								Cookie Setting
@@ -175,12 +216,6 @@ function Footer() {
 						</div>
 					</div>
 				</div>
-				<button
-					onClick={scrollTop}
-					className="flex absolute hover-scale text-primary top-2 bg-accent2  rounded-lg py-2 px-4  right-2"
-				>
-					Top <ArrowUp className="animate-bounce ml-2" />
-				</button>
 			</motion.div>
 			<div className="absolute bottom-0 overflow-hidden">
 				<h1 className=" text-black/45 font-extrabold text-5xl">

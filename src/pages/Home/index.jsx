@@ -6,11 +6,9 @@ import Collaborate from "./CollaborateSection";
 import Footer from "../../components/Footer";
 import RotatingCubeScene from "../../components/3D/RotatingCubeScene";
 import {
-	easeIn,
 	easeInOut,
 	easeOut,
 	motion,
-	AnimatePresence,
 } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 

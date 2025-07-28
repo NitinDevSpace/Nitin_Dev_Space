@@ -88,7 +88,7 @@ function MyCreations() {
 				onClick={() => {
 					navigate("/projects");
 				}}
-				className="rounded-lg flex p-4 text-black mt-5 bg-accent2"
+				className="rounded-lg flex p-4 text-black mt-5 hover-scale bg-accent2"
 			>
 				See All My Projects <ArrowRight className="animate-bounce-x" />
 			</button>

@@ -10,7 +10,9 @@ function ProjectCard({ project, onClick }) {
 		<motion.div
 			layoutId={`card-${project._id}`}
 			onClick={onClick}
-			className="relative bg-[#0f3c66] z-10 hover-scale flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[440px] sm:min-w-[435px] hover:cursor-pointer"
+			initial={{ scale: 1 }}
+			whileHover={{ scale: 1.05 }}
+			className="relative bg-[#0f3c66] z-10 flex flex-col rounded-lg min-w-[370px] overflow-hidden h-[440px] sm:min-w-[435px] hover:cursor-pointer"
 		>
 			<div className="relative overflow-hidden h-3/5">
 				<img

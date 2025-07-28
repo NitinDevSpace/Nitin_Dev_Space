@@ -19,7 +19,9 @@ function ProjectsModal({
 				description: data.get("description"),
 				status: data.get("status"),
 				techStack: data.get("techStack").split(",").map((item) => item.trim()),
+				crousel: data.get("crousel").split(",").map((item) => item.trim()),
 				liveLink: data.get("liveLink"),
+				github: data.get("github"),
 			};
 			if (modalType === "new") {
 				const res = await addProject(payload);
@@ -53,12 +55,12 @@ function ProjectsModal({
 
 	return (
 		<div
-			className="fixed inset-0 overflow-y-auto bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
+			className="fixed inset-0  overflow-y-auto bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
 			onClick={handleCancel}
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 py-6 px-12 bg-white/90 text-black rounded-lg shadow-lg"
+				className="fixed overflow-y-auto bottom-4  top-12 left-1/2 transform -translate-x-1/2 w-1/2 py-6 px-12 bg-white/90 text-black rounded-lg shadow-lg"
 			>
 				<h1 className="bg-blue p-2 text-white rounded-lg">
 					{modalType === "new" ? "Add New Proejct" : "Update Your Project"}
@@ -100,6 +102,26 @@ function ProjectsModal({
 								setSelectedProject((prev) => ({
 									...prev,
 									image: e.target.value,
+								}))
+							}
+						/>
+					</div>
+					<div className="flex flex-col gap-2">
+						<label htmlFor="crousel" className="text-xl">
+							Crousel:
+						</label>
+						<textarea
+							type="text"
+							name="crousel"
+							id="crousel"
+							rows="4"
+							className="p-2 rounded m-2"
+							placeholder="Enter crousel URL's seprated by comma"
+							value={selectedProject?.crousel || ""}
+							onChange={(e) =>
+								setSelectedProject((prev) => ({
+									...prev,
+									crousel: e.target.value,
 								}))
 							}
 						/>
@@ -171,6 +193,25 @@ function ProjectsModal({
 						/>
 					</div>
 
+					<div className="flex flex-col gap-2">
+						<label htmlFor="github" className="text-xl">
+							Github Link:
+						</label>
+						<input
+							type="text"
+							name="github"
+							id="github"
+							className="p-2 rounded m-2"
+							placeholder="Enter project Github URL"
+							value={selectedProject?.github || ""}
+							onChange={(e) =>
+								setSelectedProject((prev) => ({
+									...prev,
+									github: e.target.value,
+								}))
+							}
+						/>
+					</div>
 					<div className="flex flex-col gap-2">
 						<label htmlFor="liveLink" className="text-xl">
 							Live Link:

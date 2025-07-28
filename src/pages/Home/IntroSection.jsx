@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
-import me from "../../assets/my.png";
-import {
-	useInView,
-	easeIn,
-	motion,
-	easeInOut,
-	delay,
-	easeOut,
-} from "framer-motion";
+import { useInView, motion, easeInOut } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FolderGit2, User } from "lucide-react";
 import { useRef } from "react";
 import { getIntro } from "../../services/intro.service";
 
-function BioSection() {
+function IntroSection() {
 	const navigate = useNavigate();
 	const imageRef = useRef(null);
 	const textRef = useRef(null);
@@ -59,14 +51,13 @@ function BioSection() {
 				className="absolute md:visible invisible mt-36 w-1/4 right-36 z-20"
 			>
 				<motion.img
-					src={me}
+					src={intro.imageUrl ? intro.imageUrl : null}
 					alt="Developer Image"
 					className="w-full h-auto rounded-xl right-6  bottom-6 relative z-20"
 					animate={{ y: [0, -10, 0] }}
 					transition={{ duration: 2, repeat: Infinity }}
 				/>
-
-				{/* Glow div behind image, follows same size */}
+				,{/* Glow div behind image, follows same size */},
 				<div className="absolute inset-0  z-10 rounded-xl bg-gradient-to-t to-accent2 from-primary shadow-[0_0_30px_rgba(160,60,207,0.6)]"></div>
 			</motion.div>
 			<motion.div
@@ -132,4 +123,4 @@ function BioSection() {
 	);
 }
 
-export default BioSection;
+export default IntroSection;
