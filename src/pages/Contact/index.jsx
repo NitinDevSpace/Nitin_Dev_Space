@@ -5,14 +5,19 @@ import {
 	Instagram,
 	Linkedin,
 	Mail,
+	MailCheck,
 	MapPin,
 	MessageCircle,
 	Send,
 	UserCircle,
 } from "lucide-react";
 import { sendMessage } from "../../services/contect.service";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Contact = () => {
+	const navigate = useNavigate();
+
 	const openNewWindow = (url) => {
 		const newWindow = window.open(url, "_blank", "noopener, noreferrer");
 		if (newWindow) newWindow.focus();
@@ -31,6 +36,7 @@ const Contact = () => {
 	};
 
 	const [inputs, setInputs] = useState({});
+	const [sent, setSent] = useState(false);
 
 	const handleChange = (e) => {
 		const name = e.target.name;
@@ -40,23 +46,25 @@ const Contact = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("Submitted");
 
 		try {
 			const res = await sendMessage(inputs);
 			console.log(res.message);
+			if (res.success) {
+				setSent(true);
+			}
 			setInputs({});
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	return (
+	return ( 
 		<>
 			<section className="relative mx-auto  bg-primary flex  items-center justify-center">
-				<div className="bg-primary2 w-5/6 h-full mt-36 p-6 py-24 shadow-2xl flex flex-col items-center justify-center">
+				<div className="bg-primary2 md:w-5/6 h-full mt-36 md:p-6 py-24 shadow-2xl flex flex-col items-center justify-center">
 					{/* Top heading */}
-					<div className="flex flex-col gap-6 mb-12 text-center">
+					<div className="flex flex-col gap-6 p-4 mb-12 text-center">
 						<h1 className="text-5xl font-semibold">
 							Get In <span className="text-accent1 opacity-90">Touch</span>
 						</h1>
@@ -67,9 +75,9 @@ const Contact = () => {
 						</p>
 					</div>
 					{/* Below Section */}
-					<div className="flex w-5/6 mt-12 h-full gap-12">
+					<div className="flex flex-col lg:flex-row w-5/6 mt-12 justify-center h-full gap-12">
 						{/* Left Section */}
-						<div className="flex flex-col gap-12 rounded-lg border border-accent1/10 w-1/2 h-fit p-6  bg-primary shadow-xl">
+						<div className="flex flex-col gap-12 rounded-lg border border-accent1/10 min-w-[40%]  h-fit p-6  bg-primary shadow-xl">
 							<div className="flex flex-col gap-4">
 								<h1 className="flex gap-2 text-accent1">
 									<UserCircle className="text-accent2" /> Contact Information
@@ -155,93 +163,117 @@ const Contact = () => {
 							</div>
 						</div>
 						{/* Right Section */}
-						<div className="rounded-lg text-white/80 border border-accent1/10 w-1/2 h-fit p-6 bg-primary shadow-xl">
+						<div className="rounded-lg text-white/80 border border-accent1/10 min-w-[40%] h-fit p-6 bg-primary shadow-xl">
 							<h1 className="flex gap-2 text-accent1 mb-6">
 								<Send className="text-accent2" /> Send a Message
 							</h1>
-							<form onSubmit={handleSubmit} className="flex flex-col gap-4">
-								<div>
-									<label htmlFor="fullname" className="flex flex-col gap-2">
-										Full Name
-										<input
-											type="text"
-											id="fullname"
-											name="fullName"
-											value={inputs.fullName || ""}
-											onChange={handleChange}
-											className="rounded bg-black p-2 border border-white/40"
-											placeholder="Your Name "
-											required={true}
-										/>
-									</label>
-								</div>
-								<div>
-									<label htmlFor="email" className="flex flex-col gap-2">
-										Email Address
-										<input
-											type="email"
-											id="email"
-											name="email"
-											value={inputs.email || ""}
-											onChange={handleChange}
-											className="rounded bg-black p-2 border border-white/40"
-											placeholder="your.email@example.com"
-											required={true}
-										/>
-									</label>
-								</div>
-								<div>
-									<label htmlFor="phoneNumber" className="flex flex-col gap-2">
-										Phone Number (Optional)
-										<input
-											type="number"
-											id="phoneNumber"
-											name="phoneNumber"
-											value={inputs.phoneNumber || ""}
-											onChange={handleChange}
-											className="rounded bg-black p-2 border border-white/40"
-											placeholder="+91 12345-67890 "
-										/>
-									</label>
-								</div>
-								<div>
-									<label htmlFor="subject" className="flex flex-col gap-2">
-										Subject
-										<input
-											type="text"
-											id="subject"
-											name="subject"
-											value={inputs.subject || ""}
-											onChange={handleChange}
-											className="rounded bg-black p-2 border border-white/40"
-											placeholder="Project Enquiry "
-											required={true}
-										/>
-									</label>
-								</div>
-								<div>
-									<label htmlFor="message" className="flex flex-col gap-2">
-										Message
-										<textarea
-											type="text"
-											id="message"
-											name="message"
-											value={inputs.message || ""}
-											onChange={handleChange}
-											rows={4}
-											className="rounded bg-black p-2 border border-white/40"
-											placeholder="Your message here... "
-											required={true}
-										/>
-									</label>
-								</div>
-								<button
-									type="submit"
-									className="flex gap-4 cursor-pointer w-full justify-center bg-accent1 p-3  rounded text-black"
-								>
-									<Send /> Send Message
-								</button>
-							</form>
+							{sent ? (
+								<motion.div layout  className="text-center text-lg  mt-12 flex flex-col gap-4 justify-center items-center pb-12">
+									<MailCheck className="text-accent2" />
+									<h1>
+										Thank you for reaching out!
+										<br /> Your message has been successfully received. I'll get <br />
+										back to you as soon as possible.
+									</h1>
+									<button
+										onClick={() => {
+											navigate("/");
+										}}
+										className="bg-accent1 rounded p-2 text-black"
+									>
+										Go to Homepage
+									</button>
+								</motion.div>
+							) : (
+								<motion.div layout>
+									<form onSubmit={handleSubmit} className="flex flex-col gap-4">
+										<div>
+											<label htmlFor="fullname" className="flex flex-col gap-2">
+												Full Name
+												<input
+													type="text"
+													id="fullname"
+													name="fullName"
+													value={inputs.fullName || ""}
+													onChange={handleChange}
+													className="rounded bg-black p-2 border border-white/40"
+													placeholder="Your Name "
+													required={true}
+												/>
+											</label>
+										</div>
+										<div>
+											<label htmlFor="email" className="flex flex-col gap-2">
+												Email Address
+												<input
+													type="email"
+													id="email"
+													name="email"
+													value={inputs.email || ""}
+													onChange={handleChange}
+													className="rounded bg-black p-2 border border-white/40"
+													placeholder="your.email@example.com"
+													required={true}
+												/>
+											</label>
+										</div>
+										<div>
+											<label
+												htmlFor="phoneNumber"
+												className="flex flex-col gap-2"
+											>
+												Phone Number (Optional)
+												<input
+													type="number"
+													id="phoneNumber"
+													name="phoneNumber"
+													value={inputs.phoneNumber || ""}
+													onChange={handleChange}
+													className="rounded bg-black p-2 border border-white/40"
+													placeholder="+91 12345-67890 "
+												/>
+											</label>
+										</div>
+										<div>
+											<label htmlFor="subject" className="flex flex-col gap-2">
+												Subject
+												<input
+													type="text"
+													id="subject"
+													name="subject"
+													value={inputs.subject || ""}
+													onChange={handleChange}
+													className="rounded bg-black p-2 border border-white/40"
+													placeholder="Project Enquiry "
+													required={true}
+												/>
+											</label>
+										</div>
+										<div>
+											<label htmlFor="message" className="flex flex-col gap-2">
+												Message
+												<textarea
+													type="text"
+													id="message"
+													name="message"
+													value={inputs.message || ""}
+													onChange={handleChange}
+													rows={4}
+													className="rounded bg-black p-2 border border-white/40"
+													placeholder="Your message here... "
+													required={true}
+												/>
+											</label>
+										</div>
+										<button
+											type="submit"
+											className="flex gap-4 cursor-pointer w-full justify-center bg-accent1 p-3  rounded text-black"
+										>
+											<Send /> Send Message
+										</button>
+									</form>
+								</motion.div>
+							)}
 						</div>
 					</div>
 				</div>
