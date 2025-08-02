@@ -1,5 +1,3 @@
-# Nitin_Dev_Space Frontend
-
 # 🧑‍💻 Nitin Dev Space - Fullstack Developer Portfolio
 
 Welcome to **Nitin Dev Space**, a cutting-edge, interactive, animated developer portfolio showcasing technical skills, featured projects, and backend integration with admin controls.
