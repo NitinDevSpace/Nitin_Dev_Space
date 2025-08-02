@@ -47,7 +47,7 @@ function Footer() {
 				initial={false}
 				animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
 				transition={{ duration: 1, ease: easeInOut }}
-				className="flex relative  bg-primary3 py-8 px-4 sm:px-12 rounded-lg shadow-2xl w-11/12 justify-center h-fit items-center"
+				className="flex relative z-30 bg-primary3 py-8 px-4 sm:px-12 rounded-lg shadow-2xl w-11/12 justify-center h-fit items-center"
 			>
 				<div className="w-full">
 					<div className="border-b-2 flex justify-between flex-col pb-12 lg:flex-row">
@@ -217,7 +217,7 @@ function Footer() {
 					</div>
 				</div>
 			</motion.div>
-			<div className="absolute bottom-0 overflow-hidden">
+			<div className="absolute bottom-0 z-10 overflow-hidden">
 				<h1 className=" text-black/45 font-extrabold text-5xl">
 					NitinDevSpace
 				</h1>

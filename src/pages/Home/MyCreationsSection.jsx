@@ -40,16 +40,18 @@ function MyCreations() {
 	};
 
 	return (
-		<div className="relative my-4 overflow-hidden p-4 sm:w-11/12 h-screen flex flex-col gap-2 items-center justify-center mx-auto ">
+		<div className="relative pt-24 overflow-hidden p-4 sm:w-11/12 h-screen flex flex-col gap-2 items-center justify-center mx-auto ">
+			{/* Heading */}
 			<div className="text-center mb-12">
 				<h1 className="text-5xl font-bold mb-6">
-					My <span className="text-[#A7DBDC]">Creations</span>
+					My <span className="text-accent2">Creations</span>
 				</h1>
 				<p>
 					A selection of projects where I've turned ideas into reality,
 					showcasing my skills in <br /> development and problem-solving.
 				</p>
 			</div>
+			{/* Crousel */}
 			<div className="h-[32rem]  min-w-[400px] overflow-hidden drop-shadow-2xl gap-7 flex justify-center items-center rounded-lg w-5/6 bg-primary3">
 				<button
 					onClick={scrollLeft}
@@ -84,6 +86,7 @@ function MyCreations() {
 					<ArrowRight className="scale-150" />
 				</button>
 			</div>
+			{/* Button */}
 			<button
 				onClick={() => {
 					navigate("/projects");
@@ -92,6 +95,7 @@ function MyCreations() {
 			>
 				See All My Projects <ArrowRight className="animate-bounce-x" />
 			</button>
+			{/* Project Details Modal */}
 			{selectedProject && (
 				<ProjectDetails
 					selectedProject={selectedProject}
