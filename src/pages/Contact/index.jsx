@@ -70,7 +70,7 @@ const Contact = () => {
 						<h1 className="text-5xl font-semibold">
 							Get In <span className="text-accent2 opacity-90">Touch</span>
 						</h1>
-						<p className="font-thin text-xl opacity-70">
+						<p className="font-thin opacity-70">
 							Have a project in mind, a question, or just want to connect? I'm
 							<br />
 							here to listen. Drop me a line!
