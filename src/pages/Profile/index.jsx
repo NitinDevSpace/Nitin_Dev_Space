@@ -3,11 +3,19 @@ import Footer from "../../components/Footer";
 import {
 	Briefcase,
 	Calendar,
+	Code,
+	Codesandbox,
+	Database,
 	Download,
 	GraduationCap,
 	Lightbulb,
 	MapPin,
+	PenLine,
+	Server,
+	Settings,
 	Star,
+	UsersRound,
+	Zap,
 } from "lucide-react";
 
 const About = () => {
@@ -22,7 +30,7 @@ const About = () => {
 		// Trigger download
 		const link = document.createElement("a");
 		link.href = fileUrl;
-		link.download = "Nitin_Resume.pdf"; 
+		link.download = "Nitin_Resume.pdf";
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);
@@ -158,33 +166,71 @@ const About = () => {
 							</div>
 							{/* Skills Categories */}
 							<div className="space-y-5 p-5 sm:p-6">
-								<div className="">
-									<p className="text-sm font-extralight ">
-										<span className="text-lg mr-4 font-bold text-accent2 ">
+								<div className="flex flex-col gap-6 text-sm font-extralight ">
+									<div>
+										<span className="flex gap-4 text-lg mr-4 font-bold text-accent2 ">
+											<Code strokeWidth={3} className="text-orange" />{" "}
 											Programming Languages:
 										</span>
-										Java, JavaScript, TypeScript, C++, Python
-										<br />
-										<span className="text-lg mr-4 font-bold text-accent2 ">
-											Web Technologies:
+										<div className="p-3 mt-2 ml-10 rounded-lg bg-accent1/20 w-fit">
+											Java, JavaScript, TypeScript, C++, Python
+										</div>
+									</div>
+									<div>
+										<span className="flex gap-4 text-lg mr-4 font-bold text-accent2 ">
+											<Zap strokeWidth={2} className="text-orange" /> Web
+											Technologies:
 										</span>
-										React.js, Next.js, Node.js, HTML5, CSS3, RESTful APIs
-										<br />
-										<span className="text-lg mr-4 font-bold text-accent2 ">
-											Backend Frameworks:
+										<div className="p-3 mt-2 ml-10 rounded-lg bg-accent1/20 w-fit">
+											React.js, Next.js, Node.js, HTML5, CSS3, RESTful APIs
+										</div>
+									</div>
+									<div>
+										<span className="flex gap-4 text-lg mr-4 font-bold text-accent2 ">
+											<Server strokeWidth={2} className="text-orange" /> Backend
+											Frameworks:
 										</span>
-										Node.js, Express.js, Django (Python),Express.js, Firebase
-										<br />
-										<span className="text-lg mr-4 font-bold text-accent2 ">
+										<div className="p-3 mt-2 ml-10 rounded-lg bg-accent1/20 w-fit">
+											Node.js, Express.js, Django (Python),Express.js, Firebase
+										</div>
+									</div>
+									<div>
+										<span className="flex gap-4 text-lg mr-4 font-bold text-accent2 ">
+											<Database strokeWidth={2} className="text-orange" />{" "}
 											Databases:
 										</span>
-										MongoDB, PostgreSQL, MySQL, Firebase, Microsoft SQL Server
-										<br />
-										<span className="text-lg mr-4 font-bold text-accent2 ">
+										<div className="p-3 mt-2 ml-10 rounded-lg bg-accent1/20 w-fit">
+											MongoDB, PostgreSQL, MySQL, Firebase, Microsoft SQL Server
+										</div>
+									</div>
+									<div>
+										<span className="flex gap-4 text-lg mr-4 font-bold text-accent2 ">
+											<Codesandbox strokeWidth={2} className="text-orange" />{" "}
 											Development Tools:
 										</span>
-										Git, GitHub, Docker, VS Code, IntelliJ IDEA, X code
-									</p>
+										<div className="p-3 mt-2 ml-10 rounded-lg bg-accent1/20 w-fit">
+											Git, GitHub, Docker, VS Code, IntelliJ IDEA, X code
+										</div>
+									</div>
+									<div>
+										<span className="flex gap-4 text-lg mr-4 font-bold text-accent2 ">
+											<PenLine strokeWidth={2} className="text-orange" /> Other
+											Skills:
+										</span>
+										<div className="p-3 mt-2 ml-10 rounded-lg bg-accent1/20 w-fit">
+											Video Editing (Adobe Premiere Pro, Final Cut Pro)
+										</div>
+									</div>
+									<div>
+										<span className="flex gap-4 text-lg mr-4 font-bold text-accent2 ">
+											<UsersRound strokeWidth={2} className="text-orange" />{" "}
+											Soft Skills:
+										</span>
+										<div className="p-3 mt-2 ml-10 rounded-lg bg-accent1/20 w-fit">
+											Problem Solving, Team Collaboration, Agile Methodologies,
+											Communication, Adaptability, Quick Learning
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
