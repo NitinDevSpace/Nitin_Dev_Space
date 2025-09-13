@@ -22,7 +22,7 @@ const About = () => {
 	const [downloading, setDownloading] = useState(false);
 
 	const downloadResume = () => {
-		const fileUrl = "/Nitin_CV.pdf";
+		const fileUrl = "/Nitin_Resume.pdf";
 
 		// Open in new tab
 		window.open(fileUrl, "_blank");
