@@ -5,7 +5,7 @@ export default defineConfig({
 	plugins: [react()],
 
 	server: {
-		// your local dev proxy (npm run dev)
+		// your local dev proxy (npx vercel dev)
 		proxy: {
 			"/api": {
 				target: "http://localhost:3000",
