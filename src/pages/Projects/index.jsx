@@ -1,21 +1,38 @@
-import React from 'react'
-import ProjectCard from '../../components/ProjectCard';
+import React, { useEffect, useState } from "react";
+import { getAllProjects } from "../../services/projects.service";
+import ProjectDetails from "../../components/Projects-Card";
 
 const Projects = () => {
-  return (
+	const [projects, setProjects] = useState([]);
+	const [loading, setLoading] = useState(false);
+
+	
+	useEffect(() => {
+		async function fetchData() {
+			setLoading(true);
+			const allProjects = await getAllProjects();
+			setProjects(allProjects.data);
+			setLoading(false);
+		}
+		fetchData();
+	}, []); 
+
+	return (
 		<>
-			<section className="relative h-full flex items-center justify-center">
-				<div className=" ">
-				  <h1>For now Just go to my Creations section</h1>
-				  <ProjectCard />
-					<img
-						src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyaWczdnVyNTNvdzhhYzhkemd3c3liZWYwY2dvcnM2dWxhbDM5azN2bSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/vR1dPIYzQmkRzLZk2w/source.gif"
-						className="w-full h-full"
-					/>
-				</div>
-			</section>
+			<div className="relative my-44 flex flex-col items-center justify-center">
+				<h1 className="text-4xl mb-4">My Projects</h1>
+				<p className="opacity-70">
+					All the things I have built till date, some of them being improved
+					even today!
+				</p>
+			</div>
+			<div className="flex flex-wrap gap-12 w-11/12 mx-auto items-center justify-center">
+				{projects.map((project, i) => {
+					return <ProjectDetails key={i} selectedProject={project} />;
+				})}
+			</div>
 		</>
 	);
-}
+};
 
-export default Projects
+export default Projects;
