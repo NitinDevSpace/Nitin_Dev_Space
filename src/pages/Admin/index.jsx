@@ -12,7 +12,7 @@ const Admin = () => {
 			alert("Enter Password");
 			return;
 		}
-		if (password === process.env.REACT_APP_PASSWORD) {
+		if (password == process.env.REACT_APP_PASSWORD) {
 			setAuth(true);
 		} else {
 			alert("Wrong Password.. Go Away!!");
