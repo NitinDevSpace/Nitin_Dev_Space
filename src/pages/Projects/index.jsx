@@ -37,7 +37,7 @@ const Projects = () => {
 						<Loading />
 					</div>
 				) : (
-					<div className="flex flex-wrap gap-12 w-11/12 mx-auto items-center justify-center">
+					<div className="flex flex-wrap gap-12 w-full md:w-11/12 mx-auto items-center justify-center">
 						{projects.map((project, i) => {
 							return <ProjectDetails key={i} selectedProject={project} />;
 						})}
