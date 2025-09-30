@@ -80,15 +80,15 @@ function Footer() {
 								</li>
 								<li className="text-3xl opacity-60">/</li>
 								<li className="hover-scale hover:text-accent2">
-									<Link to={"/profile"}>Projects </Link>
+									<Link to={"/projects"}>Projects </Link>
 								</li>
 								<li className="text-3xl opacity-60">/</li>
 								<li className="hover-scale hover:text-accent2">
-									<Link to={"/profile"}>Blogs</Link>
+									<Link to={"/blogs"}>Blogs</Link>
 								</li>
 								<li className="text-3xl opacity-60">/</li>
 								<li className="hover-scale hover:text-accent2">
-									<Link to={"/profile"}>Contact</Link>
+									<Link to={"/contact"}>Contact</Link>
 								</li>
 							</ul>
 							<div className=" items-center flex flex-col justify-center flex-wrap gap-6 left-1/2 ">
