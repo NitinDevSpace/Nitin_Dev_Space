@@ -4,23 +4,26 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getAllProjects } from "../../services/projects.service";
 import { useNavigate } from "react-router-dom";
 import ProjectDetails from "../../components/Modals/ProjectDetails";
+import Loading from "../../components/Loading";
 
 function MyCreations() {
 	const scrollRef = useRef(null);
 	const navigate = useNavigate();
 
+	const [loading, setLoading] = useState(false);
 	const [projects, setProjects] = useState([]);
 	const [selectedProject, setSelectedProject] = useState(null);
 
 	const getData = async () => {
+		setLoading(true);
 		const allProjects = await getAllProjects();
 		setProjects(allProjects.data);
+		setLoading(false);
 	};
 
 	useEffect(() => {
 		getData();
 	}, []);
-
 
 	const scrollLeft = () => {
 		if (scrollRef.current) {
@@ -65,19 +68,26 @@ function MyCreations() {
 					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 					className="h-full  drop-shadow-2xl overflow-x-scroll gap-7 flex justify-start px-12 items-center rounded-lg w-full scroll-smooth"
 				>
-					{projects.map((project, i) => {
-						return (
-							<div className={`transition-transform duration-300`} key={i}>
-								<ProjectCard
-									className="z-10"
-									project={project}
-									onClick={() => {
-										setSelectedProject(project);
-									}}
-								/>
-							</div>
-						);
-					})}
+					{loading ? (
+						<>
+							<Loading />
+							<Loading />
+						</>
+					) : (
+						projects.map((project, i) => {
+							return (
+								<div className={`transition-transform duration-300`} key={i}>
+									<ProjectCard
+										className="z-10"
+										project={project}
+										onClick={() => {
+											setSelectedProject(project);
+										}}
+									/>
+								</div>
+							);
+						})
+					)}
 				</div>
 				<button
 					onClick={scrollRight}

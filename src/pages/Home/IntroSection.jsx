@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FolderGit2, User } from "lucide-react";
 import { useRef } from "react";
 import { getIntro } from "../../services/intro.service";
+import Loading from "../../components/Loading";
 
 function IntroSection() {
 	const navigate = useNavigate();
@@ -20,14 +21,17 @@ function IntroSection() {
 	});
 
 	const [intro, setIntro] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	const getData = async () => {
 		try {
+			setLoading(true);
 			const res = await getIntro();
 			if (!res) {
 				console.log("Error fetching");
 			}
 			setIntro(res.data);
+			setLoading(false);
 		} catch (error) {
 			console.error(
 				"HTTP error fetching intro:",
@@ -50,13 +54,17 @@ function IntroSection() {
 				transition={{ duration: 1, ease: easeInOut }}
 				className="absolute md:visible invisible mt-36 w-1/4 right-36 z-20"
 			>
-				<motion.img
-					src={intro ? intro.imageUrl : null}
-					alt="Developer Image"
-					className="w-full h-auto rounded-xl right-5  bottom-4 relative z-20"
-					animate={{ y: [0, -10, 0] }}
-					transition={{ duration: 2, repeat: Infinity }}
-				/>
+				{loading ? (
+					<Loading />
+				) : (
+					<motion.img
+						src={intro ? intro.imageUrl : null}
+						alt="Developer Image"
+						className="w-full h-auto rounded-xl right-5  bottom-4 relative z-20"
+						animate={{ y: [0, -10, 0] }}
+						transition={{ duration: 2, repeat: Infinity }}
+					/>
+				)}
 				{/* Glow div behind image, follows same size */}
 				<div className="absolute inset-0  z-10 rounded-xl bg-gradient-to-t to-accent1 from-accent2/70 shadow-[0_0_30px_#e1b666ff]"></div>
 			</motion.div>
