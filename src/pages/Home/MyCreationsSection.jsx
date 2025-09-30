@@ -69,10 +69,11 @@ function MyCreations() {
 					className="h-full  drop-shadow-2xl overflow-x-scroll gap-7 flex justify-start px-12 items-center rounded-lg w-full scroll-smooth"
 				>
 					{loading ? (
-						<>
+						<div className="relative gap-5 z-10 flex rounded-lg overflow-hidden h-[440px] hover:cursor-pointer">
 							<Loading />
 							<Loading />
-						</>
+							<Loading />
+						</div>
 					) : (
 						projects.map((project, i) => {
 							return (

@@ -5,7 +5,7 @@ import React from "react";
 //   utilities aren't active or available in your build.
 // - `size` accepts a CSS size string ('8rem', '100px') or a number (pixels).
 // - Keep any extra tailwind classes via `className` prop.
-export default function Loading({ size = "40rem", className = "opacity-20" }) {
+export default function Loading({ size = "40rem", className = "opacity-60" }) {
 	// Accept either number (px) or string size
 	const style =
 		typeof size === "number"
@@ -14,7 +14,7 @@ export default function Loading({ size = "40rem", className = "opacity-20" }) {
 
 	return (
 		<div
-			className={`rounded-md bg-gray-300 relative overflow-hidden ${className}`}
+			className={`rounded-md bg-white-900 relative overflow-hidden ${className}`}
 			style={style}
 			role="status"
 			aria-label="Loading"

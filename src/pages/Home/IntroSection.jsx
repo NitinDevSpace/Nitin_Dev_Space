@@ -55,7 +55,15 @@ function IntroSection() {
 				className="absolute md:visible invisible mt-36 w-1/4 right-36 z-20"
 			>
 				{loading ? (
-					<Loading />
+					<motion.div
+						className="w-full h-auto rounded-xl right-5  bottom-4 relative z-20"
+						animate={{ y: [0, -10, 0] }}
+						transition={{ duration: 2, repeat: Infinity }}
+					>
+						<div className="overflow-hidden">
+							<Loading />
+						</div>
+					</motion.div>
 				) : (
 					<motion.img
 						src={intro ? intro.imageUrl : null}
