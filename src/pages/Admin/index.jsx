@@ -2,17 +2,37 @@ import React, { useEffect, useState } from "react";
 import IntroAdmin from "./IntroAdmin";
 import AlittleAboutMeAdmin from "./AboutMeAdmin";
 import ProjectsAdmin from "./ProjectsAdmin";
+import { getPassword } from "../../services/password.service";
 
 const Admin = () => {
 	const [auth, setAuth] = useState(false);
 	const [password, setPassword] = useState("");
+	const [fetchedPassword, setFetchedPassword] = useState("");
+
+	const getData = async () => {
+			try {
+				const res = await getPassword();
+				if (!res) {
+					console.log("Error fetching");
+				}
+				
+				setFetchedPassword(res.data.password);
+			} catch (error) {
+				console.error(
+					"HTTP error fetching intro:",
+					error.response?.status,
+					error.message
+				);
+			}
+		};
 
 	const authenticate = () => {
+		getData();
 		if (password === "") {
 			alert("Enter Password");
 			return;
 		}
-		if (password == process.env.REACT_APP_PASSWORD) {
+		if (password === fetchedPassword) {
 			setAuth(true);
 		} else {
 			alert("Wrong Password.. Go Away!!");
@@ -77,8 +97,7 @@ const Admin = () => {
 						</button>
 					</div>
 				</div>
-			)}
-			;
+			)};
 		</>
 	);
 };
