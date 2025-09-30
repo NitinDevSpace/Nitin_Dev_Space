@@ -3,6 +3,7 @@ import IntroAdmin from "./IntroAdmin";
 import AlittleAboutMeAdmin from "./AboutMeAdmin";
 import ProjectsAdmin from "./ProjectsAdmin";
 import { getPassword } from "../../services/password.service";
+import MessagesAdmin from "./MessagesAdmin";
 
 const Admin = () => {
 	const [auth, setAuth] = useState(false);
@@ -62,6 +63,10 @@ const Admin = () => {
 						{/* My creations Container */}
 						<div>
 							<ProjectsAdmin />
+						</div>
+						{/* Messages */}
+						<div>
+							<MessagesAdmin />
 						</div>
 					</div>
 					<button

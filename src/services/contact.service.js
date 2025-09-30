@@ -8,3 +8,12 @@ export const sendMessage = async (payload) => {
 		console.log("Error sending message", error);
 	}
 };
+
+export const getMessages = async (payload) => {
+	try {
+		const res = await axiosInstance.get("/api/message");
+		return res.data;
+	} catch (error) {
+		console.log("Error getting message", error);
+	}
+};

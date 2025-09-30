@@ -11,7 +11,7 @@ import {
 	Send,
 	UserCircle,
 } from "lucide-react";
-import { sendMessage } from "../../services/contect.service";
+import { sendMessage } from "../../services/contact.service";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
