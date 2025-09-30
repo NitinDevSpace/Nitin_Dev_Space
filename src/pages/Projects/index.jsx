@@ -21,9 +21,9 @@ const Projects = () => {
 	return (
 		<>
 			<div>
-				<div className="relative my-44 flex flex-col items-center justify-center">
+				<div className="relative mt-44 mb-24 flex flex-col items-center justify-center">
 					<h1 className="text-4xl mb-4">My Projects</h1>
-					<p className="opacity-70">
+					<p className="opacity-70 p-4 text-center">
 						All the things I have built till date, some of them being improved
 						even today!
 					</p>
@@ -37,7 +37,7 @@ const Projects = () => {
 						<Loading />
 					</div>
 				) : (
-					<div className="flex flex-wrap gap-12 w-full md:w-11/12 mx-auto items-center justify-center">
+					<div className="flex flex-col md:flex-row md:flex-wrap gap-12 w-full md:w-11/12 mx-auto items-center justify-center">
 						{projects.map((project, i) => {
 							return <ProjectDetails key={i} selectedProject={project} />;
 						})}
