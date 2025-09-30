@@ -53,12 +53,12 @@ function IntroSection() {
 				<motion.img
 					src={intro ? intro.imageUrl : null}
 					alt="Developer Image"
-					className="w-full h-auto rounded-xl right-6  bottom-6 relative z-20"
+					className="w-full h-auto rounded-xl right-5  bottom-4 relative z-20"
 					animate={{ y: [0, -10, 0] }}
 					transition={{ duration: 2, repeat: Infinity }}
 				/>
-				,{/* Glow div behind image, follows same size */},
-				<div className="absolute inset-0  z-10 rounded-xl bg-gradient-to-t to-accent2 from-primary shadow-[0_0_30px_rgba(160,60,207,0.6)]"></div>
+				{/* Glow div behind image, follows same size */}
+				<div className="absolute inset-0  z-10 rounded-xl bg-gradient-to-t to-accent1 from-accent2/70 shadow-[0_0_30px_#e1b666ff]"></div>
 			</motion.div>
 			<motion.div
 				ref={textRef}
