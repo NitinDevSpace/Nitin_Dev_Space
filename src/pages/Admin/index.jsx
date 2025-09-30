@@ -27,11 +27,11 @@ const Admin = () => {
 		};
 
 	const authenticate = () => {
-		getData();
 		if (password === "") {
 			alert("Enter Password");
 			return;
 		}
+		getData();
 		if (password === fetchedPassword) {
 			setAuth(true);
 		} else {
