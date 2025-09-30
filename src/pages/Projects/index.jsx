@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllProjects } from "../../services/projects.service";
 import ProjectDetails from "../../components/Projects-Card";
 import Loading from "../../components/Loading";
+import Footer from "../../components/Footer";
 
 const Projects = () => {
 	const [projects, setProjects] = useState([]);
@@ -43,6 +44,7 @@ const Projects = () => {
 					</div>
 				)}
 			</div>
+			<Footer />
 		</>
 	);
 };

@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from "../../components/Footer";
 
 const blogCards = [
   {
@@ -56,6 +57,7 @@ const Blogs = () => {
           ))}
         </div>
       </section>
+      <Footer />
     </>
   );
 }
