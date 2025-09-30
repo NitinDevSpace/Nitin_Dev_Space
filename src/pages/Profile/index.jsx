@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import {
 	Briefcase,
@@ -35,6 +35,13 @@ const About = () => {
 		link.click();
 		document.body.removeChild(link);
 	};
+
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	}, []);
 
 	return (
 		<>

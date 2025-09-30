@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from "../../components/Footer";
 
 const blogCards = [
@@ -27,7 +27,14 @@ const blogCards = [
     image: "https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?auto=format&fit=crop&w=800&q=80",
     text: "Launched my blog to share my coding journey. Writing about tech helps me understand topics better and connect with others.",
   },
-]
+];
+
+useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}, []);
 
 const Blogs = () => {
   return (

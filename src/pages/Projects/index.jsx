@@ -9,6 +9,10 @@ const Projects = () => {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
 		async function fetchData() {
 			setLoading(true);
 			const allProjects = await getAllProjects();

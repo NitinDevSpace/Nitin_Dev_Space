@@ -18,6 +18,10 @@ const Home = () => {
 	const isThrottled = useRef(false);
 
 	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {

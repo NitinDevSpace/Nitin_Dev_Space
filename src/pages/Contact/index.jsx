@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import {
 	Github,
@@ -60,6 +60,13 @@ const Contact = () => {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	}, []);
 
 	return (
 		<>
