@@ -192,7 +192,7 @@ function Footer() {
 					{/* Copyright & Policies Section */}
 					<div className="flex relative mt-6 font-thin opacity-60 text-sm justify-between">
 						<span>© 2025 Nitin Kumar. All Rights Reserved.</span>
-						<span>Built with Vite + React, Tailwind CSS, and ❤️.</span>
+						<span>Built with Vite + React and ❤️.</span>
 						<div className="flex  flex-col sm:flex-row gap-4">
 							<Link
 								to={"/privacy"}
