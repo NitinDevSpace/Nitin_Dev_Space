@@ -92,7 +92,7 @@ function ProjectDetails({ selectedProject }) {
 				</h2>
 				{/* Description */}
 				<span className="text-lg font-semibold">Description:</span>
-				<div className="mb-4 max-h-40 overflow-y-auto overscroll-contain allow-scroll">
+				<div className="mb-4 max-h-60 overflow-y-auto overscroll-contain allow-scroll">
 					<p
 						dangerouslySetInnerHTML={{ __html: selectedProject.description }}
 						className="text-sm leading-relaxed"
