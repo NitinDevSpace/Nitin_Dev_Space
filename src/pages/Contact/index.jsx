@@ -97,7 +97,7 @@ const Contact = () => {
 							</div>
 							<div className="flex flex-col gap-4 border-b-2 border-white/70 pb-6">
 								<h1 className="flex gap-2 text-white/80">
-									<Mail className="text-accent1" /> nitindevspace@dmail.com
+									<Mail className="text-accent1" /> NitinDevSpace@gmail.com
 								</h1>
 								<h1 className="flex gap-2 text-white/80">
 									<MessageCircle className="text-accent1" /> +91 74041-85860 (
