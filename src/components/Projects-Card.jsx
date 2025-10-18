@@ -26,7 +26,7 @@ function ProjectDetails({ selectedProject }) {
 			<motion.div
 				layoutId={`card-${selectedProject._id}`}
 				onClick={(e) => e.stopPropagation()}
-				className="relative bg-secondary text-white md:p-6 p-2 mx-4 rounded-lg md:max-w-[40%]"
+				className="relative bg-secondary text-white md:p-6 p-2 mx-4 rounded-lg min-h-[70vh] md:max-w-[40%]"
 				exit={{
 					opacity: 0,
 					scale: 0.95,
