@@ -22,7 +22,7 @@ const NavBar = () => {
 		<div className="flex w-full text-accent2 overflow-hidden justify-self-center pt-8 fixed top-0 z-50">
 			{/* Hamburger Menu Button */}
 			<button
-				className="ml-4 mt-2 p-2 rounded focus:outline-none z-50 bg-transparent"
+				className="right-0 mr-4 mt-2 p-2 rounded focus:outline-none z-50 bg-transparent"
 				onClick={() => setMenuOpen((open) => !open)}
 				aria-label={menuOpen ? "Close menu" : "Open menu"}
 			>
@@ -31,7 +31,7 @@ const NavBar = () => {
 			{/* Drawer */}
 			{menuOpen && (
 				<div
-					className="fixed top-0 left-0 h-fit backdrop-blur-md rounded w-3/4 max-w-xs bg-primary/60  shadow-2xl z-40 flex flex-col pt-24 px-12 transition-all"
+					className="fixed top-0 right-0 h-fit backdrop-blur-md rounded w-3/4 max-w-xs bg-primary/60  shadow-2xl z-40 flex flex-col pt-24 px-12 transition-all"
 					style={{ transition: "transform 0.3s ease" }}
 				>
 					<Link
