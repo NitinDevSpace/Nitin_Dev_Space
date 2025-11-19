@@ -22,7 +22,7 @@ function Projects() {
 	}, []);
 
 	return (
-		<div className="bg-primary2 relative flex flex-col justify-center rounded-lg h-fit m-4 p-4">
+		<div className="bg-primary2 relative flex flex-col rounded-xl h-fit m-4 p-6 shadow-xl border border-white/10">
 			{/* Heading Intro */}
 			<div
 				onClick={() => {
@@ -39,25 +39,29 @@ function Projects() {
 							return (
 								<li
 									key={project._id}
-									className="bg-secondary gap-4 flex rounded-lg p-4 m-4"
+									className="bg-secondary flex gap-4 items-center justify-between rounded-xl p-5 m-4 shadow-lg border border-white/10 hover:shadow-xl hover:border-orange/40 transition-all duration-300"
 								>
-									<div className="grow">{project.title}</div>
+									<div className="grow text-lg font-semibold tracking-wide text-white">
+										{project.title}
+									</div>
 									<button
 										onClick={() => {
 											setEditModal(!editModal);
 											setModalType("edit");
 											setSelectedProject(project);
 										}}
+										className="p-2 rounded-lg bg-primary2 hover:bg-primary transition-all duration-300 border border-white/10 hover:border-orange/40"
 									>
-										<Edit />
+										<Edit className="w-5 h-5" />
 									</button>
 									<button
 										onClick={() => {
 											setDeleteModal(!deleteModal);
 											setSelectedProject(project);
 										}}
+										className="p-2 rounded-lg bg-primary2 hover:bg-primary transition-all duration-300 border border-red-400/20 hover:border-red-500/40"
 									>
-										<Trash2 className="text-red-400" />
+										<Trash2 className="w-5 h-5 text-red-400" />
 									</button>
 								</li>
 							);
@@ -68,9 +72,9 @@ function Projects() {
 							setEditModal(!editModal);
 							setModalType("new");
 						}}
-						className="bg-orange m-4 rounded-lg p-2"
+						className="bg-orange text-black font-semibold tracking-wide m-4 rounded-lg p-3 shadow-md hover:shadow-xl hover:bg-orange/90 transition-all duration-300"
 					>
-						New +
+						+ Add New Project
 					</button>
 
 					{/* Form & para Collapsible */}

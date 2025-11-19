@@ -184,31 +184,31 @@ function Footer() {
 						{/* Top Button */}
 						<button
 							onClick={scrollTop}
-							className="flex absolute hover-scale text-primary bottom-0 bg-white rounded-lg py-2 px-2 sm:bottom-36 lg:bottom-24 sm:right-14"
+							className="flex absolute hover-scale text-primary bottom-0 bg-white rounded-lg m-4 sm:m-1 py-2 px-2 sm:bottom-36 lg:bottom-24 right-4 sm:right-14"
 						>
 							Top <ArrowUp className="animate-bounce ml-2" />
 						</button>
 					</div>
 					{/* Copyright & Policies Section */}
-					<div className="flex relative mt-6 font-thin opacity-60 text-sm justify-between">
+					<div className="flex flex-col sm:flex-row gap-4 relative mt-6 font-thin opacity-60 text-sm justify-between">
 						<span>© 2025 Nitin Kumar. All Rights Reserved.</span>
 						<span>Built with Vite + React and ❤️.</span>
-						<div className="flex  flex-col sm:flex-row gap-4">
+						<div className="flex flex-col sm:flex-row gap-4 items-start">
 							<Link
-								to={"/privacy"}
-								className="underline hover-scale hover:text-accent1 underline-offset-2 "
+								to={"/privacy-policies"}
+								className="hover-scale hover:text-accent1 "
 							>
 								Privacy Policies
 							</Link>
 							<Link
-								to={"/termsConditions"}
-								className="underline hover-scale hover:text-accent1 underline-offset-2 "
+								to={"/terms-conditions"}
+								className="hover-scale hover:text-accent1 "
 							>
 								Terms of Service
 							</Link>
 							<Link
-								to={"/cookies"}
-								className="underline hover-scale hover:text-accent1 underline-offset-2 "
+								to={"/cookie-settings"}
+								className="hover-scale hover:text-accent1"
 							>
 								{" "}
 								Cookie Setting

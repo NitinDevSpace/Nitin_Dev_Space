@@ -22,7 +22,7 @@ const NavBar = () => {
 		<div className="flex w-full text-accent2 overflow-hidden justify-self-center pt-8 fixed top-0 z-50">
 			{/* Hamburger Menu Button */}
 			<button
-				className="right-0 mr-4 mt-2 p-2 rounded focus:outline-none z-50 bg-transparent"
+				className="fixed right-0 mr-4 mt-2 p-2 rounded focus:outline-none z-50 bg-transparent"
 				onClick={() => setMenuOpen((open) => !open)}
 				aria-label={menuOpen ? "Close menu" : "Open menu"}
 			>

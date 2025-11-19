@@ -2,38 +2,41 @@ import React, { useEffect, useState } from "react";
 import IntroAdmin from "./IntroAdmin";
 import AlittleAboutMeAdmin from "./AboutMeAdmin";
 import ProjectsAdmin from "./ProjectsAdmin";
-import { getPassword } from "../../services/password.service";
+import { verifyPassword } from "../../services/password.service";
 import MessagesAdmin from "./MessagesAdmin";
+import FeedbackAdmin from "./FeedbackAdmin";
+import Footer from "../../components/Footer";
 
 const Admin = () => {
 	const [auth, setAuth] = useState(false);
 	const [password, setPassword] = useState("");
-	const [fetchedPassword, setFetchedPassword] = useState("");
+	const [correctPassword, setCorrectPassword] = useState(false);
 
 	const getData = async () => {
-			try {
-				const res = await getPassword();
-				if (!res) {
-					console.log("Error fetching");
-				}
-				
-				setFetchedPassword(res.data.password);
-			} catch (error) {
-				console.error(
-					"HTTP error fetching intro:",
-					error.response?.status,
-					error.message
-				);
+		try {
+			const res = await verifyPassword(password);
+			if (!res) {
+				console.log("Error fetching");
 			}
-		};
+			setCorrectPassword(res.success);
+			return res.success;
+		} catch (error) {
+			console.error(
+				"HTTP error verifying password:",
+				error.response?.status,
+				error.message
+			);
+			return false;
+		}
+	};
 
-	const authenticate = () => {
+	const authenticate = async () => {
 		if (password === "") {
 			alert("Enter Password");
 			return;
 		}
-		getData();
-		if (password === fetchedPassword) {
+		const isCorrect = await getData();
+		if (isCorrect) {
 			setAuth(true);
 		} else {
 			alert("Wrong Password.. Go Away!!");
@@ -75,6 +78,10 @@ const Admin = () => {
 						<div>
 							<MessagesAdmin />
 						</div>
+						{/* Feedbacks */}
+						<div>
+							<FeedbackAdmin />
+						</div>
 					</div>
 					<button
 						onClick={deAuthenticate}
@@ -85,7 +92,7 @@ const Admin = () => {
 				</div>
 			) : (
 				<div className="flex flex-col justify-center items-center min-h-screen ">
-					<h1 className="text-4xl text-red-500 mb-12">
+					<h1 className="text-4xl text-center text-red-500 mb-12">
 						You are Not Autherized!!
 					</h1>
 					<div className="flex flex-col gap-5">
@@ -98,6 +105,11 @@ const Admin = () => {
 							id="password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							onKeyDown={(e) => {
+								if (e.key === "Enter") {
+									authenticate();
+								}
+							}}
 							placeholder="Enter The Password"
 							className="bg-secondary focus:outline-none rounded p-2"
 						/>
@@ -109,7 +121,8 @@ const Admin = () => {
 						</button>
 					</div>
 				</div>
-			)};
+			)}
+			<Footer />
 		</>
 	);
 };

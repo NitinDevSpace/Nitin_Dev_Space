@@ -22,8 +22,8 @@ function Collaborate() {
 	}, [isTextInView]);
 
 	return (
-		<div className="relative my-4 overflow-hidden flex flex-col gap-6 md:gap-16 w-11/12 h-screen items-center  justify-center mx-auto">
-			<h1 ref={textRef} className="text-3xl md:scale-150 sm:text-5xl">
+		<div className="relative my-4 overflow-hidden flex flex-col gap-6 md:gap-16 w-11/12 h-[70vh] sm:h-screen items-center  justify-center mx-auto">
+			<h1 ref={textRef} className="text-3xl sm:text-7xl">
 				<motion.span
 					initial={false}
 					animate={
@@ -33,7 +33,7 @@ function Collaborate() {
 				>
 					Ready to{" "}
 				</motion.span>
-				<span className="text-accent2 md:scale-150 font-sans">
+				<span className="text-accent2 font-sans">
 					<Typewriter
 						key={typeWriterKey}
 						words={["Collaborate"]}
@@ -47,7 +47,7 @@ function Collaborate() {
 			</h1>
 			<div
 				ref={paraRef}
-				className="text-center opacity-70 md:scale-150 overflow-hidden text-thin"
+				className="text-center opacity-70 sm:text-xl overflow-hidden text-thin"
 			>
 				<motion.p
 					initial={false}
@@ -68,7 +68,7 @@ function Collaborate() {
 				onClick={() => {
 					navigate("/contact");
 				}}
-				className="bg-accent2 flex gap-4 md:scale-150 p-2 hover-scale px-6 rounded-lg text-black m-4"
+				className="bg-accent2 flex gap-4 p-2 sm:text-2xl hover-scale px-6 rounded-lg text-black m-4"
 			>
 				Get In Touch <Mail />
 			</motion.button>

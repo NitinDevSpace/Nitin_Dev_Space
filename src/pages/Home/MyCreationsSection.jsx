@@ -66,7 +66,7 @@ function MyCreations() {
 				<div
 					ref={scrollRef}
 					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-					className="h-full  drop-shadow-2xl overflow-x-scroll gap-7 flex justify-start px-12 items-center rounded-lg w-full scroll-smooth"
+					className="h-full  drop-shadow-2xl overflow-x-scroll gap-7 flex justify-start px-4 items-center rounded-lg w-full scroll-smooth"
 				>
 					{loading ? (
 						<div className="relative gap-5 z-10 flex rounded-lg overflow-hidden h-[440px] hover:cursor-pointer">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
+import Feedback from "../Feedback";
 import {
 	Github,
 	Instagram,
@@ -12,7 +13,7 @@ import {
 	UserCircle,
 } from "lucide-react";
 import { sendMessage } from "../../services/contact.service";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -38,6 +39,7 @@ const Contact = () => {
 	const [inputs, setInputs] = useState({});
 	const [sent, setSent] = useState(false);
 	const [clicked, setClicked] = useState(false);
+	const [showFeedback, setShowFeedback] = useState(false);
 
 	const handleChange = (e) => {
 		const name = e.target.name;
@@ -71,7 +73,7 @@ const Contact = () => {
 	return (
 		<>
 			<section className="relative mx-auto  bg-primary flex  items-center justify-center">
-				<div className="bg-primary2 md:w-5/6 h-full mt-36 md:p-6 py-24 shadow-2xl flex flex-col items-center justify-center">
+				<div className="bg-primary2 md:w-5/6 h-full sm:mt-36 md:p-6 py-24 shadow-2xl flex flex-col items-center justify-center">
 					{/* Top heading */}
 					<div className="flex flex-col gap-6 p-4 mb-12 text-center">
 						<h1 className="text-5xl font-semibold">
@@ -100,8 +102,7 @@ const Contact = () => {
 									<Mail className="text-accent1" /> NitinDevSpace@gmail.com
 								</h1>
 								<h1 className="flex gap-2 text-white/80">
-									<MessageCircle className="text-accent1" /> +91 74041-85860 (
-									Whatsapp Only )
+									<MessageCircle className="text-accent1" /> +91 74041-85860
 								</h1>
 								<h1 className="flex gap-2 text-white/80">
 									<MapPin className="text-accent1" /> Gurugram, Haryana, India
@@ -169,6 +170,14 @@ const Contact = () => {
 										</div>
 									</div>
 								</div>
+							</div>
+							<div className="mt-6 flex justify-center">
+								<button
+									onClick={() => setShowFeedback(true)}
+									className="px-6 py-3 rounded-xl bg-accent2 text-black font-semibold shadow-lg hover:scale-105 transition transform duration-200 cursor-pointer"
+								>
+									★ Leave Feedback
+								</button>
 							</div>
 						</div>
 						{/* Right Section */}
@@ -292,6 +301,7 @@ const Contact = () => {
 					</div>
 				</div>
 			</section>
+			{showFeedback && <Feedback onClose={() => setShowFeedback(false)} />}
 			<Footer />
 		</>
 	);

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { getMessages } from "../../services/contact.service";
-import MessageBox from "../../components/MessageBox";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { getAllFeedback } from "../../services/feedback.service";
+import FeedbackBox from "../../components/FeedbackBox";
 
-function MessagesAdmin() {
-	const [messages, setMessages] = useState([]);
+function FeedbackAdmin() {
+	const [feedbacks, setFeedbacks] = useState([]);
 	const [open, setOpen] = useState(false);
 
 	const getData = async () => {
-		const allMessages = await getMessages();
+		const allFeedbacks = await getAllFeedback();
 
-		setMessages(allMessages.data);
+		setFeedbacks(allFeedbacks.data);
 	};
 
 	useEffect(() => {
@@ -25,13 +25,13 @@ function MessagesAdmin() {
 				}}
 				className="flex"
 			>
-				<h1 className="pb-2 text-2xl border-b-2">Messages</h1>
+				<h1 className="pb-2 text-2xl border-b-2">Feedbacks</h1>
 			</div>
-			{/* Messages */}
+			{/* Feedbacks */}
 			<div>
 				{open &&
-					messages.map((data, i) => {
-						return <MessageBox key={i} data={data} />;
+					feedbacks.map((data, i) => {
+						return <FeedbackBox key={i} feedbackObj={data} />;
 					})}
 			</div>
 			<button
@@ -46,4 +46,4 @@ function MessagesAdmin() {
 	);
 }
 
-export default MessagesAdmin;
+export default FeedbackAdmin;

@@ -1,6 +1,8 @@
 import { Eye, Layers } from "lucide-react";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { s } from "framer-motion/client";
+import StatusChip from "../../components/StatusChip";
 
 function ProjectCard({ project, onClick }) {
 	const { title, image, description, status, techStack } = project;
@@ -22,10 +24,7 @@ function ProjectCard({ project, onClick }) {
 				/>
 				<div className="absolute inset-0 z-20 bg-gradient-to-t from-black/60 to-transparent h-full "></div>
 				<h1 className="z-30 text-xl absolute py-4 px-6 bottom-0">{title}</h1>
-				<span className="absolute top-2 right-3 px-4 rounded-full bg-pink">
-					{" "}
-					{status}
-				</span>
+				<StatusChip status={status} />
 			</div>
 			<div className=" flex gap-1 flex-col pt-2 px-4 h-2/5">
 				<div className="overflow-hidden h-[53px]">

@@ -165,7 +165,7 @@ function ProjectsModal({
 						>
 							<option value="">Select status</option>
 							<option value="In Progress">In Progress</option>
-							<option value="Finished">Finished</option>
+							<option value="Completed">Completed</option>
 							<option value="Planned">Planned</option>
 							<option value="On Hold">On Hold</option>
 						</select>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CompassIcon, Github, X } from "lucide-react";
+import StatusChip from "./StatusChip";
 
 function ProjectDetails({ selectedProject }) {
 	const [currentImage, setCurrentImage] = useState(0);
@@ -34,11 +35,8 @@ function ProjectDetails({ selectedProject }) {
 				}}
 			>
 				{/* Status */}
-				<span className="absolute top-2 right-3 px-4 text-white rounded-full bg-pink/90 z-50">
-					{selectedProject.status}
-				</span>
+				<StatusChip status={selectedProject.status} />
 				{/* Crousel Images */}
-
 				<div className="relative mb-4 w-full overflow-hidden rounded">
 					<img
 						src={selectedProject.crousel[currentImage]}

@@ -15,8 +15,11 @@ function AlittleAboutMe() {
 			backend: data.get("backend"),
 			ai: data.get("ai"),
 		};
-		const res = await updateAboutme(payload);
-		console.log(res.message);
+		try {
+			await updateAboutme(payload);
+		} catch (error) {
+			console.error("Error updating about me:", error);
+		}
 	};
 
 	const getData = async () => {
@@ -40,7 +43,7 @@ function AlittleAboutMe() {
 	}, []);
 
 	return (
-		<div className="bg-primary2 relative flex flex-col justify-center rounded-lg h-fit m-4 p-4">
+		<div className="bg-primary2 relative flex flex-col rounded-xl h-fit m-4 p-6 shadow-xl border border-white/10">
 			{/* Heading Intro */}
 			<div
 				onClick={() => {

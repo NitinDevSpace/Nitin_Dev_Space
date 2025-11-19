@@ -44,7 +44,7 @@ function Intro() {
 	}, []);
 
 	return (
-		<div className="bg-primary2 relative flex flex-col justify-center rounded-lg h-fit m-4 p-4">
+		<div className="bg-primary2 relative flex flex-col rounded-xl h-fit m-4 p-6 shadow-xl border border-white/10">
 			{/* Heading Intro */}
 			<div
 				onClick={() => {

@@ -1,3 +1,4 @@
+import { log } from "three/tsl";
 import clientPromise from "./db.js";
 
 export default async function handler(req, res) {
@@ -7,9 +8,12 @@ export default async function handler(req, res) {
 		const db = client.db("Nitin_Dev_Space");
 		const collection = db.collection("password");
 
-		if (req.method === "GET") {
+		if (req.method === "POST") {
 			const password = await collection.findOne({});
-			return res.status(200).send({ success: true, data: password });
+			if(password.password !== req.body.password){
+				return res.status(200).send({ success: false });
+			}
+			return res.status(200).send({ success: true });
 		}
 	} catch (error) {
 		console.error("Detailed error:", {
