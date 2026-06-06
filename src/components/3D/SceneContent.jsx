@@ -2,21 +2,31 @@ import React from "react";
 import { OrbitControls, useTexture } from "@react-three/drei";
 import OrbitingCard from "./OrbitingCard";
 import model from "../../assets/model.png";
+import javaIcon from "../../../public/java-original.svg";
+import javaScriptIcon from "../../../public/javascript-original.svg";
+import reactIcon from "../../../public/react-original.svg";
+import mongodbIcon from "../../../public/mongodb-original.svg";
+import nodejsIcon from "../../../public/nodejs-original.svg";
+import tailwindIcon from "../../../public/tailwindcss-original.svg";
+import nextjsIcon from "../../../public/nextjs-original.svg";
+import springBootIcon from "../../../public/spring-boot-1.svg";
+import threejsIcon from "../../../public/threejs-original.svg";
+import reduxIcon from "../../../public/redux-original.svg";
 
 function SceneContent() {
 	const texture = useTexture(model);
 	const NUM_ICONS = 10;
 	const icons = [
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-		"https://cdn.worldvectorlogo.com/logos/spring-boot-1.svg",
-		"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg",
+		mongodbIcon,
+		nodejsIcon,
+		reactIcon,
+		reduxIcon,
+		javaIcon,
+		javaScriptIcon,
+		tailwindIcon,
+		nextjsIcon,
+		springBootIcon,
+		threejsIcon,
 	];
 	return (
 		<>
