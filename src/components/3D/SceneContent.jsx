@@ -2,16 +2,16 @@ import React from "react";
 import { OrbitControls, useTexture } from "@react-three/drei";
 import OrbitingCard from "./OrbitingCard";
 import model from "../../assets/model.png";
-import mongodbIcon from "../../assets/mongodb.svg";
-import nodejsIcon from "../../assets/nodejs.svg";
-import reactIcon from "../../assets/react.svg";
-import reduxIcon from "../../assets/redux.svg";
-import javaIcon from "../../assets/java.svg";
-import javaScriptIcon from "../../assets/javascript.svg";
-import tailwindIcon from "../../assets/tailwindcss.svg";
-import nextjsIcon from "../../assets/nextjs.svg";
-import springBootIcon from "../../assets/springboot.svg";
-import threejsIcon from "../../assets/threejs.svg";
+import mongodbIcon from "../../assets/mongodb.png";
+import nodejsIcon from "../../assets/nodejs.png";
+import reactIcon from "../../assets/react.png";
+import reduxIcon from "../../assets/redux.png";
+import javaIcon from "../../assets/java.png";
+import javaScriptIcon from "../../assets/javascript.png";
+import tailwindIcon from "../../assets/tailwindcss.png";
+import nextjsIcon from "../../assets/nextjs.png";
+import springBootIcon from "../../assets/springboot.png";
+import threejsIcon from "../../assets/threejs.png";
 
 function SceneContent() {
 	const texture = useTexture(model);
