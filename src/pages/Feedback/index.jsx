@@ -48,7 +48,7 @@ const Feedback = ({ onClose }) => {
 			onClick={onClose}
 		>
 			<div
-				className="bg-black/30 backdrop-blur-xl rounded-2xl shadow-2xl p-10 max-w-xl w-full text-center border border-white/10 relative"
+				className="bg-black/30 backdrop-blur-xl rounded-2xl shadow-2xl p-5 sm:p-10 max-w-xl w-full max-h-[90dvh] overflow-y-auto text-center border border-white/10 relative"
 				onClick={(e) => e.stopPropagation()}
 			>
 				<button
@@ -59,7 +59,7 @@ const Feedback = ({ onClose }) => {
 				</button>
 				{!submitted ? (
 					<>
-						<h1 className="text-3xl font-bold text-white mb-4">
+						<h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
 							Share Your Feedback ⭐
 						</h1>
 

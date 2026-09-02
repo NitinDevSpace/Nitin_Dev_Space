@@ -1,60 +1,69 @@
 import clientPromise from "./db.js";
 import { ObjectId } from "mongodb";
+import { blogSeed } from "./data/blogSeed.js";
 
-export default async function projectsHandler(req, res) {
+async function ensureSeed(collection) {
+	const count = await collection.countDocuments();
+	if (count === 0) {
+		await collection.insertMany(blogSeed);
+	}
+}
+
+export default async function handler(req, res) {
 	try {
 		const client = await clientPromise;
 		const db = client.db("Nitin_Dev_Space");
-		const collection = db.collection("Projects");
-
+		const collection = db.collection("Blogs");
 		const { method, query } = req;
 
 		if (method === "GET") {
+			await ensureSeed(collection);
+
 			if (query.id) {
-				const project = await collection.findOne({
-					_id: new ObjectId(query.id),
-				});
+				const blog = await collection.findOne({ _id: new ObjectId(query.id) });
 				return res.status(200).send({
 					success: true,
-					message: "Project fetched successfully",
-					data: project,
+					message: "Blog fetched successfully",
+					data: blog,
 				});
 			}
 
-			const migrated = await collection.countDocuments({
-				isKeyProject: { $exists: true },
-			});
-			if (migrated === 0) {
-				await collection.updateMany({}, { $set: { isKeyProject: false } });
-				await collection.updateMany(
-					{ title: { $regex: /connectsphere|entrify|nitin dev space/i } },
-					{ $set: { isKeyProject: true } }
-				);
+			if (query.slug) {
+				const blog = await collection.findOne({ slug: query.slug });
+				return res.status(200).send({
+					success: true,
+					message: "Blog fetched successfully",
+					data: blog,
+				});
 			}
 
-			const filter = query.key === "1" ? { isKeyProject: true } : {};
-			const projects = await collection.find(filter).toArray();
+			const filter = query.all === "1" ? {} : { published: true };
+			const blogs = await collection
+				.find(filter)
+				.project(query.all === "1" ? {} : { content: 0 })
+				.sort({ createdAt: -1 })
+				.toArray();
 
 			return res.status(200).send({
 				success: true,
-				message: "Project fetched successfully",
-				data: projects,
+				message: "Blogs fetched successfully",
+				data: blogs,
 			});
 		}
 
 		if (method === "POST") {
-			const newProject = await collection.insertOne({
+			const payload = {
 				...req.body,
-				isKeyProject: Boolean(req.body.isKeyProject),
-				overview: req.body.overview || "",
-				createdAt: new Date(),
-			});
-			if (!newProject) {
-				console.log("Error Adding new Project");
-			}
+				published: req.body.published !== false,
+				createdAt: req.body.createdAt
+					? new Date(req.body.createdAt)
+					: new Date(),
+				updatedAt: new Date(),
+			};
+			await collection.insertOne(payload);
 			return res.status(201).send({
 				success: true,
-				message: "Project added successfully",
+				message: "Blog added successfully",
 			});
 		}
 
@@ -63,7 +72,7 @@ export default async function projectsHandler(req, res) {
 			if (!id || !ObjectId.isValid(id)) {
 				return res.status(400).json({
 					success: false,
-					message: "Valid project id is required",
+					message: "Valid blog id is required",
 				});
 			}
 			const { _id, ...rest } = req.body || {};
@@ -74,12 +83,12 @@ export default async function projectsHandler(req, res) {
 			if (result.matchedCount === 0) {
 				return res.status(404).json({
 					success: false,
-					message: "Project not found",
+					message: "Blog not found",
 				});
 			}
 			return res.status(200).send({
 				success: true,
-				message: "Project updated successfully",
+				message: "Blog updated successfully",
 			});
 		}
 
@@ -88,19 +97,19 @@ export default async function projectsHandler(req, res) {
 			if (!id || !ObjectId.isValid(id)) {
 				return res.status(400).json({
 					success: false,
-					message: "Valid project id is required",
+					message: "Valid blog id is required",
 				});
 			}
 			const result = await collection.deleteOne({ _id: new ObjectId(id) });
 			if (result.deletedCount === 0) {
 				return res.status(404).json({
 					success: false,
-					message: "Project not found",
+					message: "Blog not found",
 				});
 			}
 			return res.status(200).send({
 				success: true,
-				message: "Project deleted successfully",
+				message: "Blog deleted successfully",
 			});
 		}
 
@@ -109,11 +118,7 @@ export default async function projectsHandler(req, res) {
 			message: "Method Not Allowed",
 		});
 	} catch (error) {
-		console.error("Detailed error:", {
-			message: error.message,
-			stack: error.stack,
-			name: error.name,
-		});
+		console.error("Blogs API error:", error);
 		return res.status(500).json({
 			success: false,
 			message: error.message,

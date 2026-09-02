@@ -1,23 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import ProjectCard from "./ProjectCard";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { getAllProjects } from "../../services/projects.service";
 import { useNavigate } from "react-router-dom";
-import ProjectDetails from "../../components/Modals/ProjectDetails";
-import Loading from "../../components/Loading";
+import { CreationsSkeleton } from "../../components/Loading";
+import CreationsCarousel from "../../components/3D/CreationsCarousel";
 
 function MyCreations() {
-	const scrollRef = useRef(null);
 	const navigate = useNavigate();
-
 	const [loading, setLoading] = useState(false);
 	const [projects, setProjects] = useState([]);
-	const [selectedProject, setSelectedProject] = useState(null);
 
 	const getData = async () => {
 		setLoading(true);
 		const allProjects = await getAllProjects();
-		setProjects(allProjects.data);
+		setProjects(allProjects?.data || []);
 		setLoading(false);
 	};
 
@@ -25,79 +21,21 @@ function MyCreations() {
 		getData();
 	}, []);
 
-	const scrollLeft = () => {
-		if (scrollRef.current) {
-			scrollRef.current.scrollBy({
-				left: -450,
-				behavior: "smooth",
-			});
-		}
-	};
-	const scrollRight = () => {
-		if (scrollRef.current) {
-			scrollRef.current.scrollBy({
-				left: 450,
-				behavior: "smooth",
-			});
-		}
-	};
-
 	return (
-		<div className="relative pt-24 overflow-hidden p-4 sm:w-11/12 h-screen flex flex-col gap-2 items-center justify-center mx-auto ">
-			{/* Heading */}
-			<div className="text-center mb-12">
-				<h1 className="text-5xl font-bold mb-6">
+		<div className="relative pt-16 sm:pt-24 overflow-hidden p-3 sm:p-4 w-full sm:w-11/12 min-h-[100dvh] flex flex-col gap-2 items-center justify-center mx-auto ">
+			<div className="text-center mb-6 sm:mb-8 px-2">
+				<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
 					My <span className="text-accent2">Creations</span>
 				</h1>
-				<p>
+				<p className="text-sm sm:text-base opacity-80">
 					A selection of projects where I've turned ideas into reality,
-					showcasing my skills in <br /> development and problem-solving.
+					showcasing my skills in{" "}
+					<br className="hidden sm:block" /> development and problem-solving.
 				</p>
 			</div>
-			{/* Crousel */}
-			<div className="h-[32rem]  min-w-[400px] overflow-hidden drop-shadow-2xl gap-7 flex justify-center items-center rounded-lg w-5/6 bg-primary3">
-				<button
-					onClick={scrollLeft}
-					className="absolute left-0 z-20 opacity-20 py-60 px-6 hover-scale hover:bg-black/40 hover:opacity-100 shadow-2xl"
-				>
-					{" "}
-					<ArrowLeft className="scale-150" />{" "}
-				</button>
-				<div
-					ref={scrollRef}
-					style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-					className="h-full  drop-shadow-2xl overflow-x-scroll gap-7 flex justify-start px-4 items-center rounded-lg w-full scroll-smooth"
-				>
-					{loading ? (
-						<div className="relative gap-5 z-10 flex rounded-lg overflow-hidden h-[440px] hover:cursor-pointer">
-							<Loading />
-							<Loading />
-							<Loading />
-						</div>
-					) : (
-						projects.map((project, i) => {
-							return (
-								<div className={`transition-transform duration-300`} key={i}>
-									<ProjectCard
-										className="z-10"
-										project={project}
-										onClick={() => {
-											setSelectedProject(project);
-										}}
-									/>
-								</div>
-							);
-						})
-					)}
-				</div>
-				<button
-					onClick={scrollRight}
-					className="absolute right-0 z-20 opacity-20 py-60 px-6 hover-scale hover:bg-black/40 hover:opacity-100 shadow-2xl"
-				>
-					<ArrowRight className="scale-150" />
-				</button>
+			<div className="relative h-[22rem] xs:h-[26rem] sm:h-[30rem] md:h-[32rem] w-full max-w-7xl overflow-hidden drop-shadow-2xl flex justify-center items-center rounded-lg bg-primary3">
+				{loading ? <CreationsSkeleton /> : <CreationsCarousel projects={projects} />}
 			</div>
-			{/* Button */}
 			<button
 				onClick={() => {
 					navigate("/projects");
@@ -106,13 +44,6 @@ function MyCreations() {
 			>
 				See All My Projects <ArrowRight className="animate-bounce-x" />
 			</button>
-			{/* Project Details Modal */}
-			{selectedProject && (
-				<ProjectDetails
-					selectedProject={selectedProject}
-					setSelectedProject={setSelectedProject}
-				/>
-			)}
 		</div>
 	);
 }

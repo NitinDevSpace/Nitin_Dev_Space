@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FolderGit2, User } from "lucide-react";
 import { useRef } from "react";
 import { getIntro } from "../../services/intro.service";
-import Loading from "../../components/Loading";
+import { Skeleton } from "../../components/Loading";
 
 function IntroSection() {
 	const navigate = useNavigate();
@@ -30,14 +30,15 @@ function IntroSection() {
 			if (!res) {
 				console.log("Error fetching");
 			}
-			setIntro(res.data);
-			setLoading(false);
+			setIntro(res?.data || null);
 		} catch (error) {
 			console.error(
 				"HTTP error fetching intro:",
 				error.response?.status,
 				error.message
 			);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -52,17 +53,15 @@ function IntroSection() {
 				initial={false}
 				animate={isImageInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 150 }}
 				transition={{ duration: 1, ease: easeInOut }}
-				className="absolute md:visible invisible mt-36 w-1/4 right-36 z-20"
+				className="absolute hidden lg:block mt-24 xl:mt-36 w-[min(28%,280px)] right-4 lg:right-12 xl:right-36 z-20"
 			>
 				{loading ? (
 					<motion.div
-						className="w-full h-auto rounded-xl right-5  bottom-4 relative z-20"
+						className="w-full aspect-[3/4] rounded-xl right-5 bottom-4 relative z-20 overflow-hidden"
 						animate={{ y: [0, -10, 0] }}
 						transition={{ duration: 2, repeat: Infinity }}
 					>
-						<div className="overflow-hidden">
-							<Loading />
-						</div>
+						<Skeleton className="w-full h-full rounded-xl" />
 					</motion.div>
 				) : (
 					<motion.img
@@ -99,7 +98,7 @@ function IntroSection() {
 				)}
 			</motion.div>
 
-			<div className="flex flex-col justify-start sm:flex-row px-16  gap-8 lg:gap-16">
+			<div className="flex flex-col justify-start sm:flex-row px-4 sm:px-8 md:px-16 gap-4 sm:gap-8 lg:gap-16 w-full">
 				<motion.button
 					ref={buttonRef}
 					initial={{ opacity: 0, y: 0, visibility: "hidden" }}
@@ -108,11 +107,11 @@ function IntroSection() {
 							? { opacity: 1, y: 0, visibility: "visible" }
 							: { opacity: 0, y: 0, visibility: "hidden" }
 					}
-					transition={{ duration: 1, delay: 0.5, ease: easeInOut }}
+					transition={{ duration: 0.5, ease: easeInOut }}
 					onClick={() => {
 						navigate("/projects");
 					}}
-					className="bg-accent2 flex gap-4 px-8 hover-scale text-black py-3 rounded-xl"
+					className="bg-accent2 flex gap-4 px-6 sm:px-8 hover-scale text-black py-3 rounded-xl justify-center"
 				>
 					<FolderGit2 />
 					My Creations
@@ -125,11 +124,11 @@ function IntroSection() {
 							? { opacity: 1, y: 0, visibility: "visible" }
 							: { opacity: 0, y: 0, visibility: "hidden" }
 					}
-					transition={{ duration: 1, delay: 0.8, ease: easeInOut }}
+					transition={{ duration: 0.5, ease: easeInOut }}
 					onClick={() => {
 						navigate("/profile");
 					}}
-					className="border-2 flex gap-4 px-8 py-3 hover-scale rounded-xl border-accent2"
+					className="border-2 flex gap-4 px-6 sm:px-8 py-3 hover-scale rounded-xl border-accent2 justify-center"
 				>
 					<User />
 					About Me

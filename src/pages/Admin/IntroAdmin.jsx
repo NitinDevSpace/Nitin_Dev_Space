@@ -1,41 +1,18 @@
-import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { getIntro, updateIntro } from "../../services/intro.service";
+import { Eye, Save } from "lucide-react";
 
-function Intro() {
-	const [open, setOpen] = useState(false);
-	const [intro, setIntro] = useState({});
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const data = new FormData(e.target);
-			const payload = {
-				imageUrl: data.get("imageUrl"),
-				bio: data.get("bio"),
-			};
-			const res = await updateIntro(payload);
-			if (res) {
-				console.log(res.message);
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+function IntroAdmin() {
+	const [intro, setIntro] = useState({ imageUrl: "", bio: "" });
+	const [status, setStatus] = useState("");
+	const [saving, setSaving] = useState(false);
 
 	const getData = async () => {
 		try {
 			const res = await getIntro();
-			if (!res) {
-				console.log("Error fetching");
-			}
-			setIntro(res.data);
+			setIntro(res?.data || { imageUrl: "", bio: "" });
 		} catch (error) {
-			console.error(
-				"HTTP error fetching intro:",
-				error.response?.status,
-				error.message
-			);
+			console.error("HTTP error fetching intro:", error.message);
 		}
 	};
 
@@ -43,80 +20,117 @@ function Intro() {
 		getData();
 	}, []);
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setSaving(true);
+		setStatus("");
+		try {
+			const res = await updateIntro({
+				imageUrl: intro.imageUrl,
+				bio: intro.bio,
+			});
+			setStatus(res?.success ? "Intro saved — live on Home" : "Could not save");
+		} catch {
+			setStatus("Could not save intro");
+		} finally {
+			setSaving(false);
+		}
+	};
+
 	return (
-		<div className="bg-primary2 relative flex flex-col rounded-xl h-fit m-4 p-6 shadow-xl border border-white/10">
-			{/* Heading Intro */}
-			<div
-				onClick={() => {
-					setOpen(!open);
-				}}
-				className="flex"
-			>
-				<h1 className="pb-2 text-2xl border-b-2">Intro</h1>
+		<div className="space-y-4">
+			<div>
+				<h2 className="text-2xl font-semibold">Intro</h2>
+				<p className="text-sm opacity-60 mt-1">
+					Edits the homepage intro block (photo + bio under “Hi, I&apos;m Nitin
+					Kumar”).
+				</p>
 			</div>
-			{/* Form & para Collapsible */}
-			{open && (
-				<div className="flex m-6 flex-col">
-					<div>
-						<h1>Upload an Image</h1>
-						<div>Image Container</div>
+
+			<div className="grid lg:grid-cols-2 gap-6">
+				<form
+					onSubmit={handleSubmit}
+					className="bg-primary2/70 border border-white/10 rounded-xl p-6 space-y-5"
+				>
+					<p className="text-xs uppercase tracking-[0.2em] text-accent2">
+						Edit fields
+					</p>
+					<label className="flex flex-col gap-1.5 text-xs text-white/55">
+						Image URL
+						<input
+							type="url"
+							className="admin-field"
+							placeholder="https://..."
+							value={intro.imageUrl || ""}
+							onChange={(e) =>
+								setIntro((prev) => ({ ...prev, imageUrl: e.target.value }))
+							}
+						/>
+					</label>
+					<label className="flex flex-col gap-1.5 text-xs text-white/55">
+						Bio (HTML allowed)
+						<textarea
+							rows="8"
+							className="admin-field"
+							placeholder="Your bio..."
+							value={intro.bio || ""}
+							onChange={(e) =>
+								setIntro((prev) => ({ ...prev, bio: e.target.value }))
+							}
+						/>
+					</label>
+					<button
+						type="submit"
+						disabled={saving}
+						className="inline-flex items-center gap-2 bg-accent2 text-black font-semibold px-5 py-2.5 rounded-lg"
+					>
+						<Save size={16} />
+						{saving ? "Saving..." : "Save intro"}
+					</button>
+					{status && <p className="text-sm text-accent2">{status}</p>}
+				</form>
+
+				<div className="bg-primary border border-white/10 rounded-xl p-6">
+					<p className="text-xs uppercase tracking-[0.2em] text-accent2 mb-4 flex items-center gap-2">
+						<Eye size={14} /> Live preview · Homepage intro
+					</p>
+					<div className="relative rounded-xl border border-accent2/20 bg-primary2 p-5 overflow-hidden">
+						<div className="flex flex-col md:flex-row gap-6 items-start">
+							<div className="w-full md:w-2/5">
+								{intro.imageUrl ? (
+									<img
+										src={intro.imageUrl}
+										alt="Intro preview"
+										className="w-full rounded-xl object-cover aspect-[3/4] border border-white/10"
+									/>
+								) : (
+									<div className="w-full aspect-[3/4] rounded-xl bg-white/5 border border-dashed border-white/20 flex items-center justify-center text-xs opacity-50">
+										Image preview
+									</div>
+								)}
+							</div>
+							<div className="flex-1">
+								<h3 className="text-2xl font-bold mb-2">
+									Hi, I&apos;m <span className="text-accent2">Nitin Kumar</span>
+								</h3>
+								<p className="text-sm mb-4 opacity-80">
+									Software Engineer <span className="text-accent2">//</span> Full
+									Stack Developer <span className="text-accent2">//</span> AI
+									Enthusiast
+								</p>
+								<div
+									className="text-sm text-gray-200 leading-relaxed"
+									dangerouslySetInnerHTML={{
+										__html: intro.bio || "<em class='opacity-40'>Bio preview…</em>",
+									}}
+								/>
+							</div>
+						</div>
 					</div>
-					<form onSubmit={handleSubmit} className="mt-6">
-						<div className="mb-4 flex items-center">
-							<label htmlFor="imageUrl" className="text-xl">
-								Image Url:
-							</label>
-							<input
-								type="text"
-								placeholder="Enter the image URL"
-								name="imageUrl"
-								id="imageUrl"
-								className="dark-input"
-								value={intro.imageUrl}
-								onChange={(e) =>
-									setIntro((prev) => ({ ...prev, imageUrl: e.target.value }))
-								}
-							/>
-						</div>
-						<div className="flex flex-col gap-2">
-							<label htmlFor="bio" className="text-xl">
-								Bio:
-							</label>
-							<textarea
-								className="dark-input"
-								rows="3"
-								onInput={(e) => {
-									e.target.style.height = "auto"; // reset height
-									e.target.style.height = `${e.target.scrollHeight}px`; // set to full scroll height
-								}}
-								name="bio"
-								id="bio"
-								placeholder="Enter your bio"
-								value={intro.bio}
-								onChange={(e) =>
-									setIntro((prev) => ({ ...prev, bio: e.target.value }))
-								}
-							/>
-						</div>
-						<button
-							type="submit"
-							className="p-2 bg-orange rounded-lg mt-4 justify-self-center flex"
-						>
-							Update
-						</button>
-					</form>
 				</div>
-			)}
-			<button
-				onClick={() => {
-					setOpen(!open);
-				}}
-				className="absolute top-4 right-5"
-			>
-				{open ? <ArrowUp /> : <ArrowDown />}
-			</button>
+			</div>
 		</div>
 	);
 }
 
-export default Intro;
+export default IntroAdmin;

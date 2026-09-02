@@ -15,7 +15,7 @@ function StatusChip({ status }) {
 
 	return (
 		<span
-			className={`absolute top-2 right-3 px-4 rounded text-sm font-medium z-50 ${colorClass}`}
+			className={`absolute top-2 right-2 sm:right-3 max-w-[45%] truncate px-2 sm:px-3 py-0.5 rounded text-xs sm:text-sm font-medium z-50 ${colorClass}`}
 		>
 			{status}
 		</span>

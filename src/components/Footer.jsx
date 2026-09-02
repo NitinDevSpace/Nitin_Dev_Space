@@ -41,7 +41,7 @@ function Footer() {
 	const isInView = useInView(ref, { once: false, threshold: 0.4 });
 
 	return (
-		<div className="relative my-2 justify-self-center shadow-2xl py-12 flex flex-col justify-center w-11/12 h-screen items-center">
+		<div className="relative my-2 justify-self-center shadow-2xl py-10 sm:py-12 flex flex-col justify-center w-11/12 min-h-0 sm:min-h-[80dvh] items-center">
 			<motion.div
 				ref={ref}
 				initial={false}
@@ -56,37 +56,38 @@ function Footer() {
 								<img
 									src={logo}
 									alt="logo"
-									className="w-20 scale-150 h-20 rounded-lg p-2"
+									className="w-14 sm:w-16 h-14 sm:h-16 rounded-lg p-1 object-contain"
 								/>
-								<h1 className="p-2 text-bold text-2xl ">Nitin Dev Space</h1>
+								<h1 className="p-2 font-semibold text-xl sm:text-2xl">
+									Nitin Dev Space
+								</h1>
 							</div>
-							<p className="opacity-80">
-								Passionate about building innovative web solutions and exploring{" "}
-								<br />
-								the frontiers of AI. Let's connect and create something <br />
+							<p className="opacity-80 text-sm sm:text-base max-w-md">
+								Passionate about building innovative web solutions and exploring
+								the frontiers of AI. Let&apos;s connect and create something
 								impactful.
 							</p>
 						</div>
 						{/* Right Section */}
 						<div className="flex flex-col">
 						{/* Internal Pages Links */}
-							<ul className="flex flex-wrap text-2xl text-accent1 items-center gap-4 p-6 pb-12">
+							<ul className="flex flex-wrap text-base sm:text-xl text-accent1 items-center gap-2 sm:gap-4 p-2 sm:p-6 pb-8 sm:pb-12">
 								<li className="hover-scale hover:text-accent2">
 									<Link to={"/"}>Home </Link>
 								</li>
-								<li className="text-3xl  opacity-60">/</li>
+								<li className="text-xl sm:text-2xl opacity-60">/</li>
 								<li className="hover-scale hover:text-accent2">
 									<Link to={"/profile"}>About Me </Link>
 								</li>
-								<li className="text-3xl opacity-60">/</li>
+								<li className="text-xl sm:text-2xl opacity-60">/</li>
 								<li className="hover-scale hover:text-accent2">
 									<Link to={"/projects"}>Projects </Link>
 								</li>
-								<li className="text-3xl opacity-60">/</li>
+								<li className="text-xl sm:text-2xl opacity-60">/</li>
 								<li className="hover-scale hover:text-accent2">
 									<Link to={"/blogs"}>Blogs</Link>
 								</li>
-								<li className="text-3xl opacity-60">/</li>
+								<li className="text-xl sm:text-2xl opacity-60">/</li>
 								<li className="hover-scale hover:text-accent2">
 									<Link to={"/contact"}>Contact</Link>
 								</li>
@@ -99,7 +100,7 @@ function Footer() {
 											onClick={() =>
 												openNewWindow("https://github.com/NitinDevSpace")
 											}
-											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
 											<Github />{" "}
 										</button>
@@ -115,7 +116,7 @@ function Footer() {
 													"https://www.linkedin.com/in/nitindevspace/"
 												)
 											}
-											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
 											<Linkedin />{" "}
 										</button>
@@ -128,7 +129,7 @@ function Footer() {
 											onClick={() =>
 												openNewWindow("https://leetcode.com/u/NitinDevSpace/")
 											}
-											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
 											<Code />{" "}
 										</button>
@@ -143,7 +144,7 @@ function Footer() {
 													"https://www.hackerrank.com/profile/nitindevspace"
 												)
 											}
-											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
 											<Braces />{" "}
 										</button>
@@ -158,7 +159,7 @@ function Footer() {
 													"https://www.instagram.com/creative_core_23/"
 												)
 											}
-											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
 											<Instagram />{" "}
 										</button>
@@ -169,7 +170,7 @@ function Footer() {
 									<div className="relative group">
 										<button
 											onClick={openEmailClient}
-											className="bg-primary hover-scale text-white rounded-full scale-125 p-2"
+											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
 											{" "}
 											<Mail />{" "}
@@ -191,7 +192,7 @@ function Footer() {
 					</div>
 					{/* Copyright & Policies Section */}
 					<div className="flex flex-col sm:flex-row gap-4 relative mt-6 font-thin opacity-60 text-sm justify-between">
-						<span>© 2025 Nitin Kumar. All Rights Reserved.</span>
+						<span>© 2026 Nitin Kumar. All Rights Reserved.</span>
 						<span>Built with Vite + React and ❤️.</span>
 						<div className="flex flex-col sm:flex-row gap-4 items-start">
 							<Link

@@ -10,11 +10,41 @@ import {
 	MapPin,
 	MessageCircle,
 	Send,
+	Star,
 	UserCircle,
 } from "lucide-react";
 import { sendMessage } from "../../services/contact.service";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+
+const socials = [
+	{
+		label: "GitHub",
+		icon: Github,
+		action: "link",
+		href: "https://github.com/NitinDevSpace",
+	},
+	{
+		label: "LinkedIn",
+		icon: Linkedin,
+		action: "link",
+		href: "https://www.linkedin.com/in/nitindevspace/",
+	},
+	{
+		label: "Instagram",
+		icon: Instagram,
+		action: "link",
+		href: "https://www.instagram.com/creative_core_23/",
+	},
+	{
+		label: "Email",
+		icon: Mail,
+		action: "email",
+	},
+];
+
+const fieldClass =
+	"w-full rounded-lg bg-primary border border-white/15 px-3 py-2.5 text-sm text-white placeholder:text-white/35 focus:outline-none focus:border-accent2/60 transition-colors";
 
 const Contact = () => {
 	const navigate = useNavigate();
@@ -28,271 +58,236 @@ const Contact = () => {
 		const email = "nitindevspace@gmail.com";
 		const subject = "Let's Connect (From Portfolio)";
 		const body = "Hi there,\n\nI'm reaching out to discuss...";
-
 		const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
 			subject
 		)}&body=${encodeURIComponent(body)}`;
-
 		window.open(mailtoLink, "_blank");
 	};
 
 	const [inputs, setInputs] = useState({});
 	const [sent, setSent] = useState(false);
 	const [clicked, setClicked] = useState(false);
+	const [error, setError] = useState("");
 	const [showFeedback, setShowFeedback] = useState(false);
 
 	const handleChange = (e) => {
-		const name = e.target.name;
-		const value = e.target.value;
+		const { name, value } = e.target;
 		setInputs((values) => ({ ...values, [name]: value }));
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setClicked(true);
+		setError("");
 
 		try {
 			const res = await sendMessage(inputs);
-			console.log(res.message);
-			if (res.success) {
+			if (res?.success) {
 				setSent(true);
+				setInputs({});
+			} else {
+				setError(res?.message || "Could not send message. Please try again.");
+				setClicked(false);
 			}
-			setInputs({});
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			console.log(err);
+			setError("Could not send message. Please try again.");
+			setClicked(false);
 		}
 	};
 
 	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		});
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, []);
 
 	return (
 		<>
-			<section className="relative mx-auto  bg-primary flex  items-center justify-center">
-				<div className="bg-primary2 md:w-5/6 h-full sm:mt-36 md:p-6 py-24 shadow-2xl flex flex-col items-center justify-center">
-					{/* Top heading */}
-					<div className="flex flex-col gap-6 p-4 mb-12 text-center">
-						<h1 className="text-5xl font-semibold">
-							Get In <span className="text-accent2 opacity-90">Touch</span>
+			<section className="relative bg-primary w-full flex justify-center items-start px-3 sm:px-4 pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-14">
+				<div className="w-full max-w-5xl bg-primary2 border border-white/10 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8">
+					<div className="text-center mb-6 sm:mb-8">
+						<h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
+							Get In <span className="text-accent2">Touch</span>
 						</h1>
-						<p className="font-thin opacity-70">
-							Have a project in mind, a question, or just want to connect? I'm
-							<br />
-							here to listen. Drop me a line!
+						<p className="mt-2 sm:mt-3 text-sm sm:text-base text-white/60 max-w-xl mx-auto leading-relaxed px-1">
+							Have a project in mind, a question, or just want to connect? Drop
+							me a line — I usually reply within a day or two.
 						</p>
 					</div>
-					{/* Below Section */}
-					<div className="flex flex-col lg:flex-row w-5/6 mt-12 py-4 justify-center h-full gap-12">
-						{/* Left Section */}
-						<div className="flex flex-col gap-12 rounded-lg border border-accent2/10 min-w-[40%]  h-fit p-6  bg-primary shadow-xl">
-							<div className="flex flex-col gap-4">
-								<h1 className="flex gap-2 text-accent2">
-									<UserCircle className="text-accent1" /> Contact Information
-								</h1>
-								<span className="opacity-70">
-									Find me through these channels
-								</span>
-							</div>
-							<div className="flex flex-col gap-4 border-b-2 border-white/70 pb-6">
-								<h1 className="flex gap-2 text-white/80">
-									<Mail className="text-accent1" /> NitinDevSpace@gmail.com
-								</h1>
-								<h1 className="flex gap-2 text-white/80">
-									<MessageCircle className="text-accent1" /> +91 74041-85860
-								</h1>
-								<h1 className="flex gap-2 text-white/80">
-									<MapPin className="text-accent1" /> Gurugram, Haryana, India
-								</h1>
-							</div>
+
+					<div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-4 sm:gap-5 lg:gap-6">
+						{/* Contact info */}
+						<aside className="rounded-xl border border-white/10 bg-primary/70 p-5 sm:p-6 flex flex-col gap-6">
 							<div>
-								<h1 className="opacity-70 mb-12">Or on my Socials</h1>
-								<div className=" items-center flex flex-col justify-center flex-wrap gap-6 left-1/2 ">
-									<div className=" items-center flex justify-center flex-wrap gap-4 left-1/2 mb-6 opacity-70">
-										<div className="relative group">
-											<button
-												onClick={() =>
-													openNewWindow("https://github.com/NitinDevSpace")
-												}
-												className="bg-primary2 hover-scale text-accent2 rounded-full scale-125 p-2"
-											>
-												<Github />
-											</button>
+								<h2 className="flex items-center gap-2 text-accent2 text-sm font-medium">
+									<UserCircle size={18} className="text-accent1" />
+									Contact Information
+								</h2>
+								<p className="text-xs text-white/45 mt-1.5">
+									Find me through these channels
+								</p>
+							</div>
 
-											<span className="opacity-0 mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary2 text-accent2 rounded absolute transition duration-200 pointer-events-none z-50">
-												Github
-											</span>
-										</div>
-										<div className="relative group">
-											<button
-												onClick={() =>
-													openNewWindow(
-														"https://www.linkedin.com/in/nitindevspace/"
-													)
-												}
-												className="bg-primary2 hover-scale text-accent2 rounded-full scale-125 p-2"
-											>
-												<Linkedin />
-											</button>
-											<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary2 text-accent2 rounded absolute transition duration-200 pointer-events-none z-50">
-												LinkedIn
-											</span>
-										</div>
+							<ul className="space-y-3 text-sm">
+								<li className="flex items-center gap-3 text-white/80">
+									<span className="shrink-0 w-9 h-9 rounded-lg bg-primary2 border border-white/10 flex items-center justify-center">
+										<Mail size={16} className="text-accent1" />
+									</span>
+									<span className="break-all">NitinDevSpace@gmail.com</span>
+								</li>
+								<li className="flex items-center gap-3 text-white/80">
+									<span className="shrink-0 w-9 h-9 rounded-lg bg-primary2 border border-white/10 flex items-center justify-center">
+										<MessageCircle size={16} className="text-accent1" />
+									</span>
+									+91 74041-85860
+								</li>
+								<li className="flex items-center gap-3 text-white/80">
+									<span className="shrink-0 w-9 h-9 rounded-lg bg-primary2 border border-white/10 flex items-center justify-center">
+										<MapPin size={16} className="text-accent1" />
+									</span>
+									Gurugram, Haryana, India
+								</li>
+							</ul>
 
-										<div className="relative group">
+							<div className="border-t border-white/10 pt-5">
+								<p className="text-xs text-white/45 mb-3">Or on my socials</p>
+								<div className="flex flex-wrap gap-2.5">
+									{socials.map((item) => {
+										const Icon = item.icon;
+										return (
 											<button
+												key={item.label}
+												type="button"
+												title={item.label}
 												onClick={() =>
-													openNewWindow(
-														"https://www.instagram.com/creative_core_23/"
-													)
+													item.action === "email"
+														? openEmailClient()
+														: openNewWindow(item.href)
 												}
-												className="bg-primary2 hover-scale text-accent2 rounded-full scale-125 p-2"
+												className="w-10 h-10 rounded-full bg-primary2 border border-white/10 text-accent2 hover:border-accent2/50 hover:scale-105 transition-all flex items-center justify-center"
 											>
-												<Instagram />
+												<Icon size={18} />
 											</button>
-											<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary2 text-accent2 rounded absolute transition duration-200 pointer-events-none z-50">
-												Instagram
-											</span>
-										</div>
-										<div className="relative group">
-											<button
-												onClick={openEmailClient}
-												className="bg-primary2 hover-scale text-accent2 rounded-full scale-125 p-2"
-											>
-												<Mail />
-											</button>
-											<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary2 text-accent2 rounded absolute transition duration-200 pointer-events-none z-50">
-												Email
-											</span>
-										</div>
-									</div>
+										);
+									})}
 								</div>
 							</div>
-							<div className="mt-6 flex justify-center">
-								<button
-									onClick={() => setShowFeedback(true)}
-									className="px-6 py-3 rounded-xl bg-accent2 text-black font-semibold shadow-lg hover:scale-105 transition transform duration-200 cursor-pointer"
-								>
-									★ Leave Feedback
-								</button>
-							</div>
-						</div>
-						{/* Right Section */}
-						<div className="rounded-lg  text-white/80 border border-accent2/10 min-w-[40%] h-fit p-6 bg-primary shadow-xl">
-							<h1 className="flex gap-2 text-accent2 mb-6">
-								<Send className="text-accent1" /> Send a Message
-							</h1>
+
+							<button
+								type="button"
+								onClick={() => setShowFeedback(true)}
+								className="mt-auto inline-flex items-center justify-center gap-2 rounded-lg border border-accent2/40 bg-accent2/10 text-accent2 px-4 py-2.5 text-sm font-medium hover:bg-accent2 hover:text-black transition-colors"
+							>
+								<Star size={15} /> Leave Feedback
+							</button>
+						</aside>
+
+						{/* Message form */}
+						<div className="rounded-xl border border-white/10 bg-primary/70 p-5 sm:p-6">
+							<h2 className="flex items-center gap-2 text-accent2 text-sm font-medium mb-5">
+								<Send size={16} className="text-accent1" />
+								Send a Message
+							</h2>
+
 							{sent ? (
 								<motion.div
 									layout
-									className="text-center text-lg  mt-12 flex flex-col gap-4 justify-center items-center pb-12"
+									className="text-center py-10 flex flex-col gap-3 justify-center items-center"
 								>
-									<MailCheck className="text-accent1" />
-									<h1>
-										Thank you for reaching out!
-										<br /> Your message has been successfully received. I'll get{" "}
-										<br />
-										back to you as soon as possible.
-									</h1>
+									<div className="w-14 h-14 rounded-full bg-accent1/15 border border-accent1/30 flex items-center justify-center mb-1">
+										<MailCheck className="text-accent1" size={26} />
+									</div>
+									<h3 className="text-lg font-medium">Message received</h3>
+									<p className="text-sm text-white/60 max-w-sm leading-relaxed">
+										Thanks for reaching out. I&apos;ll get back to you as soon
+										as possible.
+									</p>
 									<button
-										onClick={() => {
-											navigate("/");
-										}}
-										className="bg-accent2 rounded p-2 text-black"
+										type="button"
+										onClick={() => navigate("/")}
+										className="mt-2 bg-accent2 rounded-lg px-4 py-2 text-sm text-black font-semibold"
 									>
 										Go to Homepage
 									</button>
 								</motion.div>
 							) : (
 								<motion.div layout>
-									<form onSubmit={handleSubmit} className="flex flex-col gap-4">
-										<div>
-											<label htmlFor="fullname" className="flex flex-col gap-2">
-												Full Name
-												<input
-													type="text"
-													id="fullname"
-													name="fullName"
-													value={inputs.fullName || ""}
-													onChange={handleChange}
-													className="rounded bg-black p-2 border border-white/40"
-													placeholder="Your Name "
-													required={true}
-												/>
-											</label>
-										</div>
-										<div>
-											<label htmlFor="email" className="flex flex-col gap-2">
-												Email Address
-												<input
-													type="email"
-													id="email"
-													name="email"
-													value={inputs.email || ""}
-													onChange={handleChange}
-													className="rounded bg-black p-2 border border-white/40"
-													placeholder="your.email@example.com"
-													required={true}
-												/>
-											</label>
-										</div>
-										<div>
-											<label
-												htmlFor="phoneNumber"
-												className="flex flex-col gap-2"
-											>
-												Phone Number (Optional)
-												<input
-													type="number"
-													id="phoneNumber"
-													name="phoneNumber"
-													value={inputs.phoneNumber || ""}
-													onChange={handleChange}
-													className="rounded bg-black p-2 border border-white/40"
-													placeholder="+91 12345-67890 "
-												/>
-											</label>
-										</div>
-										<div>
-											<label htmlFor="subject" className="flex flex-col gap-2">
-												Subject
-												<input
-													type="text"
-													id="subject"
-													name="subject"
-													value={inputs.subject || ""}
-													onChange={handleChange}
-													className="rounded bg-black p-2 border border-white/40"
-													placeholder="Project Enquiry "
-													required={true}
-												/>
-											</label>
-										</div>
-										<div>
-											<label htmlFor="message" className="flex flex-col gap-2">
-												Message
-												<textarea
-													type="text"
-													id="message"
-													name="message"
-													value={inputs.message || ""}
-													onChange={handleChange}
-													rows={4}
-													className="rounded bg-black p-2 border border-white/40"
-													placeholder="Your message here... "
-													required={true}
-												/>
-											</label>
-										</div>
+									<form
+										onSubmit={handleSubmit}
+										className="grid sm:grid-cols-2 gap-3.5"
+									>
+										<label className="flex flex-col gap-1.5 text-xs text-white/70 sm:col-span-2">
+											Full Name
+											<input
+												type="text"
+												name="fullName"
+												value={inputs.fullName || ""}
+												onChange={handleChange}
+												className={fieldClass}
+												placeholder="Your name"
+												required
+											/>
+										</label>
+										<label className="flex flex-col gap-1.5 text-xs text-white/70">
+											Email Address
+											<input
+												type="email"
+												name="email"
+												value={inputs.email || ""}
+												onChange={handleChange}
+												className={fieldClass}
+												placeholder="you@example.com"
+												required
+											/>
+										</label>
+										<label className="flex flex-col gap-1.5 text-xs text-white/70">
+											Phone (optional)
+											<input
+												type="tel"
+												name="phoneNumber"
+												value={inputs.phoneNumber || ""}
+												onChange={handleChange}
+												className={fieldClass}
+												placeholder="+91 12345-67890"
+											/>
+										</label>
+										<label className="flex flex-col gap-1.5 text-xs text-white/70 sm:col-span-2">
+											Subject
+											<input
+												type="text"
+												name="subject"
+												value={inputs.subject || ""}
+												onChange={handleChange}
+												className={fieldClass}
+												placeholder="Project enquiry"
+												required
+											/>
+										</label>
+										<label className="flex flex-col gap-1.5 text-xs text-white/70 sm:col-span-2">
+											Message
+											<textarea
+												name="message"
+												value={inputs.message || ""}
+												onChange={handleChange}
+												rows={4}
+												className={`${fieldClass} resize-y min-h-[96px]`}
+												placeholder="Your message here..."
+												required
+											/>
+										</label>
+
+										{error && (
+											<p className="sm:col-span-2 text-sm text-red-400">
+												{error}
+											</p>
+										)}
+
 										<button
 											disabled={clicked}
 											type="submit"
-											className="flex gap-4 cursor-pointer w-full justify-center bg-accent2 p-3  rounded text-black"
+											className="sm:col-span-2 inline-flex items-center justify-center gap-2 cursor-pointer w-full bg-accent2 py-2.5 rounded-lg text-black text-sm font-semibold hover:brightness-105 disabled:opacity-60 transition"
 										>
-											<Send /> {clicked ? "Sending ..." : "Send Message"}
+											<Send size={16} />
+											{clicked ? "Sending..." : "Send Message"}
 										</button>
 									</form>
 								</motion.div>

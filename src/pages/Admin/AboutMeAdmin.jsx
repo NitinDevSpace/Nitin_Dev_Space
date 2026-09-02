@@ -1,161 +1,144 @@
-import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { getAboutme, updateAboutme } from "../../services/aboutMe.service";
+import { Code, Eye, Layers, Save, Sparkles } from "lucide-react";
 
-function AlittleAboutMe() {
-	const [open, setOpen] = useState(false);
-	const [about, setAbout] = useState({});
+function AboutMeAdmin() {
+	const [about, setAbout] = useState({
+		para: "",
+		frontend: "",
+		backend: "",
+		ai: "",
+	});
+	const [status, setStatus] = useState("");
+	const [saving, setSaving] = useState(false);
+
+	useEffect(() => {
+		async function load() {
+			const res = await getAboutme();
+			setAbout(res?.data || {});
+		}
+		load();
+	}, []);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const data = new FormData(e.target);
-		const payload = {
-			para: data.get("para"),
-			frontend: data.get("frontend"),
-			backend: data.get("backend"),
-			ai: data.get("ai"),
-		};
+		setSaving(true);
+		setStatus("");
 		try {
-			await updateAboutme(payload);
-		} catch (error) {
-			console.error("Error updating about me:", error);
+			await updateAboutme({
+				para: about.para,
+				frontend: about.frontend,
+				backend: about.backend,
+				ai: about.ai,
+			});
+			setStatus("About Me saved — live on Home");
+		} catch {
+			setStatus("Could not save");
+		} finally {
+			setSaving(false);
 		}
 	};
 
-	const getData = async () => {
-		try {
-			const res = await getAboutme();
-			if (!res) {
-				console.log("Error fetching");
-			}
-			setAbout(res.data);
-		} catch (error) {
-			console.error(
-				"HTTP error fetching intro:",
-				error.response?.status,
-				error.message
-			);
-		}
-	};
-
-	useEffect(() => {
-		getData();
-	}, []);
+	const cards = [
+		{ key: "frontend", title: "Frontend Development", icon: Code },
+		{ key: "backend", title: "Backend Architecture", icon: Layers },
+		{ key: "ai", title: "AI Integration", icon: Sparkles },
+	];
 
 	return (
-		<div className="bg-primary2 relative flex flex-col rounded-xl h-fit m-4 p-6 shadow-xl border border-white/10">
-			{/* Heading Intro */}
-			<div
-				onClick={() => {
-					setOpen(!open);
-				}}
-				className="flex"
-			>
-				<h1 className="pb-2 text-2xl border-b-2">A Little About me</h1>
+		<div className="space-y-4">
+			<div>
+				<h2 className="text-2xl font-semibold">A Little About Me</h2>
+				<p className="text-sm opacity-60 mt-1">
+					Controls the homepage “A Little About Me” paragraph and three feature
+					cards.
+				</p>
 			</div>
-			{/* Form & para Collapsible */}
-			{open && (
-				<div className="flex m-6 flex-col">
-					<form onSubmit={handleSubmit} method="post" className="mt-6">
-						<div className="flex mt-4  flex-col gap-2">
-							<label htmlFor="para" className="text-xl">
-								Para:
-							</label>
-							<textarea
-								className="dark-input"
-								rows="3"
-								onInput={(e) => {
-									e.target.style.height = "auto"; // reset height
-									e.target.style.height = `${e.target.scrollHeight}px`; // set to full scroll height
-								}}
-								name="para"
-								id="para"
-								placeholder="Enter About Yourself"
-								value={about.para}
-								onChange={(e) => {
-									setAbout((prev) => ({ ...prev, para: e.target.value }));
-								}}
-							/>
-						</div>
-						<div className="flex mt-4  flex-col gap-2">
-							<label htmlFor="frontend" className="text-xl">
-								Frontend:
-							</label>
-							<textarea
-								className="dark-input"
-								rows="3"
-								onInput={(e) => {
-									e.target.style.height = "auto"; // reset height
-									e.target.style.height = `${e.target.scrollHeight}px`; // set to full scroll height
-								}}
-								name="frontend"
-								id="frontend"
-								placeholder="Enter Frontend Para"
-								value={about.frontend}
-								onChange={(e) => {
-									setAbout((prev) => ({ ...prev, frontend: e.target.value }));
-								}}
-							/>
-						</div>
-						<div className="flex mt-4  flex-col gap-2">
-							<label htmlFor="backend" className="text-xl">
-								Backend:
-							</label>
-							<textarea
-								className="dark-input"
-								rows="3"
-								onInput={(e) => {
-									e.target.style.height = "auto"; // reset height
-									e.target.style.height = `${e.target.scrollHeight}px`; // set to full scroll height
-								}}
-								name="backend"
-								id="backend"
-								placeholder="Enter Backend Para"
-								value={about.backend}
-								onChange={(e) => {
-									setAbout((prev) => ({ ...prev, backend: e.target.value }));
-								}}
-							/>
-						</div>
-						<div className="flex mt-4  flex-col gap-2">
-							<label htmlFor="ai" className="text-xl">
-								Ai:
-							</label>
-							<textarea
-								className="dark-input"
-								rows="3"
-								value={about.ai}
-								onChange={(e) => {
-									setAbout((prev) => ({ ...prev, ai: e.target.value }));
-								}}
-								onInput={(e) => {
-									e.target.style.height = "auto"; // reset height
-									e.target.style.height = `${e.target.scrollHeight}px`; // set to full scroll height
-								}}
-								name="ai"
-								id="ai"
-								placeholder="Enter Ai Para"
-							/>
-						</div>
-						<button
-							type="submit"
-							className="p-2 bg-orange shadow-2xl rounded-lg mt-4  justify-self-center flex"
+
+			<div className="grid xl:grid-cols-2 gap-6">
+				<form
+					onSubmit={handleSubmit}
+					className="bg-primary2/70 border border-white/10 rounded-xl p-6 space-y-4"
+				>
+					<p className="text-xs uppercase tracking-[0.2em] text-accent2">
+						Edit fields
+					</p>
+					<label className="flex flex-col gap-1.5 text-xs text-white/55">
+						Main paragraph
+						<textarea
+							rows="3"
+							className="admin-field"
+							value={about.para || ""}
+							onChange={(e) =>
+								setAbout((p) => ({ ...p, para: e.target.value }))
+							}
+						/>
+					</label>
+					{cards.map((card) => (
+						<label
+							key={card.key}
+							className="flex flex-col gap-1.5 text-xs text-white/55"
 						>
-							Update
-						</button>
-					</form>
+							{card.title}
+							<textarea
+								rows="3"
+								className="admin-field"
+								value={about[card.key] || ""}
+								onChange={(e) =>
+									setAbout((p) => ({ ...p, [card.key]: e.target.value }))
+								}
+							/>
+						</label>
+					))}
+					<button
+						type="submit"
+						disabled={saving}
+						className="inline-flex items-center gap-2 bg-accent2 text-black font-semibold px-5 py-2.5 rounded-lg"
+					>
+						<Save size={16} />
+						{saving ? "Saving..." : "Save about section"}
+					</button>
+					{status && <p className="text-sm text-accent2">{status}</p>}
+				</form>
+
+				<div className="bg-primary border border-white/10 rounded-xl p-6">
+					<p className="text-xs uppercase tracking-[0.2em] text-accent2 mb-4 flex items-center gap-2">
+						<Eye size={14} /> Live preview · Homepage section
+					</p>
+					<div className="text-center mb-6">
+						<h3 className="text-2xl font-semibold mb-3">
+							A Little <span className="text-accent2">About Me</span>
+						</h3>
+						<p className="text-sm opacity-70 font-light">
+							{about.para || "Paragraph preview…"}
+						</p>
+					</div>
+					<div className="grid sm:grid-cols-3 gap-3">
+						{cards.map((card) => {
+							const Icon = card.icon;
+							return (
+								<div
+									key={card.key}
+									className="border border-white/15 rounded-lg bg-primary2 p-4 text-center"
+								>
+									<div className="bg-black/30 text-accent2 mb-3 rounded-full w-12 h-12 flex items-center justify-center mx-auto">
+										<Icon size={18} />
+									</div>
+									<h4 className="text-sm font-semibold mb-2">{card.title}</h4>
+									<p
+										className="text-xs opacity-70 font-light"
+										dangerouslySetInnerHTML={{
+											__html: about[card.key] || "Card copy…",
+										}}
+									/>
+								</div>
+							);
+						})}
+					</div>
 				</div>
-			)}
-			<button
-				onClick={() => {
-					setOpen(!open);
-				}}
-				className="absolute top-4 right-5"
-			>
-				{open ? <ArrowUp /> : <ArrowDown />}
-			</button>
+			</div>
 		</div>
 	);
 }
 
-export default AlittleAboutMe;
+export default AboutMeAdmin;

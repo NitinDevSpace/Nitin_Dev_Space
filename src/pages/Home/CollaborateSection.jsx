@@ -22,12 +22,12 @@ function Collaborate() {
 	}, [isTextInView]);
 
 	return (
-		<div className="relative my-4 overflow-hidden flex flex-col gap-6 md:gap-16 w-11/12 h-[70vh] sm:h-screen items-center  justify-center mx-auto">
-			<h1 ref={textRef} className="text-3xl sm:text-7xl">
+		<div className="relative my-4 overflow-hidden flex flex-col gap-6 md:gap-12 w-11/12 min-h-[70vh] sm:min-h-[100dvh] items-center justify-center mx-auto px-2">
+			<h1 ref={textRef} className="text-3xl sm:text-5xl md:text-7xl text-center">
 				<motion.span
 					initial={false}
 					animate={
-						isTextInView ? { opacity: 1, x: 200 } : { opacity: 0, x: 200 }
+						isTextInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }
 					}
 					transition={{ duration: 1, ease: easeInOut }}
 				>
@@ -55,8 +55,10 @@ function Collaborate() {
 					transition={{ duration: 1, ease: easeInOut }}
 				>
 					I'm always excited to discuss new projects, innovative ideas, or
-					potential collaborations. <br /> If you have something in mind, or
-					just want to connect, feel free to reach out!
+					potential collaborations.{" "}
+					<br className="hidden sm:block" />
+					If you have something in mind, or just want to connect, feel free to
+					reach out!
 				</motion.p>
 			</div>
 
@@ -64,7 +66,7 @@ function Collaborate() {
 				ref={buttonRef}
 				initial={false}
 				animate={isButtonInView ? { opacity: 1 } : { opacity: 0 }}
-				transition={{ duration: 1, delay: 0.3, ease: easeInOut }}
+				transition={{ duration: 0.5, ease: easeInOut }}
 				onClick={() => {
 					navigate("/contact");
 				}}

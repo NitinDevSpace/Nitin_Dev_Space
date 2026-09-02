@@ -64,14 +64,14 @@ function AboutSection() {
 				<motion.div
 					layout
 					animate={{
-						height: isBoxInView ? "20rem" : "7rem",
-						width: isBoxInView ? "18.5rem" : "7rem",
+						height: isBoxInView ? "auto" : "7rem",
+						minHeight: isBoxInView ? "18rem" : "7rem",
 					}}
-					transition={{ duration: 1, delay: 0.1, type: "spring" }}
-					className="w-[19rem] hover:scale-105 transition-transform duration-300 overflow-hidden border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6"
+					transition={{ duration: 0.6, type: "spring" }}
+					className="w-full max-w-[19rem] sm:hover:scale-105 transition-transform duration-300 overflow-hidden border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6"
 				>
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-						<Code className="scale-150" />
+						<Code size={28} />
 					</i>
 
 					<motion.h1 layout className="text-lg font-semibold">
@@ -86,14 +86,14 @@ function AboutSection() {
 				<motion.div
 					layout
 					animate={{
-						height: isBoxInView ? "20rem" : "7rem",
-						width: isBoxInView ? "18.5rem" : "7rem",
+						height: isBoxInView ? "auto" : "7rem",
+						minHeight: isBoxInView ? "18rem" : "7rem",
 					}}
-					transition={{ duration: 1, delay: 0.1, type: "spring" }}
-					className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6"
+					transition={{ duration: 0.6, type: "spring" }}
+					className="w-full max-w-[19rem] sm:hover:scale-105 transition-transform duration-300 overflow-hidden border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6"
 				>
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-						<Layers className="scale-150" />
+						<Layers size={28} />
 					</i>
 
 					<h1 className="text-lg font-semibold">Backend Architecture</h1>
@@ -106,14 +106,14 @@ function AboutSection() {
 				<motion.div
 					layout
 					animate={{
-						height: isBoxInView ? "20rem" : "7rem",
-						width: isBoxInView ? "18.5rem" : "7rem",
+						height: isBoxInView ? "auto" : "7rem",
+						minHeight: isBoxInView ? "18rem" : "7rem",
 					}}
-					transition={{ duration: 1, delay: 0.1, type: "spring" }}
-					className="w-[19rem]  hover:scale-105 transition-transform duration-300 overflow-hidden border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6"
+					transition={{ duration: 0.6, type: "spring" }}
+					className="w-full max-w-[19rem] sm:hover:scale-105 transition-transform duration-300 overflow-hidden border border-gray-400/30 bg-primary2 justify-start items-center flex flex-col gap-3 rounded-lg p-6"
 				>
 					<i className="bg-black/30 text-accent2 mb-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
-						<Sparkles className="scale-150" />
+						<Sparkles size={28} />
 					</i>
 
 					<h1 className="text-lg font-semibold">AI Integration</h1>
