@@ -1,6 +1,6 @@
-import clientPromise from "./db.js";
+import clientPromise from "../lib/db.js";
 import { ObjectId } from "mongodb";
-import { blogSeed } from "./data/blogSeed.js";
+import { blogSeed } from "../lib/data/blogSeed.js";
 
 async function ensureSeed(collection) {
 	const count = await collection.countDocuments();

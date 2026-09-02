@@ -1,4 +1,4 @@
-import clientPromise from "./db.js";
+import clientPromise from "../lib/db.js";
 import { ObjectId } from "mongodb";
 
 function monthKey(date) {

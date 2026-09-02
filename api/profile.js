@@ -1,5 +1,5 @@
-import clientPromise from "./db.js";
-import { profileSeed } from "./data/profileSeed.js";
+import clientPromise from "../lib/db.js";
+import { profileSeed } from "../lib/data/profileSeed.js";
 
 export default async function handler(req, res) {
 	try {

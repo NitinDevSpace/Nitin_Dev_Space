@@ -3,6 +3,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
 	plugins: [react()],
+	build: {
+		// Admin + Three.js make a large main bundle; warning only, not a deploy failure.
+		chunkSizeWarningLimit: 2000,
+	},
 
 	server: {
 		// your local dev proxy (npx vercel dev)

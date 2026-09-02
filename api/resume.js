@@ -1,4 +1,4 @@
-import clientPromise from "./db.js";
+import clientPromise from "../lib/db.js";
 import { Binary } from "mongodb";
 
 export default async function handler(req, res) {
