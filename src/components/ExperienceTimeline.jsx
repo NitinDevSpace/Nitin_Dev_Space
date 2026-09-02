@@ -1,7 +1,11 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { motion, useInView } from "framer-motion";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
+import {
+	formatExperiencePeriod,
+	sortExperiences,
+} from "../utils/experienceDates";
 
 function FloatingNodes() {
 	const group = useRef();
@@ -60,7 +64,8 @@ function ExperienceCard({ item, index }) {
 				style={{ transformStyle: "preserve-3d" }}
 			>
 				<div className="flex gap-1 items-center bg-accent1/30 w-fit p-1 px-2 rounded-lg text-xs text-white/50 mb-2">
-					<Calendar size={16} className="text-accent1/70" /> {item.period}
+					<Calendar size={16} className="text-accent1/70" />{" "}
+					{formatExperiencePeriod(item) || item.period}
 				</div>
 				<h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3>
 				<div className="text-sm opacity-70 font-extralight my-2">
@@ -85,7 +90,12 @@ function ExperienceCard({ item, index }) {
 }
 
 function ExperienceTimeline({ experiences = [] }) {
-	if (!experiences.length) {
+	const sorted = useMemo(
+		() => sortExperiences(experiences),
+		[experiences]
+	);
+
+	if (!sorted.length) {
 		return (
 			<p className="p-6 opacity-60 text-sm">
 				Experience will appear here once it is added in the admin dashboard.
@@ -101,8 +111,12 @@ function ExperienceTimeline({ experiences = [] }) {
 				</Canvas>
 			</div>
 			<ul className="relative space-y-7 ml-3 border-l-2 border-accent2/60">
-				{experiences.map((item, index) => (
-					<ExperienceCard key={`${item.title}-${index}`} item={item} index={index} />
+				{sorted.map((item, index) => (
+					<ExperienceCard
+						key={`${item.start || item.period}-${item.title}-${index}`}
+						item={item}
+						index={index}
+					/>
 				))}
 			</ul>
 		</div>

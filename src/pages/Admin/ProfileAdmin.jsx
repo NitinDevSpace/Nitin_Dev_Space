@@ -8,14 +8,12 @@ import {
 	Save,
 	Trash2,
 } from "lucide-react";
-
-const emptyExperience = {
-	period: "",
-	title: "",
-	company: "",
-	location: "",
-	bullets: [""],
-};
+import {
+	formatExperiencePeriod,
+	newExperience,
+	normalizeExperience,
+	sortExperiences,
+} from "../../utils/experienceDates";
 
 const emptyEducation = {
 	title: "",
@@ -69,7 +67,7 @@ function ProfileAdmin() {
 			const res = await getProfile();
 			if (res?.data) {
 				setProfile({
-					experiences: res.data.experiences || [],
+					experiences: sortExperiences(res.data.experiences || []),
 					skillCategories: res.data.skillCategories || [],
 					education: res.data.education || [],
 				});
@@ -78,15 +76,33 @@ function ProfileAdmin() {
 		load();
 	}, []);
 
+	const updateExperience = (index, patch, { resort = false } = {}) => {
+		setProfile((p) => {
+			const experiences = [...p.experiences];
+			const next = normalizeExperience({ ...experiences[index], ...patch });
+			experiences[index] = next;
+			return {
+				...p,
+				experiences: resort ? sortExperiences(experiences) : experiences,
+			};
+		});
+	};
+
 	const save = async () => {
 		setSaving(true);
 		setStatus("");
+		const experiences = sortExperiences(profile.experiences).map((exp) => {
+			const normalized = normalizeExperience(exp);
+			return {
+				...normalized,
+				period: formatExperiencePeriod(normalized),
+				bullets: (normalized.bullets || []).filter((b) => String(b).trim()),
+			};
+		});
+		setProfile((p) => ({ ...p, experiences }));
 		const payload = {
 			...profile,
-			experiences: profile.experiences.map((exp) => ({
-				...exp,
-				bullets: (exp.bullets || []).filter((b) => String(b).trim()),
-			})),
+			experiences,
 			skillCategories: profile.skillCategories.map((cat) => ({
 				...cat,
 				skills: Array.isArray(cat.skills)
@@ -145,7 +161,10 @@ function ProfileAdmin() {
 								onClick={() =>
 									setProfile((p) => ({
 										...p,
-										experiences: [...p.experiences, { ...emptyExperience }],
+										experiences: sortExperiences([
+											newExperience(),
+											...p.experiences,
+										]),
 									}))
 								}
 								className="flex items-center gap-2 text-sm border border-white/15 px-3 py-1.5 rounded-lg hover:border-accent2/40"
@@ -153,6 +172,10 @@ function ProfileAdmin() {
 								<Plus size={14} /> Add role
 							</button>
 						</div>
+						<p className="text-xs text-white/40">
+							Roles sort automatically by date (current / newest first). New
+							roles start at the top.
+						</p>
 
 						{profile.experiences.length === 0 && (
 							<p className="text-sm opacity-45">No roles yet.</p>
@@ -160,30 +183,13 @@ function ProfileAdmin() {
 
 						{profile.experiences.map((exp, index) => (
 							<div
-								key={index}
+								key={`${exp.start || "x"}-${exp.title || "role"}-${index}`}
 								className="rounded-xl border border-white/10 bg-primary/40 p-4 space-y-3"
 							>
-								<div className="flex justify-end gap-1.5">
-									<IconBtn
-										onClick={() =>
-											setProfile((p) => ({
-												...p,
-												experiences: moveItem(p.experiences, index, -1),
-											}))
-										}
-									>
-										<ArrowUp size={15} />
-									</IconBtn>
-									<IconBtn
-										onClick={() =>
-											setProfile((p) => ({
-												...p,
-												experiences: moveItem(p.experiences, index, 1),
-											}))
-										}
-									>
-										<ArrowDown size={15} />
-									</IconBtn>
+								<div className="flex items-center justify-between gap-2">
+									<p className="text-[11px] text-accent2/80">
+										{formatExperiencePeriod(exp) || "Set start month"}
+									</p>
 									<IconBtn
 										danger
 										onClick={() =>
@@ -198,38 +204,61 @@ function ProfileAdmin() {
 								</div>
 								<div className="grid sm:grid-cols-2 gap-3">
 									<label className="flex flex-col gap-1.5 text-xs text-white/55">
-										Period
+										Start (month & year)
 										<input
+											type="month"
 											className={field}
-											placeholder="Sept 2025 - Dec 2025"
-											value={exp.period}
+											value={exp.start || ""}
 											onChange={(e) =>
-												setProfile((p) => {
-													const experiences = [...p.experiences];
-													experiences[index] = {
-														...exp,
-														period: e.target.value,
-													};
-													return { ...p, experiences };
-												})
+												updateExperience(
+													index,
+													{ start: e.target.value },
+													{ resort: true }
+												)
 											}
 										/>
+									</label>
+									<label className="flex flex-col gap-1.5 text-xs text-white/55">
+										End (month & year)
+										<input
+											type="month"
+											className={field}
+											value={exp.end || ""}
+											disabled={Boolean(exp.isCurrent)}
+											onChange={(e) =>
+												updateExperience(
+													index,
+													{ end: e.target.value, isCurrent: false },
+													{ resort: true }
+												)
+											}
+										/>
+									</label>
+									<label className="sm:col-span-2 flex items-center gap-3 text-sm text-white/70 rounded-lg border border-white/10 bg-primary/30 px-3 py-2.5">
+										<input
+											type="checkbox"
+											checked={Boolean(exp.isCurrent)}
+											onChange={(e) =>
+												updateExperience(
+													index,
+													{
+														isCurrent: e.target.checked,
+														end: e.target.checked ? "" : exp.end,
+													},
+													{ resort: true }
+												)
+											}
+										/>
+										Currently working here
 									</label>
 									<label className="flex flex-col gap-1.5 text-xs text-white/55">
 										Title
 										<input
 											className={field}
 											placeholder="Software Engineer Intern"
-											value={exp.title}
+											value={exp.title || ""}
 											onChange={(e) =>
-												setProfile((p) => {
-													const experiences = [...p.experiences];
-													experiences[index] = {
-														...exp,
-														title: e.target.value,
-													};
-													return { ...p, experiences };
-												})
+												updateExperience(index, { title: e.target.value })
 											}
 										/>
 									</label>
@@ -238,34 +267,20 @@ function ProfileAdmin() {
 										<input
 											className={field}
 											placeholder="Company"
-											value={exp.company}
+											value={exp.company || ""}
 											onChange={(e) =>
-												setProfile((p) => {
-													const experiences = [...p.experiences];
-													experiences[index] = {
-														...exp,
-														company: e.target.value,
-													};
-													return { ...p, experiences };
-												})
+												updateExperience(index, { company: e.target.value })
 											}
 										/>
 									</label>
-									<label className="flex flex-col gap-1.5 text-xs text-white/55">
+									<label className="flex flex-col gap-1.5 text-xs text-white/55 sm:col-span-2">
 										Location
 										<input
 											className={field}
 											placeholder="Remote / City"
-											value={exp.location}
+											value={exp.location || ""}
 											onChange={(e) =>
-												setProfile((p) => {
-													const experiences = [...p.experiences];
-													experiences[index] = {
-														...exp,
-														location: e.target.value,
-													};
-													return { ...p, experiences };
-												})
+												updateExperience(index, { location: e.target.value })
 											}
 										/>
 									</label>
@@ -278,13 +293,8 @@ function ProfileAdmin() {
 										placeholder="Built X using Y..."
 										value={(exp.bullets || []).join("\n")}
 										onChange={(e) =>
-											setProfile((p) => {
-												const experiences = [...p.experiences];
-												experiences[index] = {
-													...exp,
-													bullets: e.target.value.split("\n"),
-												};
-												return { ...p, experiences };
+											updateExperience(index, {
+												bullets: e.target.value.split("\n"),
 											})
 										}
 									/>
@@ -307,8 +317,8 @@ function ProfileAdmin() {
 									setProfile((p) => ({
 										...p,
 										skillCategories: [
-											...p.skillCategories,
 											{ ...emptySkill },
+											...p.skillCategories,
 										],
 									}))
 								}
@@ -417,7 +427,7 @@ function ProfileAdmin() {
 								onClick={() =>
 									setProfile((p) => ({
 										...p,
-										education: [...p.education, { ...emptyEducation }],
+										education: [{ ...emptyEducation }, ...p.education],
 									}))
 								}
 								className="flex items-center gap-2 text-sm border border-white/15 px-3 py-1.5 rounded-lg hover:border-accent2/40"
@@ -524,7 +534,7 @@ function ProfileAdmin() {
 								{previewExp ? (
 									<div className="rounded-lg border border-white/10 bg-primary/50 p-3 space-y-1">
 										<p className="text-[10px] text-white/40">
-											{previewExp.period || "Period"}
+											{formatExperiencePeriod(previewExp) || "Period"}
 										</p>
 										<p className="font-semibold text-sm">
 											{previewExp.title || "Role title"}

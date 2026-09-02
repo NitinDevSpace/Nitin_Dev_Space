@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { getMessages } from "../../services/contact.service";
 import { Inbox, Mail, Phone, RefreshCw, X } from "lucide-react";
 import { Skeleton } from "../../components/Loading";
-import { createdAtFromDoc } from "../../utils/text";
+import { createdAtFromDoc, sortNewestFirst } from "../../utils/text";
 
 function MessagesAdmin() {
 	const [messages, setMessages] = useState([]);
@@ -14,7 +14,7 @@ function MessagesAdmin() {
 		setLoading(true);
 		try {
 			const allMessages = await getMessages();
-			setMessages(allMessages?.data || []);
+			setMessages(sortNewestFirst(allMessages?.data || []));
 		} finally {
 			setLoading(false);
 		}

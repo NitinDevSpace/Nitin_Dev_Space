@@ -34,9 +34,19 @@ export function createdAtFromDoc(doc) {
 	if (!doc) return null;
 	if (doc.createdAt) return new Date(doc.createdAt);
 	if (doc.date) return new Date(doc.date);
+	if (doc.uploadedAt) return new Date(doc.uploadedAt);
 	if (doc._id && typeof doc._id === "string" && doc._id.length >= 8) {
 		const seconds = parseInt(doc._id.substring(0, 8), 16);
 		if (!Number.isNaN(seconds)) return new Date(seconds * 1000);
 	}
 	return null;
+}
+
+/** Newest first — used in admin grids after create/refresh. */
+export function sortNewestFirst(items = []) {
+	return [...items].sort((a, b) => {
+		const ta = createdAtFromDoc(a)?.getTime() || 0;
+		const tb = createdAtFromDoc(b)?.getTime() || 0;
+		return tb - ta;
+	});
 }

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ProjectsModal from "../../components/Modals/ProjectsModal";
 import DeleteModal from "../../components/Modals/DeleteModal";
 import { getAllProjects } from "../../services/projects.service";
-import { getProjectOverview } from "../../utils/text";
+import { getProjectOverview, sortNewestFirst } from "../../utils/text";
 
 function Projects() {
 	const [editModal, setEditModal] = useState(false);
@@ -15,7 +15,7 @@ function Projects() {
 
 	const getData = async () => {
 		const allProjects = await getAllProjects();
-		setProjects(allProjects?.data || []);
+		setProjects(sortNewestFirst(allProjects?.data || []));
 	};
 
 	useEffect(() => {

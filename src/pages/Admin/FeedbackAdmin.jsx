@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { MessageSquareHeart, RefreshCw, Star, X } from "lucide-react";
 import { getAllFeedback } from "../../services/feedback.service";
 import { Skeleton } from "../../components/Loading";
+import { sortNewestFirst } from "../../utils/text";
 
 const FILTERS = [
 	{ id: "all", label: "All" },
@@ -38,7 +39,7 @@ function FeedbackAdmin() {
 		setLoading(true);
 		try {
 			const allFeedbacks = await getAllFeedback();
-			setFeedbacks(allFeedbacks?.data || []);
+			setFeedbacks(sortNewestFirst(allFeedbacks?.data || []));
 		} finally {
 			setLoading(false);
 		}

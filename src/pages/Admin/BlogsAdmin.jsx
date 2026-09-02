@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import BlogsModal from "../../components/Modals/BlogsModal";
 import DeleteModal from "../../components/Modals/DeleteModal";
 import { deleteBlog, getAllBlogs } from "../../services/blogs.service";
-import { briefText } from "../../utils/text";
+import { briefText, sortNewestFirst } from "../../utils/text";
 
 function BlogsAdmin() {
 	const [editModal, setEditModal] = useState(false);
@@ -15,7 +15,7 @@ function BlogsAdmin() {
 
 	const getData = async () => {
 		const allBlogs = await getAllBlogs(true);
-		setBlogs(allBlogs?.data || []);
+		setBlogs(sortNewestFirst(allBlogs?.data || []));
 	};
 
 	useEffect(() => {

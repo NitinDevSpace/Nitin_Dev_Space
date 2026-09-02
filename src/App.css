@@ -29,6 +29,7 @@
 	.dark-input,
 	.admin-field {
 		@apply w-full bg-primary/70 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white/90 placeholder:text-white/30 focus:outline-none focus:border-accent2/50 focus:bg-primary transition-colors;
+		color-scheme: dark;
 	}
 	@keyframes marquee {
 		0% {
