@@ -27,7 +27,7 @@
 	],
 	"rewrites": [
 		{
-			"source": "/((?!api/|src/|@vite|@react-refresh|node_modules/|favicon\\.ico|favicon\\.png|robots\\.txt|sitemap\\.xml|ads\\.txt|llms\\.txt|humans\\.txt|site\\.webmanifest|browserconfig\\.xml|apple-touch-icon\\.png|og-image\\.png|logo\\.png|icon-.*\\.png|favicon-.*\\.png|mstile-.*\\.png|.*\\.txt).*)",
+			"source": "/((?!api/|src/|@vite|@react-refresh|node_modules/|favicon\\.ico|favicon\\.png|robots\\.txt|sitemap\\.xml|BingSiteAuth\\.xml|ads\\.txt|llms\\.txt|humans\\.txt|site\\.webmanifest|browserconfig\\.xml|apple-touch-icon\\.png|og-image\\.png|logo\\.png|icon-.*\\.png|favicon-.*\\.png|mstile-.*\\.png|.*\\.txt|.*\\.xml).*)",
 			"destination": "/index.html"
 		}
 	],
@@ -46,6 +46,13 @@
 				{ "key": "Content-Type", "value": "application/xml; charset=utf-8" },
 				{ "key": "Cache-Control", "value": "public, max-age=3600" },
 				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/BingSiteAuth.xml",
+			"headers": [
+				{ "key": "Content-Type", "value": "text/xml; charset=utf-8" },
+				{ "key": "Cache-Control", "value": "public, max-age=300" }
 			]
 		},
 		{
