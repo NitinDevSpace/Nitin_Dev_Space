@@ -5,6 +5,7 @@ import { FolderGit2, User } from "lucide-react";
 import { useRef } from "react";
 import { getIntro } from "../../services/intro.service";
 import { Skeleton } from "../../components/Loading";
+import { sectionInView } from "../../utils/motion";
 
 function IntroSection() {
 	const navigate = useNavigate();
@@ -12,13 +13,10 @@ function IntroSection() {
 	const textRef = useRef(null);
 	const buttonRef = useRef(null);
 	const buttonRef2 = useRef(null);
-	const isImageInView = useInView(imageRef, { once: false, threshold: 0.5 });
-	const isTextInView = useInView(textRef, { once: false, threshold: 0.5 });
-	const isButtonInView = useInView(buttonRef, { once: false, threshold: 0.3 });
-	const isButtonInView2 = useInView(buttonRef2, {
-		once: false,
-		threshold: 0.3,
-	});
+	const isImageInView = useInView(imageRef, sectionInView);
+	const isTextInView = useInView(textRef, sectionInView);
+	const isButtonInView = useInView(buttonRef, sectionInView);
+	const isButtonInView2 = useInView(buttonRef2, sectionInView);
 
 	const [intro, setIntro] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -51,8 +49,8 @@ function IntroSection() {
 			<motion.div
 				ref={imageRef}
 				initial={false}
-				animate={isImageInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 150 }}
-				transition={{ duration: 1, ease: easeInOut }}
+				animate={isImageInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 48 }}
+				transition={{ duration: 0.7, ease: easeInOut }}
 				className="absolute hidden lg:block mt-24 xl:mt-36 w-[min(28%,280px)] right-4 lg:right-12 xl:right-36 z-20"
 			>
 				{loading ? (
@@ -78,8 +76,8 @@ function IntroSection() {
 			<motion.div
 				ref={textRef}
 				initial={false}
-				animate={isTextInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -150 }}
-				transition={{ duration: 1, ease: easeInOut }}
+				animate={isTextInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+				transition={{ duration: 0.7, ease: easeInOut }}
 				className="flex flex-col w-full md:w-3/5 justify-start text-left pb-12 px-5 sm:px-16"
 			>
 				<h1 className="text-3xl md:text-4xl lg:text-6xl font-bold font-serif mb-6">

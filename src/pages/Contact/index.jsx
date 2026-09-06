@@ -106,11 +106,12 @@ const Contact = () => {
 				<div className="w-full max-w-5xl bg-primary2 border border-white/10 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8">
 					<div className="text-center mb-6 sm:mb-8">
 						<h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
-							Get In <span className="text-accent2">Touch</span>
+							Hire <span className="text-accent2">Nitin Dev Space</span>
 						</h1>
 						<p className="mt-2 sm:mt-3 text-sm sm:text-base text-white/60 max-w-xl mx-auto leading-relaxed px-1">
-							Have a project in mind, a question, or just want to connect? Drop
-							me a line — I usually reply within a day or two.
+							Need a custom web app, a product build, or a freelance software
+							developer? Start a project with Nitin Dev Space — I usually
+							reply within a day or two.
 						</p>
 					</div>
 

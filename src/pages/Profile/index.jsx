@@ -89,8 +89,8 @@ const About = () => {
 						</span>
 					</h1>
 					<p className="opacity-70 mt-3 sm:mt-4 text-center max-w-2xl text-sm sm:text-base">
-						A detailed overview of my experience, skills, and educational
-						background.
+						The engineer behind Nitin Dev Space — experience, skills, and
+						the track record behind the freelance software brand.
 					</p>
 					<button
 						onClick={async () => {

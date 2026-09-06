@@ -6,6 +6,7 @@ import { BlogPostSkeleton } from "../../components/Loading";
 import AdSlot from "../../components/AdSlot";
 import { ensureAdsScript } from "../../utils/ads";
 import { getBlogBySlug } from "../../services/blogs.service";
+import { applyJsonLd, applySeo, SITE_NAME, SITE_URL } from "../../utils/seo";
 
 const BlogPost = () => {
 	const { slug } = useParams();
@@ -27,6 +28,51 @@ const BlogPost = () => {
 		}
 		fetchData();
 	}, [slug]);
+
+	useEffect(() => {
+		const path = `/blogs/${slug}`;
+		if (loading) return;
+		if (!blog) {
+			applySeo({
+				title: `Post not found | ${SITE_NAME}`,
+				description: "This blog post could not be found on Nitin Dev Space.",
+				path,
+				noindex: true,
+			});
+			applyJsonLd("nd-jsonld-page", null);
+			return;
+		}
+		applySeo({
+			title: `${blog.title} | ${SITE_NAME}`,
+			description:
+				blog.excerpt ||
+				`Read ${blog.title} on Nitin Dev Space, a software brand for custom web apps and freelance builds.`,
+			path,
+			image: blog.coverImage,
+			type: "article",
+		});
+		applyJsonLd("nd-jsonld-page", {
+			"@context": "https://schema.org",
+			"@type": "BlogPosting",
+			headline: blog.title,
+			description: blog.excerpt || blog.title,
+			image: blog.coverImage,
+			datePublished: blog.createdAt || undefined,
+			author: {
+				"@type": "Person",
+				name: "Nitin Kumar",
+				url: SITE_URL,
+			},
+			publisher: {
+				"@type": "Organization",
+				name: SITE_NAME,
+				url: SITE_URL,
+			},
+			mainEntityOfPage: `${SITE_URL}${path}`,
+			url: `${SITE_URL}${path}`,
+		});
+		return () => applyJsonLd("nd-jsonld-page", null);
+	}, [blog, loading, slug]);
 
 	if (loading) {
 		return (

@@ -41,7 +41,7 @@ function FloatingNodes() {
 
 function ExperienceCard({ item, index }) {
 	const ref = useRef(null);
-	const inView = useInView(ref, { once: false, amount: 0.35 });
+	const inView = useInView(ref, { once: true, amount: 0.4, margin: "-10% 0px" });
 
 	return (
 		<motion.li

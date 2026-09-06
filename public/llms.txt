@@ -1,0 +1,24 @@
+# Nitin Dev Space
+
+> A software brand that designs and builds custom web apps, products, and freelance engineering work. Hire Nitin Kumar to create your next software project.
+
+Site: https://nitindevspace.com
+Contact: mailto:nitindevspace@gmail.com
+
+## Offer
+
+Nitin Dev Space is not a resume dump. It is a brand for people who need software built: custom web applications, product engineering, and freelance full-stack development.
+
+## Pages
+
+- [Home](https://nitindevspace.com/): Software brand landing page
+- [Profile](https://nitindevspace.com/profile): The engineer behind the brand
+- [Projects](https://nitindevspace.com/projects): Software and product builds
+- [Blog](https://nitindevspace.com/blogs): Notes on building software and shipping products
+- [Contact](https://nitindevspace.com/contact): Hire Nitin Dev Space for a freelance software project
+
+## Identity
+
+- GitHub: https://github.com/NitinDevSpace
+- LinkedIn: https://www.linkedin.com/in/nitindevspace/
+- Email: nitindevspace@gmail.com

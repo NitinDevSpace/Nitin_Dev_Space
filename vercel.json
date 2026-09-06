@@ -1,8 +1,122 @@
 {
+	"redirects": [
+		{
+			"source": "/",
+			"has": [{ "type": "host", "value": "nitindevspace.vercel.app" }],
+			"destination": "https://nitindevspace.com/",
+			"permanent": true
+		},
+		{
+			"source": "/:path*",
+			"has": [{ "type": "host", "value": "nitindevspace.vercel.app" }],
+			"destination": "https://nitindevspace.com/:path*",
+			"permanent": true
+		},
+		{
+			"source": "/",
+			"has": [{ "type": "host", "value": "www.nitindevspace.com" }],
+			"destination": "https://nitindevspace.com/",
+			"permanent": true
+		},
+		{
+			"source": "/:path*",
+			"has": [{ "type": "host", "value": "www.nitindevspace.com" }],
+			"destination": "https://nitindevspace.com/:path*",
+			"permanent": true
+		}
+	],
 	"rewrites": [
 		{
-			"source": "/((?!api/|src/|@vite|@react-refresh|node_modules/).*)",
+			"source": "/((?!api/|src/|@vite|@react-refresh|node_modules/|favicon\\.ico|favicon\\.png|robots\\.txt|sitemap\\.xml|ads\\.txt|llms\\.txt|humans\\.txt|site\\.webmanifest|browserconfig\\.xml|apple-touch-icon\\.png|og-image\\.png|logo\\.png|icon-.*\\.png|favicon-.*\\.png|mstile-.*\\.png|.*\\.txt).*)",
 			"destination": "/index.html"
+		}
+	],
+	"headers": [
+		{
+			"source": "/robots.txt",
+			"headers": [
+				{ "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+				{ "key": "Cache-Control", "value": "public, max-age=86400" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/sitemap.xml",
+			"headers": [
+				{ "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+				{ "key": "Cache-Control", "value": "public, max-age=3600" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/ads.txt",
+			"headers": [
+				{ "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+				{ "key": "Cache-Control", "value": "public, max-age=86400" }
+			]
+		},
+		{
+			"source": "/llms.txt",
+			"headers": [
+				{ "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+				{ "key": "Cache-Control", "value": "public, max-age=86400" }
+			]
+		},
+		{
+			"source": "/humans.txt",
+			"headers": [
+				{ "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+				{ "key": "Cache-Control", "value": "public, max-age=86400" }
+			]
+		},
+		{
+			"source": "/site.webmanifest",
+			"headers": [
+				{ "key": "Content-Type", "value": "application/manifest+json; charset=utf-8" },
+				{ "key": "Cache-Control", "value": "public, max-age=86400" }
+			]
+		},
+		{
+			"source": "/favicon.ico",
+			"headers": [
+				{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/favicon.png",
+			"headers": [
+				{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/apple-touch-icon.png",
+			"headers": [
+				{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/og-image.png",
+			"headers": [
+				{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/icon-192.png",
+			"headers": [
+				{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
+		},
+		{
+			"source": "/icon-512.png",
+			"headers": [
+				{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
+				{ "key": "X-Robots-Tag", "value": "all" }
+			]
 		}
 	]
 }

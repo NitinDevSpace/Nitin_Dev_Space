@@ -3,15 +3,16 @@ import { Mail } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
+import { sectionInView } from "../../utils/motion";
 
 function Collaborate() {
 	const navigate = useNavigate();
 	const textRef = useRef(null);
 	const buttonRef = useRef(null);
 	const paraRef = useRef(null);
-	const isTextInView = useInView(textRef, { once: false, threshold: 0.5 });
-	const isParaInView = useInView(paraRef, { once: false, threshold: 0.5 });
-	const isButtonInView = useInView(buttonRef, { once: false, threshold: 0.5 });
+	const isTextInView = useInView(textRef, sectionInView);
+	const isParaInView = useInView(paraRef, sectionInView);
+	const isButtonInView = useInView(buttonRef, sectionInView);
 
 	const [typeWriterKey, setTypeWriterKey] = useState(0);
 
@@ -51,14 +52,14 @@ function Collaborate() {
 			>
 				<motion.p
 					initial={false}
-					animate={isParaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-					transition={{ duration: 1, ease: easeInOut }}
+					animate={isParaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+					transition={{ duration: 0.7, ease: easeInOut }}
 				>
-					I'm always excited to discuss new projects, innovative ideas, or
-					potential collaborations.{" "}
+					Hire Nitin Dev Space to design and build your next web app,
+					product, or freelance software project.{" "}
 					<br className="hidden sm:block" />
-					If you have something in mind, or just want to connect, feel free to
-					reach out!
+					Tell me what you want created — I take ideas from sketch to shipped
+					software.
 				</motion.p>
 			</div>
 
@@ -72,7 +73,7 @@ function Collaborate() {
 				}}
 				className="bg-accent2 flex gap-4 p-2 sm:text-2xl hover-scale px-6 rounded-lg text-black m-4"
 			>
-				Get In Touch <Mail />
+				Start a Project <Mail />
 			</motion.button>
 		</div>
 	);

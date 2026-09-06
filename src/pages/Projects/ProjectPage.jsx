@@ -5,6 +5,8 @@ import { getProjectById } from "../../services/projects.service";
 import Footer from "../../components/Footer";
 import { ProjectPageSkeleton } from "../../components/Loading";
 import StatusChip from "../../components/StatusChip";
+import { getProjectOverview } from "../../utils/text";
+import { applyJsonLd, applySeo, SITE_NAME, SITE_URL } from "../../utils/seo";
 
 const ProjectPage = () => {
 	const { id } = useParams();
@@ -23,6 +25,44 @@ const ProjectPage = () => {
 		}
 		fetchData();
 	}, [id]);
+
+	useEffect(() => {
+		const path = `/projects/${id}`;
+		if (loading) return;
+		if (!project) {
+			applySeo({
+				title: `Project not found | ${SITE_NAME}`,
+				description: "This project could not be found on Nitin Dev Space.",
+				path,
+				noindex: true,
+			});
+			applyJsonLd("nd-jsonld-page", null);
+			return;
+		}
+		const description =
+			getProjectOverview(project, 160) ||
+			`${project.title} — a software project built by Nitin Dev Space.`;
+		applySeo({
+			title: `${project.title} | ${SITE_NAME}`,
+			description,
+			path,
+			image: project.image,
+		});
+		applyJsonLd("nd-jsonld-page", {
+			"@context": "https://schema.org",
+			"@type": "CreativeWork",
+			name: project.title,
+			description,
+			image: project.image,
+			url: `${SITE_URL}${path}`,
+			creator: {
+				"@type": "Organization",
+				name: SITE_NAME,
+				url: SITE_URL,
+			},
+		});
+		return () => applyJsonLd("nd-jsonld-page", null);
+	}, [project, loading, id]);
 
 	const images = project
 		? [

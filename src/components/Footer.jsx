@@ -11,42 +11,26 @@ import {
 	Mail,
 } from "lucide-react";
 import { easeInOut, motion, useInView } from "framer-motion";
+import { sectionInView } from "../utils/motion";
 
 function Footer() {
 	const scrollTop = () => {
 		window.scrollTo({
 			top: 0,
-			behavior: "smooth", // or "auto" for instant jump
+			behavior: "smooth",
 		});
 	};
 
-	const openNewWindow = (url) => {
-		const newWindow = window.open(url, "_blank", "noopener, noreferrer");
-		if (newWindow) newWindow.focus();
-	};
-
-	const openEmailClient = () => {
-		const email = "nitindevspace@gmail.com";
-		const subject = "Let's Connect (From Portfolio)";
-		const body = "Hi there,\n\nI'm reaching out to discuss...";
-
-		const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
-			subject
-		)}&body=${encodeURIComponent(body)}`;
-
-		window.open(mailtoLink, "_blank");
-	};
-
 	const ref = useRef(null);
-	const isInView = useInView(ref, { once: false, threshold: 0.4 });
+	const isInView = useInView(ref, sectionInView);
 
 	return (
 		<div className="relative my-2 justify-self-center shadow-2xl py-10 sm:py-12 flex flex-col justify-center w-11/12 min-h-0 sm:min-h-[80dvh] items-center">
 			<motion.div
 				ref={ref}
 				initial={false}
-				animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-				transition={{ duration: 1, ease: easeInOut }}
+				animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+				transition={{ duration: 0.7, ease: easeInOut }}
 				className="flex relative z-30 bg-primary3 py-8 px-4 sm:px-12 rounded-lg shadow-2xl w-11/12 justify-center h-fit items-center"
 			>
 				<div className="w-full">
@@ -55,7 +39,7 @@ function Footer() {
 							<div className="flex items-center">
 								<img
 									src={logo}
-									alt="logo"
+									alt="Nitin Dev Space"
 									className="w-14 sm:w-16 h-14 sm:h-16 rounded-lg p-1 object-contain"
 								/>
 								<h1 className="p-2 font-semibold text-xl sm:text-2xl">
@@ -63,9 +47,9 @@ function Footer() {
 								</h1>
 							</div>
 							<p className="opacity-80 text-sm sm:text-base max-w-md">
-								Passionate about building innovative web solutions and exploring
-								the frontiers of AI. Let&apos;s connect and create something
-								impactful.
+								Nitin Dev Space is a software brand for custom web apps,
+								freelance builds, and products that ship. Hire the brand to
+								create your next project.
 							</p>
 						</div>
 						{/* Right Section */}
@@ -96,85 +80,84 @@ function Footer() {
 								{/* External Links */}
 								<div className=" items-center flex justify-center flex-wrap gap-4 left-1/2">
 									<div className="relative group">
-										<button
-											onClick={() =>
-												openNewWindow("https://github.com/NitinDevSpace")
-											}
+										<a
+											href="https://github.com/NitinDevSpace"
+											target="_blank"
+											rel="me noopener noreferrer"
+											aria-label="GitHub"
 											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
-											<Github />{" "}
-										</button>
-
+											<Github />
+										</a>
 										<span className="opacity-0 mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
 											Github
 										</span>
 									</div>
 									<div className="relative group">
-										<button
-											onClick={() =>
-												openNewWindow(
-													"https://www.linkedin.com/in/nitindevspace/"
-												)
-											}
+										<a
+											href="https://www.linkedin.com/in/nitindevspace/"
+											target="_blank"
+											rel="me noopener noreferrer"
+											aria-label="LinkedIn"
 											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
-											<Linkedin />{" "}
-										</button>
+											<Linkedin />
+										</a>
 										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
 											LinkedIn
 										</span>
 									</div>
 									<div className="relative group">
-										<button
-											onClick={() =>
-												openNewWindow("https://leetcode.com/u/NitinDevSpace/")
-											}
+										<a
+											href="https://leetcode.com/u/NitinDevSpace/"
+											target="_blank"
+											rel="me noopener noreferrer"
+											aria-label="LeetCode"
 											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
-											<Code />{" "}
-										</button>
+											<Code />
+										</a>
 										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
 											LeetCode
 										</span>
 									</div>
 									<div className="relative group">
-										<button
-											onClick={() =>
-												openNewWindow(
-													"https://www.hackerrank.com/profile/nitindevspace"
-												)
-											}
+										<a
+											href="https://www.hackerrank.com/profile/nitindevspace"
+											target="_blank"
+											rel="me noopener noreferrer"
+											aria-label="HackerRank"
 											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
-											<Braces />{" "}
-										</button>
+											<Braces />
+										</a>
 										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
 											HackerRank
 										</span>
 									</div>
 									<div className="relative group">
-										<button
-											onClick={() =>
-												openNewWindow(
-													"https://www.instagram.com/creative_core_23/"
-												)
-											}
+										<a
+											href="https://www.instagram.com/creative_core_23/"
+											target="_blank"
+											rel="me noopener noreferrer"
+											aria-label="Instagram"
 											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
-											<Instagram />{" "}
-										</button>
+											<Instagram />
+										</a>
 										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
 											Instagram
 										</span>
 									</div>
 									<div className="relative group">
-										<button
-											onClick={openEmailClient}
+										<a
+											href="mailto:nitindevspace@gmail.com"
+											rel="me"
+											aria-label="Email"
 											className="bg-primary hover-scale text-white rounded-full w-10 h-10 flex items-center justify-center"
 										>
-											{" "}
-											<Mail />{" "}
-										</button>
+											<Mail />
+										</a>
 										<span className="opacity-0  mt-6 top-1/2 left-1/2 -translate-x-1/2 px-1 group-hover:opacity-80 bg-primary text-white rounded absolute transition duration-200 pointer-events-none z-50">
 											Email
 										</span>

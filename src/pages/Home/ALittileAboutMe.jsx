@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import { easeInOut, motion, spring, useInView } from "framer-motion";
+import { easeInOut, motion, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Code, Layers, Sparkles } from "lucide-react";
 import { getAboutme } from "../../services/aboutMe.service";
+import { sectionInView } from "../../utils/motion";
 
 function AboutSection() {
 	const navigate = useNavigate();
 	const textRef = useRef(null);
 	const boxRef = useRef(null);
 	const buttonRef = useRef(null);
-	const isTextInView = useInView(textRef, { once: false, threshold: 0.4 });
-	const isBoxInView = useInView(boxRef, { once: false, threshold: 0.9 });
-	const isButtontInView = useInView(buttonRef, { once: false, threshold: 0.4 });
+	const isTextInView = useInView(textRef, sectionInView);
+	const isBoxInView = useInView(boxRef, sectionInView);
+	const isButtontInView = useInView(buttonRef, sectionInView);
 
 	const [about, setAbout] = useState({});
 
@@ -44,8 +45,8 @@ function AboutSection() {
 				layout
 				ref={textRef}
 				initial={false}
-				animate={isTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-				transition={{ duration: 0.5, ease: easeInOut }}
+				animate={isTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+				transition={{ duration: 0.6, ease: easeInOut }}
 				className="flex flex-col lg:w-[45rem] text-center"
 			>
 				<span className="text-3xl pb-6 font-semibold">

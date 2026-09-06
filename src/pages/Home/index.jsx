@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import IntroSection from "./IntroSection";
 import ALittleAboutMe from "./ALittileAboutMe";
 import MyCreations from "./MyCreationsSection";
@@ -13,152 +13,64 @@ import {
 import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
-	const sectionRefs = useRef([]);
-	const currentSection = useRef(0);
-	const isThrottled = useRef(false);
-
 	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		});
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						const index = sectionRefs.current.findIndex(
-							(section) => section === entry.target
-						);
-						if (index !== -1) {
-							currentSection.current = index;
-						}
-					}
-				});
-			},
-			{ threshold: 0.5 }
-		);
-
-		sectionRefs.current.forEach((section) => {
-			if (section) observer.observe(section);
-		});
-
-		const handleScroll = (e) => {
-			const isInsideScrollable =
-				e.target.closest(".allow-scroll") ||
-				e.target.classList.contains("allow-scroll");
-
-			if (isInsideScrollable) return;
-			
-			e.preventDefault();
-			if (isThrottled.current) return;
-			if (Math.abs(e.deltaY) < 15) return;
-
-			const direction = e.deltaY > 0 ? 1 : -1;
-			const nextSection = Math.max(
-				0,
-				Math.min(
-					sectionRefs.current.length - 1,
-					currentSection.current + direction
-				)
-			);
-
-			if (nextSection !== currentSection.current) {
-				sectionRefs.current[nextSection]?.scrollIntoView({
-					behavior: "smooth",
-				});
-				isThrottled.current = true;
-				setTimeout(() => (isThrottled.current = false), 600);
-			}
-		};
-
-		const handleKey = (e) => {
-			if (isThrottled.current) return;
-			if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-				const direction = e.key === "ArrowDown" ? 1 : -1;
-				const nextSection = Math.max(
-					0,
-					Math.min(
-						sectionRefs.current.length - 1,
-						currentSection.current + direction
-					)
-				);
-				if (nextSection !== currentSection.current) {
-					sectionRefs.current[nextSection]?.scrollIntoView({
-						behavior: "smooth",
-					});
-					isThrottled.current = true;
-					setTimeout(() => (isThrottled.current = false), 600);
-				}
-			}
-		};
-
-		window.addEventListener("wheel", handleScroll, { passive: false });
-		window.addEventListener("keydown", handleKey);
-
-		return () => {
-			window.removeEventListener("wheel", handleScroll);
-			window.removeEventListener("keydown", handleKey);
-			sectionRefs.current.forEach((section) => {
-				if (section) observer.unobserve(section);
-			});
-		};
+		window.scrollTo({ top: 0 });
 	}, []);
 
 	return (
 		<>
-			<section ref={(el) => (sectionRefs.current[0] = el)}>
+			<section className="relative">
 				<div className="relative overflow-hidden h-screen gradient-bg items-center justify-center mx-auto ">
 					<motion.div
-						initial={{ opacity: 0, y: 90 }}
+						initial={{ opacity: 0, y: 40 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1, ease: easeInOut }}
+						transition={{ duration: 0.8, ease: easeInOut }}
 						className="absolute inset-0 z-10 flex items-start justify-start pointer-events-none"
 					>
 						<RotatingCubeScene />
 					</motion.div>
+					<motion.h1
+						className="absolute z-30 left-1/2 w-full bottom-[22%] sm:bottom-36 flex flex-col items-center text-white"
+						initial={{ opacity: 0, y: 36, x: "-50%" }}
+						animate={{ opacity: 1, y: 0, x: "-50%" }}
+						transition={{ duration: 0.7, ease: easeOut }}
+					>
+						<span className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-center mb-4 px-3">
+							Nitin <span className=" ">Dev Space</span>
+						</span>
+					</motion.h1>
+					<motion.p
+						className="absolute w-full z-30 left-1/2 bottom-[14%] sm:bottom-28 flex flex-col items-center text-accent2 px-3"
+						initial={{ opacity: 0, x: "-50%" }}
+						animate={{ opacity: 1, x: "-50%" }}
+						transition={{ duration: 0.8, ease: easeInOut }}
+					>
+						<span className="text-sm md:text-lg lg:text-2xl font-mono text-center">
+							<Typewriter
+								words={["A software brand for custom products and freelance builds"]}
+								loop={1}
+								deleteSpeed={0}
+								cursor
+								cursorStyle="."
+								typeSpeed={60}
+							/>
+						</span>
+					</motion.p>
 				</div>
-
-				<motion.h1
-					className="absolute z-30 left-1/2 w-full bottom-[22%] sm:bottom-36 flex flex-col items-center text-white"
-					initial={{ opacity: 0, y: 80, x: "-50%" }}
-					animate={{ opacity: 1, y: 0, x: "-50%" }}
-					transition={{ duration: 0.7, ease: easeOut }}
-				>
-					<span className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-center mb-4 px-3">
-						Nitin <span className=" ">Dev Space</span>
-					</span>
-				</motion.h1>
-				<motion.p
-					className="absolute w-full z-30 left-1/2 bottom-[14%] sm:bottom-28 flex flex-col items-center text-accent2 px-3"
-					initial={{ opacity: 0, x: "-50%" }}
-					animate={{ opacity: 1, x: "-50%" }}
-					transition={{ duration: 0.8, ease: easeInOut }}
-				>
-					<span className="text-sm md:text-lg lg:text-2xl font-mono text-center">
-						<Typewriter
-							words={["Crafting interactive, performant experiences"]}
-							loop={1}
-							deleteSpeed={0}
-							cursor
-							cursorStyle="."
-							typeSpeed={60}
-						/>
-					</span>
-				</motion.p>
 			</section>
-			<section ref={(el) => (sectionRefs.current[1] = el)}>
+			<section>
 				<IntroSection />
 			</section>
-			<section ref={(el) => (sectionRefs.current[2] = el)}>
+			<section>
 				<ALittleAboutMe />
 			</section>
-			<section ref={(el) => (sectionRefs.current[3] = el)}>
+			<section>
 				<MyCreations />
 			</section>
-			<section ref={(el) => (sectionRefs.current[4] = el)}>
+			<section>
 				<Collaborate />
 			</section>
-			<section ref={(el) => (sectionRefs.current[5] = el)}>
+			<section>
 				<Footer />
 			</section>
 		</>

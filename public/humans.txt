@@ -1,0 +1,15 @@
+/* TEAM */
+Founder: Nitin Kumar
+Brand: Nitin Dev Space
+Site: https://nitindevspace.com
+Contact: nitindevspace@gmail.com
+Location: India
+GitHub: https://github.com/NitinDevSpace
+LinkedIn: https://www.linkedin.com/in/nitindevspace/
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript
+Components: React, Vite, Vercel
+Last update: 2026-09-06
+Language: English
+Purpose: Freelance software brand for custom web apps and product builds

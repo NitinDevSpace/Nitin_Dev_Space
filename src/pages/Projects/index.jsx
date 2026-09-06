@@ -26,10 +26,12 @@ const Projects = () => {
 		<>
 			<div>
 				<div className="relative pt-20 sm:pt-24 md:pt-28 mb-10 sm:mb-16 flex flex-col items-center justify-center px-4">
-					<h1 className="text-3xl sm:text-4xl mb-4 text-center">My Projects</h1>
+					<h1 className="text-3xl sm:text-4xl mb-4 text-center">
+						Software Projects
+					</h1>
 					<p className="opacity-70 p-2 sm:p-4 text-center max-w-2xl text-sm sm:text-base">
-						A compact look at the things I have built. Open any card for the
-						full story, images, and details.
+						Custom web apps and product builds from Nitin Dev Space. Open any
+						card for the full story — then hire the brand to build yours.
 					</p>
 				</div>
 

@@ -104,7 +104,7 @@ const NavBar = () => {
 
 				<img
 					src={logo}
-					alt="logo"
+					alt="Nitin Dev Space"
 					className="w-12 lg:w-14 hover:cursor-pointer hover-scale drop-shadow-2xl shrink-0"
 					onClick={() => {
 						navigate("/");

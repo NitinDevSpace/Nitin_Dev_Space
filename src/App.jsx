@@ -14,10 +14,12 @@ import PrivacyPolicies from "./components/PrivacyPolicies";
 import TermsConditions from "./components/TermsConditions";
 import CookieSetting from "./components/CookieSetting";
 import MouseTrail from "./components/MouseTrail";
+import Seo from "./components/Seo";
 
 function App() {
 	return (
 		<>
+			<Seo />
 			<MouseTrail />
 			<NavBar />
 			<Routes>

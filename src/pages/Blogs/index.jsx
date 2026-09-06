@@ -30,7 +30,8 @@ const Blogs = () => {
 						My <span className="text-accent2">Blog</span>
 					</h1>
 					<p className="opacity-70 mt-4">
-						Notes on building, switching careers, and turning work into a brand.
+						Notes on building software products, freelance engineering, and
+						turning ideas into a brand people can hire.
 					</p>
 				</header>
 				{loading ? (
