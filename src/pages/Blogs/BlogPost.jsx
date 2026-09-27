@@ -138,7 +138,7 @@ const BlogPost = () => {
 
 				<div className="md:w-5/6 mx-auto px-4 md:px-0 py-10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_280px] gap-8">
 					<div>
-						<AdSlot slot="1234567890" className="mb-8" />
+						<AdSlot slot="8824279674" className="mb-8" />
 						{blog.excerpt && (
 							<p className="text-lg font-light opacity-80 mb-8 leading-relaxed">
 								{blog.excerpt}
@@ -148,11 +148,11 @@ const BlogPost = () => {
 							className="blog-prose text-base leading-relaxed opacity-90 space-y-4"
 							dangerouslySetInnerHTML={{ __html: blog.content }}
 						/>
-						<AdSlot slot="1234567891" className="mt-10" format="autorelaxed" />
+						<AdSlot slot="8824279674" className="mt-10" format="autorelaxed" />
 					</div>
 					<div className="space-y-6 lg:sticky lg:top-28 h-fit">
-						<AdSlot slot="1234567892" className="min-h-[250px]" />
-						<AdSlot slot="1234567893" className="min-h-[250px]" />
+						<AdSlot slot="8329369937" className="min-h-[250px]" />
+						<AdSlot slot="8329369937" className="min-h-[250px]" />
 					</div>
 				</div>
 			</article>
