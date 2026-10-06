@@ -1,4 +1,5 @@
 import clientPromise from "../lib/db.js";
+import { requireAdmin } from "../lib/adminAuth.js";
 
 export default async function handler(req, res) {
 	try {
@@ -13,6 +14,7 @@ export default async function handler(req, res) {
 		}
 
 		if (req.method === "POST") {
+			if (!requireAdmin(req, res)) return;
 			const payload = req.body;
 			if (!payload) {
 				return res.status(400).json({

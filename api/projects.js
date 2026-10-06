@@ -1,5 +1,6 @@
 import clientPromise from "../lib/db.js";
 import { ObjectId } from "mongodb";
+import { requireAdmin } from "../lib/adminAuth.js";
 
 export default async function projectsHandler(req, res) {
 	try {
@@ -43,6 +44,7 @@ export default async function projectsHandler(req, res) {
 		}
 
 		if (method === "POST") {
+			if (!requireAdmin(req, res)) return;
 			const newProject = await collection.insertOne({
 				...req.body,
 				isKeyProject: Boolean(req.body.isKeyProject),
@@ -59,6 +61,7 @@ export default async function projectsHandler(req, res) {
 		}
 
 		if (method === "PATCH") {
+			if (!requireAdmin(req, res)) return;
 			const id = query.id;
 			if (!id || !ObjectId.isValid(id)) {
 				return res.status(400).json({
@@ -84,6 +87,7 @@ export default async function projectsHandler(req, res) {
 		}
 
 		if (method === "DELETE") {
+			if (!requireAdmin(req, res)) return;
 			const id = query.id;
 			if (!id || !ObjectId.isValid(id)) {
 				return res.status(400).json({

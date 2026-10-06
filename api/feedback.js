@@ -1,4 +1,5 @@
 import clientPromise from "../lib/db.js";
+import { requireAdmin } from "../lib/adminAuth.js";
 
 export default async function handler(req, res) {
 	try {
@@ -8,19 +9,21 @@ export default async function handler(req, res) {
 		const collection = db.collection("feedbacks");
 
 		if (req.method === "GET") {
+			if (!requireAdmin(req, res)) return;
 			const feedbacks = await collection.find({}).toArray();
 			return res.status(200).send({ success: true, data: feedbacks });
 		}
 
 		if (req.method === "POST") {
-			const payload = req.body;
-			if (!payload) {
+			const rating = Number(req.body?.rating || 0);
+			const feedback = String(req.body?.feedback || "").trim().slice(0, 2000);
+			if ((!rating && !feedback) || !Number.isInteger(rating) || rating < 0 || rating > 5) {
 				return res.status(400).json({
 					success: false,
-					message: "No request body provided",
+					message: "Add a rating or feedback.",
 				});
 			}
-			await collection.insertOne(payload);
+			await collection.insertOne({ rating, feedback, date: new Date().toISOString() });
 			return res
 				.status(201)
 				.send({ success: true, message: "Feedback Submitted" });

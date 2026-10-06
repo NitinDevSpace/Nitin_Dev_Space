@@ -1,5 +1,6 @@
 import clientPromise from "../lib/db.js";
 import { ObjectId } from "mongodb";
+import { requireAdmin } from "../lib/adminAuth.js";
 
 function monthKey(date) {
 	const d = new Date(date);
@@ -25,6 +26,7 @@ export default async function handler(req, res) {
 		if (req.method !== "GET") {
 			return res.status(405).json({ success: false, message: "Method Not Allowed" });
 		}
+		if (!requireAdmin(req, res)) return;
 
 		const client = await clientPromise;
 		const db = client.db("Nitin_Dev_Space");

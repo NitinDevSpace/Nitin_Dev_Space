@@ -78,17 +78,16 @@ function TermsConditions() {
 				</h3>
 				<ul className="list-disc list-inside space-y-2">
 					<li>
-						The Platform may integrate third-party tools or services including
-						but not limited to Google Analytics, Google AdSense, advertising
-						SDKs, analytics SDKs, API providers, or embedded widgets.
+						The website uses hosting and database providers and has a Google
+						AdSense tag for advertising. External links take you to services
+						with their own terms and privacy practices.
 					</li>
 					<li>
 						The owner is not responsible for the actions, content, tracking
 						methods, or policies of third-party providers.
 					</li>
 					<li>
-						Your use of the Platform constitutes acceptance of such possible
-						integrations, even if implemented in the future.
+						We will update the Privacy Policy when our data practices change.
 					</li>
 				</ul>
 
@@ -97,16 +96,16 @@ function TermsConditions() {
 				</h3>
 				<ul className="list-disc list-inside space-y-2">
 					<li>
-						The Platform may use cookies, local storage, analytics tools, or
-						advertising technologies to enhance user experience.
+						Google AdSense and its partners may use cookies or similar
+						technologies for ad delivery and measurement.
 					</li>
 					<li>
-						Future integrations may include tracking cookies, ad personalization
-						tools, and behavioral analytics technologies.
+						Where required, visitors can make advertising consent choices
+						through the site's consent message.
 					</li>
 					<li>
-						By using the Platform, you consent to the use of such technologies
-						as they are introduced.
+						See the Privacy Policy and Cookie Settings pages for details and
+						available controls.
 					</li>
 				</ul>
 
@@ -153,9 +152,9 @@ function TermsConditions() {
 						Platform.
 					</li>
 					<li>
-						App permissions such as internet access, storage access, in-app
-						behavior tracking, and analytics may be required for proper
-						functioning.
+						The Android app uses internet access to display the site and
+						Android's file picker and download service when you choose to use
+						those features.
 					</li>
 					<li>
 						App updates may modify features, behavior, or permissions without

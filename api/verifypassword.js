@@ -1,5 +1,5 @@
-import { log } from "three/tsl";
 import clientPromise from "../lib/db.js";
+import { setAdminSession } from "../lib/adminAuth.js";
 
 export default async function handler(req, res) {
 	try {
@@ -10,9 +10,10 @@ export default async function handler(req, res) {
 
 		if (req.method === "POST") {
 			const password = await collection.findOne({});
-			if(password.password !== req.body.password){
+			if (!password || password.password !== req.body?.password) {
 				return res.status(200).send({ success: false });
 			}
+			setAdminSession(res);
 			return res.status(200).send({ success: true });
 		}
 	} catch (error) {

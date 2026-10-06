@@ -1,6 +1,7 @@
 import clientPromise from "../lib/db.js";
 import { ObjectId } from "mongodb";
 import { blogSeed } from "../lib/data/blogSeed.js";
+import { requireAdmin } from "../lib/adminAuth.js";
 
 async function ensureSeed(collection) {
 	const count = await collection.countDocuments();
@@ -20,6 +21,7 @@ export default async function handler(req, res) {
 			await ensureSeed(collection);
 
 			if (query.id) {
+				if (!requireAdmin(req, res)) return;
 				const blog = await collection.findOne({ _id: new ObjectId(query.id) });
 				return res.status(200).send({
 					success: true,
@@ -29,7 +31,7 @@ export default async function handler(req, res) {
 			}
 
 			if (query.slug) {
-				const blog = await collection.findOne({ slug: query.slug });
+				const blog = await collection.findOne({ slug: query.slug, published: true });
 				return res.status(200).send({
 					success: true,
 					message: "Blog fetched successfully",
@@ -37,6 +39,7 @@ export default async function handler(req, res) {
 				});
 			}
 
+			if (query.all === "1" && !requireAdmin(req, res)) return;
 			const filter = query.all === "1" ? {} : { published: true };
 			const blogs = await collection
 				.find(filter)
@@ -52,6 +55,7 @@ export default async function handler(req, res) {
 		}
 
 		if (method === "POST") {
+			if (!requireAdmin(req, res)) return;
 			const payload = {
 				...req.body,
 				published: req.body.published !== false,
@@ -68,6 +72,7 @@ export default async function handler(req, res) {
 		}
 
 		if (method === "PATCH") {
+			if (!requireAdmin(req, res)) return;
 			const id = query.id;
 			if (!id || !ObjectId.isValid(id)) {
 				return res.status(400).json({
@@ -93,6 +98,7 @@ export default async function handler(req, res) {
 		}
 
 		if (method === "DELETE") {
+			if (!requireAdmin(req, res)) return;
 			const id = query.id;
 			if (!id || !ObjectId.isValid(id)) {
 				return res.status(400).json({

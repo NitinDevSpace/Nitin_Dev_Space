@@ -1,171 +1,65 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "./Footer";
 
 function PrivacyPolicies() {
 	return (
 		<>
-			<div className="max-w-3xl mx-auto px-6 pt-28 pb-16 text-gray-300 leading-7 space-y-10">
-				<h2 className="text-3xl font-semibold mb-6 text-white">
-					Privacy Policy
-				</h2>
+			<main className="max-w-3xl mx-auto px-6 pt-28 pb-16 text-gray-300 leading-7 space-y-8">
+				<h1 className="text-3xl font-semibold text-white">Privacy Policy</h1>
 				<p>
-					This Privacy Policy applies to both the website and the associated
-					Android/mobile applications (“Platform”). By using the Platform, you
-					consent to the practices described below.
+					Nitin Dev Space is operated by Nitin Kumar. This policy covers
+					nitindevspace.com and the Nitin Dev Space Android app, which displays
+					the website in a WebView. Contact us at{" "}
+					<a className="text-accent2 underline" href="mailto:nitindevspace@gmail.com">nitindevspace@gmail.com</a>
+					{" "}with privacy questions or requests.
 				</p>
 
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					1. Information Collected
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						Essential technical data such as IP address, browser type, device
-						type, timestamps, and basic cookies may be collected automatically.
-					</li>
-					<li>
-						User-submitted data such as comments, likes, form submissions, and
-						messages may be stored indefinitely.
-					</li>
-					<li>
-						Future integrations may include analytics tools (Google Analytics,
-						Firebase Analytics), ad networks (Google AdSense), and SDKs that may
-						collect anonymous behavioral or device data.
-					</li>
-					<li>
-						The Platform may use cookies, local storage, and tracking
-						technologies for personalization, analytics, and functionality.
-					</li>
-				</ul>
+				<section className="space-y-3">
+					<h2 className="text-xl font-semibold text-white">Information we receive</h2>
+					<ul className="list-disc pl-6 space-y-2">
+						<li>When you contact us, we receive your name, email address, optional phone number, subject and message.</li>
+						<li>When you leave feedback, we receive the rating, any feedback text and the submission date.</li>
+						<li>Our hosting and database services may process technical information such as IP address, browser or device type, request time and error logs when the site or app is used.</li>
+						<li>The Android app opens a system file picker when you choose a file to upload and uses the device download service when you download a file. Files you select are sent to the website or service you choose to use.</li>
+					</ul>
+				</section>
 
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					2. How Your Data Is Used
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						To improve website/app performance, security, and user experience.
-					</li>
-					<li>
-						To moderate, store, display, or manage user-generated content.
-					</li>
-					<li>To analyze traffic, usage patterns, and platform trends.</li>
-					<li>To comply with Indian legal or regulatory requirements.</li>
-					<li>
-						Future advertising tools may use data for personalized or
-						non-personalized ads.
-					</li>
-				</ul>
+				<section className="space-y-3">
+					<h2 className="text-xl font-semibold text-white">How we use it</h2>
+					<p>We use contact details to answer your enquiry, feedback to improve the site, and technical information to operate, secure and troubleshoot the service. We do not sell contact form or feedback submissions.</p>
+				</section>
 
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					3. Third-Party Services
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						The Platform may integrate services such as Google Analytics, Google
-						AdSense, YouTube embeds, cloud hosting, or advertising networks.
-					</li>
-					<li>
-						These services may independently collect and process user data based
-						on their own privacy policies.
-					</li>
-					<li>The owner is not responsible for third-party data practices.</li>
-				</ul>
+				<section className="space-y-3">
+					<h2 className="text-xl font-semibold text-white">Advertising and cookies</h2>
+					<p>We have installed the Google AdSense tag and may show Google ads once the site is approved. Google and other advertising partners may use cookies or similar identifiers to show and measure ads, including ads based on visits to this and other sites. Ad availability and personalization depend on your region and privacy choices.</p>
+					<p>Google explains how it uses information from partner sites in its{" "}
+						<a className="text-accent2 underline" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer">partner-sites policy</a>. You can manage personalized ads in{" "}
+						<a className="text-accent2 underline" href="https://myadcenter.google.com/" target="_blank" rel="noreferrer">Google My Ad Center</a>, and eligible visitors can revisit the consent choices described on our{" "}
+						<Link className="text-accent2 underline" to="/cookie-settings">Cookie Settings page</Link>.
+					</p>
+				</section>
 
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					4. App Permissions (Android/Mobile)
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						The app may require permissions such as internet access, storage
-						read/write, network information, or device identifiers for
-						analytics.
-					</li>
-					<li>
-						Future updates may add additional permissions based on app features.
-					</li>
-				</ul>
+				<section className="space-y-3">
+					<h2 className="text-xl font-semibold text-white">Service providers and external links</h2>
+					<p>We use hosting and database providers to run the site and store submissions. Google may process information when its advertising tag or ads are used. Links to GitHub, LinkedIn and other websites lead to services with their own privacy practices.</p>
+				</section>
 
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					5. Data Retention
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						User-generated data may be stored indefinitely unless deletion is
-						requested and approved at the owner's discretion.
-					</li>
-					<li>
-						Analytics or technical logs may be retained for operational and
-						diagnostic purposes.
-					</li>
-				</ul>
+				<section className="space-y-3">
+					<h2 className="text-xl font-semibold text-white">Retention and your choices</h2>
+					<p>Contact messages and feedback currently have no automatic deletion date. Email nitindevspace@gmail.com to ask what information we hold about you or to request correction or deletion. Include enough detail for us to find your submission; we may need to verify that the request is yours. Some information may need to be retained for security or legal reasons.</p>
+				</section>
 
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					6. Data Security
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						Reasonable security measures will be implemented as per IT Act 2000
-						and DPDP Act 2023 guidelines.
-					</li>
-					<li>
-						No digital platform is 100% secure, and the owner is not liable for
-						breaches beyond reasonable control.
-					</li>
-				</ul>
+				<section className="space-y-3">
+					<h2 className="text-xl font-semibold text-white">Security and children</h2>
+					<p>The website uses HTTPS to protect information in transit. No online service can guarantee complete security. The site and app are not designed for children, and we do not knowingly seek personal information from them.</p>
+				</section>
 
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					7. User Rights
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						You may request deletion of your comments or messages, subject to
-						the owner's discretion and technical limitations.
-					</li>
-					<li>
-						By using the Platform, you consent to data storage, processing,
-						analytics, and future integrations.
-					</li>
-				</ul>
-
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					8. Children's Privacy
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>The Platform is not intended for children under 13.</li>
-					<li>No known data is intentionally collected from minors.</li>
-				</ul>
-
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					9. Legal Compliance
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>This Privacy Policy is governed by Indian law.</li>
-					<li>
-						All disputes shall fall strictly under the jurisdiction of the
-						courts in the owner's home state/region.
-					</li>
-				</ul>
-
-				<h3 className="text-xl font-semibold mt-10 mb-4 text-white">
-					10. Future Updates
-				</h3>
-				<ul className="list-disc list-inside space-y-2">
-					<li>
-						The owner may update this Privacy Policy at any time without prior
-						notice.
-					</li>
-					<li>
-						Your continued use of the Platform constitutes acceptance of updated
-						terms.
-					</li>
-				</ul>
-
-				<p>
-					If you have any questions or concerns about this Privacy Policy,
-					please contact the owner through the provided contact methods on the
-					Platform.
-				</p>
-				<p>Last updated: Nov 2025</p>
-			</div>
+				<section className="space-y-3">
+					<h2 className="text-xl font-semibold text-white">Updates</h2>
+					<p>We will update this page when our data practices change. Last updated: 6 October 2026.</p>
+				</section>
+			</main>
 			<Footer />
 		</>
 	);
