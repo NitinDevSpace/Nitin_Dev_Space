@@ -3,6 +3,7 @@ import { writeFile } from "node:fs/promises";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 import { blogSeed } from "../lib/data/blogSeed.js";
+import { blogDeepDives } from "../lib/data/blogDeepDives.js";
 
 dotenv.config({ path: process.env.SOURCE_ENV_FILE || ".env", quiet: true });
 if (!process.env.DB_URL) throw new Error("DB_URL is required");
@@ -25,11 +26,18 @@ try {
 	if (existing.length !== blogSeed.length) {
 		throw new Error(`Expected ${blogSeed.length} existing articles; found ${existing.length}`);
 	}
+	for (const post of blogSeed) {
+		const current = existing.find((entry) => entry.slug === post.slug);
+		const previousContent = post.content.slice(0, -(blogDeepDives[post.slug] || "").length);
+		if (current.content !== previousContent && current.content !== post.content) {
+			throw new Error(`Article changed since the last sync: ${post.slug}`);
+		}
+	}
 	const entrify = await projects.findOne(
 		{ title: /Entrify/i },
 		{ projection: { title: 1, overview: 1 } }
 	);
-	if (!entrify || entrify.overview !== "Patched overview works") {
+	if (!entrify || !["Patched overview works", overview].includes(entrify.overview)) {
 		throw new Error("Entrify overview has changed; review it before updating");
 	}
 	if (apply && !backupPath) throw new Error("--backup=/absolute/path.json is required with --apply");
@@ -38,17 +46,20 @@ try {
 	}
 	if (apply) {
 		for (const post of blogSeed) {
+			if (existing.find((entry) => entry.slug === post.slug).content === post.content) continue;
 			await blogs.updateOne(
-				{ slug: post.slug },
+				{ slug: post.slug, content: post.content.slice(0, -(blogDeepDives[post.slug] || "").length) },
 				{ $set: { content: post.content, readTime: post.readTime, updatedAt: new Date() } }
 			);
 		}
-		await projects.updateOne(
-			{ _id: entrify._id, overview: "Patched overview works" },
-			{ $set: { overview } }
-		);
+		if (entrify.overview === "Patched overview works") {
+			await projects.updateOne(
+				{ _id: entrify._id, overview: "Patched overview works" },
+				{ $set: { overview } }
+			);
+		}
 	}
-	console.log(`${apply ? "Updated" : "Ready to update"} ${blogSeed.length} articles and the Entrify overview`);
+	console.log(`${apply ? "Updated" : "Ready to update"} ${blogSeed.length} articles`);
 } finally {
 	await client.close();
 }

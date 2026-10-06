@@ -39,41 +39,41 @@ const Blogs = () => {
 				) : (
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 						{blogs.map((card) => (
-							<article
+							<Link
 								key={card._id || card.slug}
-								className="bg-primary2 rounded-lg shadow-lg overflow-hidden flex flex-col border border-white/10 hover:border-accent2/40 transition-colors"
+								to={`/blogs/${card.slug}`}
+								className="group block h-full rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent2 motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:scale-[1.03] motion-safe:focus-visible:scale-[1.03]"
 							>
-								<img
-									src={card.coverImage}
-									alt={card.title}
-									className="w-full h-48 object-cover"
-								/>
-								<div className="p-6 flex flex-col flex-1">
-									<div className="flex flex-wrap gap-2 mb-3">
-										{(card.tags || []).slice(0, 3).map((tag) => (
-											<span
-												key={tag}
-												className="text-[10px] uppercase tracking-wide text-accent2 border border-accent2/30 px-2 py-0.5 rounded-full"
-											>
-												{tag}
+								<article className="bg-primary2 rounded-lg shadow-lg overflow-hidden flex flex-col h-full border border-white/10 transition-colors duration-300 group-hover:border-accent2/50 group-focus-visible:border-accent2/50">
+									<img
+										src={card.coverImage}
+										alt={card.title}
+										className="w-full h-48 object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
+									/>
+									<div className="p-6 flex flex-col flex-1">
+										<div className="flex flex-wrap gap-2 mb-3">
+											{(card.tags || []).slice(0, 3).map((tag) => (
+												<span
+													key={tag}
+													className="text-[10px] uppercase tracking-wide text-accent2 border border-accent2/30 px-2 py-0.5 rounded-full"
+												>
+													{tag}
+												</span>
+											))}
+										</div>
+										<h2 className="text-xl font-semibold mb-2">{card.title}</h2>
+										<p className="opacity-70 mb-4 flex-1 text-sm">{card.excerpt}</p>
+										<div className="flex items-center justify-between">
+											<span className="text-xs opacity-50">
+												{card.readTime || "5 min"}
 											</span>
-										))}
+											<span className="bg-accent2 text-black px-4 py-2 rounded text-sm font-medium">
+												Read More
+											</span>
+										</div>
 									</div>
-									<h2 className="text-xl font-semibold mb-2">{card.title}</h2>
-									<p className="opacity-70 mb-4 flex-1 text-sm">{card.excerpt}</p>
-									<div className="flex items-center justify-between">
-										<span className="text-xs opacity-50">
-											{card.readTime || "5 min"}
-										</span>
-										<Link
-											to={`/blogs/${card.slug}`}
-											className="bg-accent2 text-black px-4 py-2 rounded hover-scale text-sm"
-										>
-											Read More
-										</Link>
-									</div>
-								</div>
-							</article>
+								</article>
+							</Link>
 						))}
 					</div>
 				)}
